@@ -15,12 +15,12 @@ namespace LithyGUI
     public partial class FormModificarPaciente : Form
     {
         IReceptor Receptor;
-        PacienteServiceBD pacienteService;
+        PersonaServiceBD pacienteService;
 
         public FormModificarPaciente()
         {
             InitializeComponent();
-            pacienteService = new PacienteServiceBD();
+            pacienteService = new PersonaServiceBD(ConfigConnection.connectionString);
         }
 
         public FormModificarPaciente(IReceptor receptor)
@@ -40,17 +40,17 @@ namespace LithyGUI
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            Paciente paciente = new Paciente();
-            paciente.Identificacion = txtIdentificacion.Text;
-            paciente.Nombres = txtNombres.Text;
-            paciente.Apellidos = txtApellidos.Text;
-            paciente.Edad = int.Parse(txtEdad.Text);
-            paciente.Sexo = cmbSexo.Text;
-            paciente.Celular = txtCelular.Text;
-            paciente.Direccion = txtDireccion.Text;
-            paciente.Correo = txtCorreo.Text;
+            Persona persona = new Persona();
+            persona.Identificacion = txtIdentificacion.Text;
+            persona.Nombres = txtNombres.Text;
+            persona.Apellidos = txtApellidos.Text;
+            persona.Edad = char.Parse(txtEdad.Text);
+            persona.Sexo = cmbSexo.Text;
+            persona.Celular = txtCelular.Text;
+            persona.Direccion = txtDireccion.Text;
+            persona.Correo = txtCorreo.Text;
 
-            MessageBox.Show(pacienteService.Modificar(paciente));
+            MessageBox.Show(pacienteService.Modificar(persona));
 
         }
 

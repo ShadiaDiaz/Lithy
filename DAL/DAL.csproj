@@ -60,9 +60,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConnectionManager.cs" />
     <Compile Include="DiagnosticoRepository.cs" />
     <Compile Include="MedicamentoRepository.cs" />
-    <Compile Include="PacienteRepository.cs" />
+    <Compile Include="PersonaRepository.cs" />
     <Compile Include="PosologiaRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecetarioRepository.cs" />

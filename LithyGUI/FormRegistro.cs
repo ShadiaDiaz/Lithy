@@ -14,12 +14,13 @@ namespace LithyGUI
 {
     public partial class FormRegistro : Form, IReceptor
     {
-        PacienteServiceBD pacienteService;
+        PersonaServiceBD pacienteService;
 
         public FormRegistro()
         {
             InitializeComponent();
-            pacienteService = new PacienteServiceBD();
+            pacienteService = new PersonaServiceBD(ConfigConnection.connectionString);
+
         }
 
         private void Label2_Click(object sender, EventArgs e)
@@ -32,12 +33,12 @@ namespace LithyGUI
 
         }
 
-        public void Receptor(Paciente paciente)
+        public void Receptor(Persona persona)
         {
-            if (paciente != null)
+            if (persona != null)
             {
-                Paciente pacient = new Paciente();
-                pacient = paciente;
+                Persona person = new Persona();
+                person = persona;
                 string idAux = txtIdentificacion.Text;
             }
 
@@ -45,16 +46,16 @@ namespace LithyGUI
 
         private void PictureBox2_Click(object sender, EventArgs e)
         {
-            Paciente paciente = new Paciente();
-            paciente.Identificacion = txtIdentificacion.Text;
-            paciente.Nombres = txtNombres.Text;
-            paciente.Apellidos = txtApellidos.Text;
-            paciente.Celular = txtCelular.Text;
-            paciente.Sexo = cmbSexo.Text;
-            paciente.Direccion = txtDireccion.Text;
-            paciente.Edad = Int16.Parse(txtEdad.Text);
-            paciente.Correo = txtCorreo.Text;
-            MessageBox.Show(pacienteService.GuardarPaciente(paciente));
+            Persona persona = new Persona();
+            persona.Identificacion = txtIdentificacion.Text;
+            persona.Nombres = txtNombres.Text;
+            persona.Apellidos = txtApellidos.Text;
+            persona.Celular = txtCelular.Text;
+            persona.Sexo = cmbSexo.Text;
+            persona.Direccion = txtDireccion.Text;
+            persona.Edad = char.Parse(txtEdad.Text);
+            persona.Correo = txtCorreo.Text;
+            MessageBox.Show(pacienteService.GuardarPaciente(persona));
         }
 
         private void Registro_Load(object sender, EventArgs e)

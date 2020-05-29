@@ -15,7 +15,7 @@ namespace LithyGUI
 {
     public partial class Inicio : Form
     {
-        PacienteServiceBD paciente;
+        PersonaServiceBD paciente;
 
         public Inicio()
         {

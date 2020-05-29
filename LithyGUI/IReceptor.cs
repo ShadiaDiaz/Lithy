@@ -9,6 +9,6 @@ namespace LithyGUI
 {
     public interface IReceptor
     {
-        void Receptor(Paciente paciente);
+        void Receptor(Persona persona);
     }
 }

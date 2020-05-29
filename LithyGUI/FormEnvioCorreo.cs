@@ -15,11 +15,11 @@ namespace LithyGUI
 {
     public partial class FormEnvioCorreo : Form
     {
-        PacienteServiceBD pacienteService;
+        PersonaServiceBD pacienteService;
         public FormEnvioCorreo()
         {
             InitializeComponent();
-            pacienteService = new PacienteServiceBD();
+            pacienteService = new PersonaServiceBD(ConfigConnection.connectionString);
         }
 
         private void btnEnviarCorreo_Click(object sender, EventArgs e)
@@ -35,9 +35,9 @@ namespace LithyGUI
         private void pictureBox3_Click(object sender, EventArgs e)
         {
             EnviarCorreo enviarCorreo = new EnviarCorreo();
-            Paciente paciente = new Paciente();
-            paciente.Correo = txtCorreo.Text;
-            MessageBox.Show(enviarCorreo.EnviarEmail(paciente));
+            Persona persona = new Persona();
+            persona.Correo = txtCorreo.Text;
+            MessageBox.Show(enviarCorreo.EnviarEmail(persona));
         }
 
         /* private void Resize(object sender, EventArgs e)

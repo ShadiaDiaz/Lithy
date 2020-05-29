@@ -15,8 +15,8 @@ namespace LithyGUI
 {
     public partial class FormRecetario : Form
     {
-        Paciente paciente;
-        PacienteServiceBD pacienteService;
+        Persona persona;
+        PersonaServiceBD PersonaService;
         PosologiaService posologiaService;
         MedicamentoService medicamentoService;
         RecetarioService recetarioService;
@@ -29,8 +29,8 @@ namespace LithyGUI
             generar = new Generar();
             medicamentoService = new MedicamentoService();
             posologiaService = new PosologiaService();
-            paciente = new Paciente();
-            pacienteService = new PacienteServiceBD();
+            persona = new Persona();
+            PersonaService = new PersonaServiceBD(ConfigConnection.connectionString);
             recetarioService = new RecetarioService();
         }
 
@@ -44,11 +44,11 @@ namespace LithyGUI
 
         private void pbtnExtraer_Click(object sender, EventArgs e)
         {
-            paciente = pacienteService.Buscar(long.Parse(txtIDPR.Text))[0];
-            if (paciente != null)
+            persona = PersonaService.Buscar(long.Parse(txtIDPR.Text))[0];
+            if (persona != null)
             {
-                txtNPR.Text = paciente.Nombres+" "+ paciente.Apellidos;
-                string nuevoCodigo = recetarioService.NuevoCodigo(long.Parse(paciente.Identificacion));
+                txtNPR.Text = persona.Nombres+" "+ persona.Apellidos;
+                string nuevoCodigo = recetarioService.NuevoCodigo(long.Parse(persona.Identificacion));
                 txtCodigoRecetario.Text = nuevoCodigo;
 
             }
@@ -78,11 +78,11 @@ namespace LithyGUI
           
             Recetario recetario = new Recetario();
             Posologia posologia = new Posologia();
-            Paciente paciente = new Paciente();
+            Persona persona = new Persona();
             List<Posologia> ListaPosologias = new List<Posologia>();
             recetario.Codigo = txtCodigoRecetario.Text;
-            paciente.Identificacion = txtIDPR.Text;
-            paciente.Nombres = txtNPR.Text;
+            persona.Identificacion = txtIDPR.Text;
+            persona.Nombres = txtNPR.Text;
             recetario.Fecha = DateTime.Parse(dpFecha.Text);
             recetario.Estado = "N";
             recetarioService.Guardar(recetario,txtIDPR.Text);
@@ -99,7 +99,7 @@ namespace LithyGUI
 
             
             
-           generar.FillPDF("Recetario.pdf", ListaPosologias,paciente);
+           generar.FillPDF("Recetario.pdf", ListaPosologias,persona);
         }
 
         private void cbxMedicamentos_SelectedIndexChanged(object sender, EventArgs e)

@@ -14,14 +14,14 @@ namespace LithyGUI
 {
     public partial class FormConsultar : Form
     {
-        Paciente paciente;
-        PacienteServiceBD pacienteService;
+        Persona persona;
+        PersonaServiceBD personaService;
 
         public FormConsultar()
         {
             InitializeComponent();
-            paciente = new Paciente();
-            pacienteService = new PacienteServiceBD();
+            persona = new Persona();
+            personaService = new PersonaServiceBD(ConfigConnection.connectionString);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -32,9 +32,9 @@ namespace LithyGUI
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            if (pacienteService.Buscar(long.Parse(txtBuscarPaciente.Text)) != null)
+            if (personaService.Buscar(long.Parse(txtBuscarPaciente.Text)) != null)
             {
-                dtgvPacientes.DataSource = pacienteService.Buscar(long.Parse(txtBuscarPaciente.Text));
+                dtgvPacientes.DataSource = personaService.Buscar(long.Parse(txtBuscarPaciente.Text));
 
             }
             else
@@ -45,7 +45,7 @@ namespace LithyGUI
 
         private void FormConsultar_Load(object sender, EventArgs e)
         {
-            dtgvPacientes.DataSource = pacienteService.Consultar();
+            dtgvPacientes.DataSource = personaService.Consultar();
         }
 
         private void dtgvPacientes_CellContentClick(object sender, DataGridViewCellEventArgs e)

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entity;
 using BLL;
-using static BLL.PacienteServiceBD;
+using static BLL.PersonaServiceBD;
 using InfraEstructura;
 using iTextSharp.text;using iTextSharp.text.pdf;
 using System.IO;
@@ -19,8 +19,8 @@ namespace LithyGUI
 {
     public partial class FormDiagnostico : Form
     {
-        Paciente paciente;
-        PacienteServiceBD pacienteService;
+        Persona persona;
+        PersonaServiceBD PersonaService;
         DiagnosticoService diagnosticoService;
         Generar generar;
 
@@ -28,8 +28,8 @@ namespace LithyGUI
         public FormDiagnostico()
         {
             InitializeComponent();
-            paciente = new Paciente();
-            pacienteService = new PacienteServiceBD();
+            persona = new Persona();
+            PersonaService = new PersonaServiceBD(ConfigConnection.connectionString);
             diagnosticoService = new DiagnosticoService();
             generar = new Generar();
         }
@@ -62,13 +62,13 @@ namespace LithyGUI
 
         private void pbtnExtraer_Click(object sender, EventArgs e)
         {
-            paciente = pacienteService.Buscar(long.Parse(txtIdentificacion.Text))[0];
-            if (paciente != null)
+            persona = PersonaService.Buscar(long.Parse(txtIdentificacion.Text))[0];
+            if (persona != null)
             {
-                txtNombres.Text = paciente.Nombres;
-                txtApellidos.Text = paciente.Apellidos;
-                txtEdad.Text = paciente.Edad.ToString();
-                string nuevoCodigo= diagnosticoService.NuevoCodigo(long.Parse(paciente.Identificacion));
+                txtNombres.Text = persona.Nombres;
+                txtApellidos.Text = persona.Apellidos;
+                txtEdad.Text = persona.Edad.ToString();
+                string nuevoCodigo= diagnosticoService.NuevoCodigo(long.Parse(persona.Identificacion));
                 txtCodigo.Text = nuevoCodigo;
 
             }
@@ -113,7 +113,7 @@ namespace LithyGUI
 
         private void pictureBox6_Click(object sender, EventArgs e)
         {
-            List<Paciente> respuesta = pacienteService.Consultar();
+            List<Persona> respuesta = PersonaService.Consultar();
            // generar.GuardarPdf(respuesta, @"ListaPacientes.pdf");
         }
 

@@ -46,7 +46,7 @@
     <Compile Include="Diagnostico.cs" />
     <Compile Include="HistorialMedico.cs" />
     <Compile Include="Medicamento.cs" />
-    <Compile Include="Paciente.cs" />
+    <Compile Include="Persona.cs" />
     <Compile Include="Posologia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recetario.cs" />
