@@ -20,7 +20,7 @@ namespace LithyGUI
         public FormRegistroMedicamentos()
         {
             InitializeComponent();
-            medicamentoService = new MedicamentoService();
+            medicamentoService = new MedicamentoService(ConfigConnection.connectionString);
         }
 
         private void RegistroMedicamentos_Load(object sender, EventArgs e)

@@ -13,15 +13,16 @@ namespace BLL
 {
     public class MedicamentoService
     {
-        SqlConnection Conexion;
+        private readonly ConnectionManager conexion;
+
+        private readonly MedicamentoRepository repositorio;
         MedicamentoRepository medicamentoRepository;
         List<Medicamento> medicamentos;
 
-        public MedicamentoService()
+        public MedicamentoService(string connectionString)
         {
-            string cadenaConexion = @"Data Source=LAPTOP-MKRFM1FC\SQLEXPRESS02;Initial Catalog=DB_Lithy;Integrated Security=True";
-            Conexion = new SqlConnection(cadenaConexion);
-            medicamentoRepository = new MedicamentoRepository(Conexion);
+            conexion = new ConnectionManager(connectionString);
+            repositorio = new MedicamentoRepository(conexion);
         }
 
         public string Guardar(Medicamento medicamento)
@@ -29,7 +30,7 @@ namespace BLL
 
             try
             {
-                Conexion.Open();
+                conexion.Open();
                 medicamentoRepository.Guardar(medicamento);
                 return "Medicamento " + medicamento.Nombre +  " registrad@ Exitosamente";
             }
@@ -40,14 +41,14 @@ namespace BLL
             }
             finally
             {
-                Conexion.Close();
+                conexion.Close();
             }
         }
         public string Modificar(Medicamento medicamento)
         {
             try
             {
-                Conexion.Open();
+                conexion.Open();
                 medicamentoRepository.Modidicar(medicamento);
                 return "Paciente " + medicamento.Nombre + " modificad@ Exitamente";
             }
@@ -58,7 +59,7 @@ namespace BLL
             }
             finally
             {
-                Conexion.Close();
+                conexion.Close();
             }
         }
         public List<Medicamento> Buscar(long cod)
@@ -66,7 +67,7 @@ namespace BLL
             try
             {
 
-                Conexion.Open();
+                conexion.Open();
                 return medicamentoRepository.BuscarMedicina(cod);
 
 
@@ -77,7 +78,7 @@ namespace BLL
             }
             finally
             {
-                Conexion.Close();
+                conexion.Close();
             }
 
         }
@@ -85,10 +86,10 @@ namespace BLL
         {
             try
             {
-                Conexion.Open();
+                conexion.Open();
                 medicamentos = new List<Medicamento>();
                 medicamentos = medicamentoRepository.Consultar();
-                Conexion.Close();
+                conexion.Close();
                 return medicamentos;
             }
             catch (Exception)

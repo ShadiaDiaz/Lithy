@@ -12,7 +12,7 @@ namespace Entity
         public string Identificacion { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
-        public char Edad { get; set; }
+        public int Edad { get; set; }
         public string Sexo { get; set; }
         public string Direccion { get; set; }
         public string Celular { get; set; }
@@ -26,7 +26,7 @@ namespace Entity
 
         }
 
-        public Persona(char tipo, string identificacion, string nombres, string apellidos, char edad, string sexo, string direccion, string celular, string correo, List<Diagnostico> diagnosticos, List<Recetario> recetas, List<HistorialMedico> historiaMedico)
+        public Persona(char tipo, string identificacion, string nombres, string apellidos, int edad, string sexo, string direccion, string celular, string correo, List<Diagnostico> diagnosticos, List<Recetario> recetas, List<HistorialMedico> historiaMedico)
         {
             Tipo = tipo;
             Identificacion = identificacion;

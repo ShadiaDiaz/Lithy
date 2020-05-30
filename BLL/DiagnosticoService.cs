@@ -15,7 +15,7 @@ namespace BLL
     {
         SqlConnection Conexion;
         DiagnosticoRepository diagnosticoRepository;
-        List<Paciente> pacientes;
+        List<Persona> personas;
 
         public DiagnosticoService()
         {

@@ -17,13 +17,13 @@ namespace InfraEstructura
 
        
 
-        public void FillPDF(string templateFile, List<Posologia>posologia, Paciente paciente)
+        public void FillPDF(string templateFile, List<Posologia>posologia, Persona persona)
         {
             Stream file = new FileStream(@"RecetarioCrear.pdf", FileMode.Create);
             PdfReader reader = new PdfReader(templateFile);
          PdfStamper stamp = new PdfStamper(reader, file);
-         stamp.AcroFields.SetField("Identificaciòn", ""+paciente.Identificacion);
-         stamp.AcroFields.SetField("Nombres", ""+paciente.Nombres);
+         stamp.AcroFields.SetField("Identificaciòn", ""+persona.Identificacion);
+         stamp.AcroFields.SetField("Nombres", ""+persona.Nombres);
          stamp.AcroFields.SetField("RX", ""+LlenarTabla(posologia).ToString());
          
          stamp.FormFlattening = false;
@@ -72,7 +72,7 @@ namespace InfraEstructura
 
         public class Respuesta
         {
-            public IList<Paciente> ListaPacientes { get; set; }
+            public IList<Persona> ListaPacientes { get; set; }
             public string Mensaje { get; set; }
             public bool IsError { get; set; }
         }

@@ -41,7 +41,7 @@ namespace DAL
                 Comando.CommandText = "update Medicamento set Nombre=@Nombre ,Presentacion=@Presentacion ,Precio=@Precio  where Codigo=" + medicamento.Codigo ;
                 Comando.Parameters.Add("@Nombre", OracleDbType.NVarchar2).Value = medicamento.Nombre;
                 Comando.Parameters.Add("@Presentacion", OracleDbType.NVarchar2).Value = medicamento.Presentacion;
-                Comando.Parameters.Add("@Precio", OracleDbType.decimal).Value = medicamento.Precio;
+                Comando.Parameters.Add("@Precio", OracleDbType.Decimal).Value = medicamento.Precio;
          
                 Comando.ExecuteNonQuery();
             }

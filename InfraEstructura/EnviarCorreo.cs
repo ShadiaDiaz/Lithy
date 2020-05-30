@@ -13,15 +13,15 @@ namespace InfraEstructura
     {
         string con = "NIALLhoran43";
      
-        public MailMessage CrearEmail (Paciente paciente)
+        public MailMessage CrearEmail (Persona persona)
         {
 
             MailMessage email = new MailMessage();
             Attachment attachment = new Attachment("ListaPacientes.pdf");
-            email.To.Add(paciente.Correo);
+            email.To.Add(persona.Correo);
             email.From = new MailAddress("scarleth0413@gmail.com");
             email.Subject = "Registro de Pacientes " + DateTime.Now.ToString("dd / MMM / yy hh:mm:ss");
-            email.Body = $"<b>Sr(a) {paciente.Nombres} {paciente.Apellidos} </b> se ha realizado su registro";
+            email.Body = $"<b>Sr(a) {persona.Nombres} {persona.Apellidos} </b> se ha realizado su registro";
             
             email.Attachments.Add(attachment);
             email.IsBodyHtml = true;
@@ -41,13 +41,13 @@ namespace InfraEstructura
 
         }
 
-        public string EnviarEmail(Paciente paciente)
+        public string EnviarEmail(Persona persona)
         {
             string resultado = string.Empty;
             try
             {
                 SmtpClient smtp = ConfigurarSMTP();
-                MailMessage email = CrearEmail(paciente);
+                MailMessage email = CrearEmail(persona);
                 smtp.Send(email);
                 email.Dispose();
                 resultado = "Correo electronico fue enviado satisfactoriamente";

@@ -27,7 +27,7 @@ namespace LithyGUI
         {
             InitializeComponent();
             generar = new Generar();
-            medicamentoService = new MedicamentoService();
+            medicamentoService = new MedicamentoService(ConfigConnection.connectionString);
             posologiaService = new PosologiaService();
             persona = new Persona();
             PersonaService = new PersonaServiceBD(ConfigConnection.connectionString);

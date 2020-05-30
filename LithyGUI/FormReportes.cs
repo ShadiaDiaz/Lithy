@@ -14,13 +14,13 @@ namespace LithyGUI
 {
     public partial class FormReportes : Form
     {
-        PersonaServiceBD PacienteService;
+        PersonaServiceBD PersonaService;
         DiagnosticoService diagnosticoService;
 
         public FormReportes()
         {
             InitializeComponent();
-            PacienteService = new PersonaServiceBD();
+            PersonaService = new PersonaServiceBD(ConfigConnection.connectionString);
             diagnosticoService = new DiagnosticoService();
         }
 

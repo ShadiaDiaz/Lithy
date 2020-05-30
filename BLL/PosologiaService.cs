@@ -15,7 +15,7 @@ namespace BLL
     {
         SqlConnection Conexion;
         PosologiaRepository posologiaRepository;
-        List<Paciente> pacientes;
+        List<Persona> personas;
 
         public PosologiaService()
         {

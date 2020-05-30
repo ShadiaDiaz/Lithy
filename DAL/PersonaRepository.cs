@@ -27,18 +27,19 @@ namespace DAL
 
             using(var Comando = _connection.CreateCommand())
             {
-                Comando.CommandText = "Insert Into Persona(Identificación,Nombres,Apellidos,Edad,Sexo,Dirección,Celular,Correo)Values " +
-                    "(@Tipo,@Identificación,@Nombre,@Apellido,@Edad,@Sexo,@Dirección,@Celular,@Correo)";
-                Comando.Parameters.Add("@Tipo", OracleDbType.Char).Value = persona.Tipo;
-                Comando.Parameters.Add("@Identificación", OracleDbType.NVarchar2).Value = persona.Identificacion;
-                Comando.Parameters.Add("@Nombre", OracleDbType.NVarchar2).Value = persona.Nombres;
-                Comando.Parameters.Add("@Apellido", OracleDbType.NVarchar2).Value = persona.Apellidos;
-                Comando.Parameters.Add("@Edad", OracleDbType.Char).Value = persona.Edad;
-                Comando.Parameters.Add("@Sexo", OracleDbType.Char).Value = persona.Sexo;
-                Comando.Parameters.Add("@Direccion", OracleDbType.NVarchar2).Value = persona.Direccion;
-                Comando.Parameters.Add("@Celular", OracleDbType.Varchar2).Value = persona.Celular;
-                Comando.Parameters.Add("@Correo", OracleDbType.NVarchar2).Value = persona.Correo;
-                Comando.ExecuteNonQuery();
+                Comando.CommandText = "Insert Into Persona(Tipo,Identificación,Nombres,Apellidos,Edad,Sexo,Dirección,Celular,Correo)Values " +
+                    "(:Tipo,:Identificación,:Nombre,:Apellido,:Edad,:Sexo,:Dirección,:Celular,:Correo)";
+                Comando.Parameters.Add(":Tipo", OracleDbType.Char).Value = persona.Tipo;
+                Comando.Parameters.Add(":Identificación", OracleDbType.NVarchar2).Value = persona.Identificacion;
+                Comando.Parameters.Add(":Nombre", OracleDbType.NVarchar2).Value = persona.Nombres;
+                Comando.Parameters.Add(":Apellido", OracleDbType.NVarchar2).Value = persona.Apellidos;
+                Comando.Parameters.Add(":Edad", OracleDbType.Char).Value = persona.Edad;
+                Comando.Parameters.Add(":Sexo", OracleDbType.Char).Value = persona.Sexo;
+                Comando.Parameters.Add(":Direccion", OracleDbType.NVarchar2).Value = persona.Direccion;
+                Comando.Parameters.Add(":Celular", OracleDbType.Varchar2).Value = persona.Celular;
+                Comando.Parameters.Add(":Correo", OracleDbType.NVarchar2).Value = persona.Correo;
+                  Comando.ExecuteNonQuery();
+              
             }
         }
 
@@ -50,7 +51,7 @@ namespace DAL
                 Comando.Parameters.Add("@Tipo", OracleDbType.Char).Value = persona.Edad;
                 Comando.Parameters.Add("@Nombre", OracleDbType.Varchar2).Value = persona.Nombres;
                 Comando.Parameters.Add("@Apellido", OracleDbType.Varchar2).Value = persona.Apellidos;
-                Comando.Parameters.Add("@Edad", OracleDbType.Char).Value = persona.Edad;
+                Comando.Parameters.Add("@Edad", OracleDbType.Int16).Value = persona.Edad;
                 Comando.Parameters.Add("@Sexo", OracleDbType.Varchar2).Value = persona.Sexo;
                 Comando.Parameters.Add("@Direccion", OracleDbType.Varchar2).Value = persona.Direccion;
                 Comando.Parameters.Add("@Celular", OracleDbType.Varchar2).Value = persona.Celular;
@@ -111,7 +112,7 @@ namespace DAL
             persona.Identificacion = (string)dataReader["Identificación"];
             persona.Nombres = (string)dataReader["Nombres"];
             persona.Apellidos = (string)dataReader["Apellidos"];
-            persona.Edad = (char)dataReader["Edad"];
+            persona.Edad = (int)dataReader["Edad"];
             persona.Sexo = (string)dataReader["Sexo"];
             persona.Direccion = (string)dataReader["Direccion"];
             persona.Celular = (string)dataReader["Celular"];
