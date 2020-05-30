@@ -16,7 +16,7 @@ namespace BLL
         private readonly ConnectionManager conexion;
 
         private readonly MedicamentoRepository repositorio;
-        MedicamentoRepository medicamentoRepository;
+       
         List<Medicamento> medicamentos;
 
         public MedicamentoService(string connectionString)
@@ -31,7 +31,7 @@ namespace BLL
             try
             {
                 conexion.Open();
-                medicamentoRepository.Guardar(medicamento);
+                repositorio.Guardar(medicamento);
                 return "Medicamento " + medicamento.Nombre +  " registrad@ Exitosamente";
             }
             catch (Exception excep)
@@ -49,7 +49,7 @@ namespace BLL
             try
             {
                 conexion.Open();
-                medicamentoRepository.Modidicar(medicamento);
+                repositorio.Modidicar(medicamento);
                 return "Paciente " + medicamento.Nombre + " modificad@ Exitamente";
             }
             catch (Exception excep)
@@ -68,7 +68,7 @@ namespace BLL
             {
 
                 conexion.Open();
-                return medicamentoRepository.BuscarMedicina(cod);
+                return repositorio.BuscarMedicina(cod);
 
 
             }
@@ -88,7 +88,7 @@ namespace BLL
             {
                 conexion.Open();
                 medicamentos = new List<Medicamento>();
-                medicamentos = medicamentoRepository.Consultar();
+                medicamentos = repositorio.Consultar();
                 conexion.Close();
                 return medicamentos;
             }

@@ -26,11 +26,11 @@ namespace DAL
             using (var Comando = _connection.CreateCommand())
             {
                 Comando.CommandText = "Insert Into Medicamento(Codigo,Nombre,Presentacion,Precio)Values " +
-                    "(@Codigo,@Nombre,@Presentacion,@Precio)";
-                Comando.Parameters.Add("@Codigo", SqlDbType.NVarChar).Value = medicamento.Codigo;
-                Comando.Parameters.Add("@Nombre", SqlDbType.NVarChar).Value = medicamento.Nombre;
-                Comando.Parameters.Add("@Presentacion", SqlDbType.NVarChar).Value = medicamento.Presentacion;
-                Comando.Parameters.Add("@Precio", SqlDbType.Decimal).Value = medicamento.Precio;
+                    "(:Codigo,:Nombre,:Presentacion,:Precio)";
+                Comando.Parameters.Add(":Codigo", OracleDbType.NVarchar2).Value = medicamento.Codigo;
+                Comando.Parameters.Add(":Nombre", OracleDbType.NVarchar2).Value = medicamento.Nombre;
+                Comando.Parameters.Add(":Presentacion", OracleDbType.NVarchar2).Value = medicamento.Presentacion;
+                Comando.Parameters.Add(":Precio", OracleDbType.Decimal).Value = medicamento.Precio;
                 Comando.ExecuteNonQuery();
             }
         }
