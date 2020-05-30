@@ -8,22 +8,24 @@ namespace Entity
 {
     public class Medicamento
     {
-        public string Codigo { get; set; }
+        
         public string Nombre { get; set; }
         public string Presentacion { get; set; }
-        public decimal Precio { get; set; }
+        public string Cantidad { get; set; }
+
 
         public Medicamento()
         {
 
         }
 
-        public Medicamento(string codigo, string nombre, string presentacion, decimal precio)
+        public Medicamento( string nombre, string presentacion,string cantidad)
         {
-            Codigo = codigo;
+          
             Nombre = nombre;
             Presentacion = presentacion;
-            Precio = precio;
+            Cantidad = cantidad;
+      
         }
     }
 }

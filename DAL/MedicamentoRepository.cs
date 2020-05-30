@@ -25,12 +25,11 @@ namespace DAL
 
             using (var Comando = _connection.CreateCommand())
             {
-                Comando.CommandText = "Insert Into Medicamento(Codigo,Nombre,Presentacion,Precio)Values " +
-                    "(:Codigo,:Nombre,:Presentacion,:Precio)";
-                Comando.Parameters.Add(":Codigo", OracleDbType.NVarchar2).Value = medicamento.Codigo;
+                Comando.CommandText = "Insert Into Medicamento(Nombre,Presentacion,Cantidad)Values " +
+                    "(:Codigo,:Nombre,:Presentacion,:Cantidad)";
                 Comando.Parameters.Add(":Nombre", OracleDbType.NVarchar2).Value = medicamento.Nombre;
                 Comando.Parameters.Add(":Presentacion", OracleDbType.NVarchar2).Value = medicamento.Presentacion;
-                Comando.Parameters.Add(":Precio", OracleDbType.Decimal).Value = medicamento.Precio;
+                Comando.Parameters.Add(":Cantidad", OracleDbType.NVarchar2).Value = medicamento.Cantidad;
                 Comando.ExecuteNonQuery();
             }
         }
@@ -38,22 +37,21 @@ namespace DAL
         {
             using (var Comando = _connection.CreateCommand())
             {
-                Comando.CommandText = "update Medicamento set Nombre=@Nombre ,Presentacion=@Presentacion ,Precio=@Precio  where Codigo=" + medicamento.Codigo ;
-                Comando.Parameters.Add("@Nombre", OracleDbType.NVarchar2).Value = medicamento.Nombre;
-                Comando.Parameters.Add("@Presentacion", OracleDbType.NVarchar2).Value = medicamento.Presentacion;
-                Comando.Parameters.Add("@Precio", OracleDbType.Decimal).Value = medicamento.Precio;
-         
+                Comando.CommandText = "update Medicamento set Presentacion=:Presentacion, Cantidad=:Cantidad   where Nombre=" + medicamento.Nombre ;
+                Comando.Parameters.Add(":Presentacion", OracleDbType.NVarchar2).Value = medicamento.Presentacion;
+                Comando.Parameters.Add(":Cantidad", OracleDbType.NVarchar2).Value = medicamento.Cantidad;
+
                 Comando.ExecuteNonQuery();
             }
         }
-        public List<Medicamento> BuscarMedicina(long cod)
+        public List<Medicamento> BuscarMedicina(string nombre)
         {
             OracleDataReader dataReader;
             List<Medicamento> medicamentos = new List<Medicamento>();
 
             using (var Comando = _connection.CreateCommand())
             {
-                Comando.CommandText = "Select * from Medicamento where codigo=" + cod;
+                Comando.CommandText = "Select * from Medicamento where nombre=" + nombre;
 
                 dataReader = Comando.ExecuteReader();
 
@@ -94,10 +92,9 @@ namespace DAL
         {
 
             Medicamento medicamento = new Medicamento();
-            medicamento.Codigo = (string)dataReader["Codigo"];
             medicamento.Nombre = (string)dataReader["Nombre"];
             medicamento.Presentacion = (string)dataReader["Presentacion"];
-            medicamento.Precio = (decimal)dataReader["Precio"];
+            medicamento.Cantidad = (string)dataReader["Cantidad"];
             return medicamento;
 
         }

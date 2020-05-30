@@ -62,13 +62,13 @@ namespace BLL
                 conexion.Close();
             }
         }
-        public List<Medicamento> Buscar(long cod)
+        public List<Medicamento> Buscar(string nombre)
         {
             try
             {
 
                 conexion.Open();
-                return repositorio.BuscarMedicina(cod);
+                return repositorio.BuscarMedicina(nombre);
 
 
             }
@@ -107,7 +107,7 @@ namespace BLL
             List<string> lista = new List<string>();
             foreach (var item in this.Cosultar())
             {
-                lista.Add(item.Codigo + ";" + item.Nombre);
+                lista.Add( item.Nombre);
             }
             return lista;
         }
