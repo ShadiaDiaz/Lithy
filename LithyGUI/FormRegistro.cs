@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Mail;
 using System.Windows.Forms;
 using Entity;
 using BLL;
@@ -55,7 +56,7 @@ namespace LithyGUI
             persona.Sexo = cmbSexo.Text;
             persona.Direccion = txtDireccion.Text;
             persona.Edad = int.Parse(txtEdad.Text);
-            persona.Correo = txtCorreo.Text;
+            persona.Correo = new MailAddress(txtCorreo.Text);
             MessageBox.Show(pacienteService.GuardarPaciente(persona));
         }
 

@@ -31,10 +31,9 @@ namespace LithyGUI
         private void pbtnGuardarMedicamento_Click(object sender, EventArgs e)
         {
             Medicamento medicamento = new Medicamento();
-            medicamento.Codigo = txtCodigo.Text;
             medicamento.Nombre = txtNombre.Text;
             medicamento.Presentacion = txtPresentacion.Text;
-            medicamento.Precio = decimal.Parse(txtPrecio.Text);
+         
             MessageBox.Show(medicamentoService.Guardar(medicamento));
         }
 
@@ -45,9 +44,9 @@ namespace LithyGUI
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            if (medicamentoService.Buscar(long.Parse(textBuscarM.Text)) != null)
+            if (medicamentoService.Buscar(textBuscarM.Text) != null)
             {
-                dtgvMedicamentos.DataSource = medicamentoService.Buscar(long.Parse(textBuscarM.Text));
+                dtgvMedicamentos.DataSource = medicamentoService.Buscar(textBuscarM.Text);
 
             }
             else
@@ -69,10 +68,10 @@ namespace LithyGUI
         private void pictureBox4_Click(object sender, EventArgs e)
         {
             Medicamento medicamento = new Medicamento();
-            medicamento.Codigo = txtCodigo.Text;
+           
             medicamento.Nombre = txtNombre.Text;
             medicamento.Presentacion = txtPresentacion.Text;
-            medicamento.Precio = decimal.Parse(txtPrecio.Text);
+           
 
             MessageBox.Show(medicamentoService.Modificar(medicamento));
         }

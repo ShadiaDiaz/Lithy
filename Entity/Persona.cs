@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Mail;
 
 namespace Entity
 {
@@ -16,7 +17,7 @@ namespace Entity
         public string Sexo { get; set; }
         public string Direccion { get; set; }
         public string Celular { get; set; }
-        public string Correo { get; set; }
+        public MailAddress Correo { get; set; }
         public List<Diagnostico> Diagnosticos { get; set; }
         public List<Recetario> Recetas { get; set; }
         public List<HistorialMedico> HistoriaMedico { get; set; }
@@ -26,7 +27,7 @@ namespace Entity
 
         }
 
-        public Persona(char tipo, string identificacion, string nombres, string apellidos, int edad, string sexo, string direccion, string celular, string correo, List<Diagnostico> diagnosticos, List<Recetario> recetas, List<HistorialMedico> historiaMedico)
+        public Persona(char tipo, string identificacion, string nombres, string apellidos, int edad, string sexo, string direccion, string celular, MailAddress correo, List<Diagnostico> diagnosticos, List<Recetario> recetas, List<HistorialMedico> historiaMedico)
         {
             Tipo = tipo;
             Identificacion = identificacion;

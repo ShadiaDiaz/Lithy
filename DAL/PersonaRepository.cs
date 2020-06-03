@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Mail;
 using Entity;
 using Oracle.ManagedDataAccess.Client;
 using System.Data;
@@ -116,7 +117,7 @@ namespace DAL
             persona.Sexo = (string)dataReader["Sexo"];
             persona.Direccion = (string)dataReader["Direccion"];
             persona.Celular = (string)dataReader["Celular"];
-            persona.Correo = (string)dataReader["Correo"];
+            persona.Correo = (MailAddress)dataReader["Correo"];
             return persona;
 
         }

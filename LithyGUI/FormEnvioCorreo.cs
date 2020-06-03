@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Mail;
 using System.Windows.Forms;
 using BLL;
 using Entity;
@@ -36,7 +37,7 @@ namespace LithyGUI
         {
             EnviarCorreo enviarCorreo = new EnviarCorreo();
             Persona persona = new Persona();
-            persona.Correo = txtCorreo.Text;
+            persona.Correo = new MailAddress(txtCorreo.Text);
             MessageBox.Show(enviarCorreo.EnviarEmail(persona));
         }
 

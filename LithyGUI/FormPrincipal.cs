@@ -198,5 +198,10 @@ namespace LithyGUI
         {
             AbrirFrmInpanel(new CitaMedica());
         }
+
+        private void button8_Click_1(object sender, EventArgs e)
+        {
+            AbrirFrmInpanel(new FormEnvioCorreo());
+        }
     }
 }   
