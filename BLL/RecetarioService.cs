@@ -13,23 +13,23 @@ namespace BLL
 {
     public class RecetarioService
     {
-        SqlConnection Conexion;
-        RecetarioRepository recetarioRepository;
+        private readonly ConnectionManager conexion;
+
+        private readonly RecetarioRepository repositorio;
         List<Recetario> recetario;
 
-        public RecetarioService()
+        public RecetarioService(string connectionString)
         {
-            string cadenaConexion = @"Data Source=LAPTOP-MKRFM1FC\SQLEXPRESS02;Initial Catalog=DB_Lithy;Integrated Security=True";
-            Conexion = new SqlConnection(cadenaConexion);
-            recetarioRepository = new RecetarioRepository(Conexion);
+            conexion = new ConnectionManager(connectionString);
+            repositorio = new RecetarioRepository(conexion);
         }
 
         public string Guardar(Recetario recetario, string idPaciente)
         {
             try
             {
-                Conexion.Open();
-                recetarioRepository.Guardar(recetario,idPaciente);
+                conexion.Open();
+                repositorio.Guardar(recetario,idPaciente);
                 return "Recetario #" + recetario.Codigo + "Para el paciente " + idPaciente + " registrad@ Exitamente";
             }
             catch (Exception excep)
@@ -39,7 +39,7 @@ namespace BLL
             }
             finally
             {
-                Conexion.Close();
+                conexion.Close();
             }
         }
 
@@ -49,8 +49,8 @@ namespace BLL
             try
             {
 
-                Conexion.Open();
-                return recetarioRepository.BuscarPaciente(id);
+                conexion.Open();
+                return repositorio.BuscarPaciente(id);
 
 
             }
@@ -60,7 +60,7 @@ namespace BLL
             }
             finally
             {
-                Conexion.Close();
+                 conexion.Close();
             }
 
         }
@@ -69,10 +69,10 @@ namespace BLL
         {
             try
             {
-                Conexion.Open();
+                conexion.Open();
                 recetario = new List<Recetario>();
-                recetario = recetarioRepository.Consultar();
-                Conexion.Close();
+                recetario = repositorio.Consultar();
+                conexion.Close();
                 return recetario;
             }
             catch (Exception)
@@ -86,11 +86,11 @@ namespace BLL
         public string NuevoCodigo(long id)
         {
 
-            Conexion.Open();
+            conexion.Open();
 
-            string nuevo = recetarioRepository.NuevoCodigo(id);
+            string nuevo = repositorio.NuevoCodigo(id);
 
-            Conexion.Close();
+            conexion.Close();
             return nuevo;
 
         }

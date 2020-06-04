@@ -13,15 +13,15 @@ namespace BLL
 {
     public class PosologiaService
     {
-        SqlConnection Conexion;
-        PosologiaRepository posologiaRepository;
+        private readonly ConnectionManager conexion;
+
+        private readonly PosologiaRepository repositorio;
         List<Persona> personas;
 
-        public PosologiaService()
+        public PosologiaService(string connectionString)
         {
-            string cadenaConexion = @"Data Source=LAPTOP-MKRFM1FC\SQLEXPRESS02;Initial Catalog=DB_Lithy;Integrated Security=True";
-            Conexion = new SqlConnection(cadenaConexion);
-            posologiaRepository = new PosologiaRepository(Conexion);
+            conexion = new ConnectionManager(connectionString);
+            repositorio = new PosologiaRepository(conexion);
         }
 
         public string Guardar(Posologia posologia, string id)
@@ -29,9 +29,9 @@ namespace BLL
 
             try
             {
-                Conexion.Open();
-                posologiaRepository.Guardar(posologia,id);
-                return "Posologia #" + posologia.Codigo + "Para el paciente " + posologia + " registrad@ Exitamente";
+                conexion.Open();
+                repositorio.Guardar(posologia,id);
+                return "Medicamento" + posologia.Medicamento + "Para el paciente " + posologia + " registrad@ Exitamente";
             }
             catch (Exception excep)
             {
@@ -40,7 +40,7 @@ namespace BLL
             }
             finally
             {
-                Conexion.Close();
+                conexion.Close();
             }
         }
     }
