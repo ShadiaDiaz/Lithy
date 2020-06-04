@@ -7,53 +7,54 @@ using Entity;
 using System.Data;
 using System.Data.Sql;
 using System.Data.SqlClient;
+using Oracle.ManagedDataAccess.Client;
 
 namespace DAL
 {
     public class DiagnosticoRepository
     {
-        private SqlConnection Conexion;
-        private SqlDataReader Reader;
+        private readonly OracleConnection _connection;
+        private ConnectionManager conexion;
         List<Diagnostico> diagnostico = new List<Diagnostico>();
-        private SqlCommand Comando;
-        public DiagnosticoRepository(SqlConnection conexion)
+   
+        public DiagnosticoRepository(ConnectionManager connection)
         {
-            Conexion = conexion;
+            _connection = connection._conexion;
         }
 
         public void Guardar(Diagnostico diagnostico)
         {
 
-            using (var Comando = Conexion.CreateCommand())
+            using (var Comando = _connection.CreateCommand())
             {
                 Comando.CommandText = "Insert Into Diagnostico(Codigo,Fecha,Descripcion,FechaSintomas,InicioTratamiento,Paciente,Estado)Values " +
-                    "(@Codigo,@Fecha,@Descripcion,@FechaSintomas,@InicioTratamiento,@Paciente,@Estado)";
-                Comando.Parameters.Add("@Codigo", SqlDbType.NVarChar).Value = diagnostico.Codigo;
-                Comando.Parameters.Add("@Fecha", SqlDbType.NVarChar).Value = diagnostico.Fecha;
-                Comando.Parameters.Add("@Descripcion", SqlDbType.NVarChar).Value = diagnostico.Descripcion;
-                Comando.Parameters.Add("@FechaSintomas", SqlDbType.NVarChar).Value = diagnostico.Primeros_Sintomas;
-                Comando.Parameters.Add("@InicioTratamiento", SqlDbType.Date).Value = diagnostico.InicioTratamiento;
-                Comando.Parameters.Add("@Paciente", SqlDbType.NVarChar).Value = diagnostico.PacienteId;
-                Comando.Parameters.Add("@Estado", SqlDbType.NVarChar).Value = diagnostico.Estado;
+                    "(:Codigo,:Fecha,:Descripcion,:FechaSintomas,:InicioTratamiento,:Paciente,:Estado)";
+                Comando.Parameters.Add(":Codigo", OracleDbType.NVarchar2).Value = diagnostico.Codigo;
+                Comando.Parameters.Add(":Fecha", OracleDbType.Date).Value = diagnostico.Fecha;
+                Comando.Parameters.Add(":Descripcion", OracleDbType.NVarchar2).Value = diagnostico.Descripcion;
+                Comando.Parameters.Add(":FechaSintomas", OracleDbType.Date).Value = diagnostico.Primeros_Sintomas;
+                Comando.Parameters.Add(":InicioTratamiento", OracleDbType.Date).Value = diagnostico.InicioTratamiento;
+                Comando.Parameters.Add(":Paciente", OracleDbType.NVarchar2).Value = diagnostico.PacienteId;
+                Comando.Parameters.Add(":Estado", OracleDbType.NVarchar2).Value = diagnostico.Estado;
                 Comando.ExecuteNonQuery();
             }
         }
 
         public List<Diagnostico> Consultar()
         {
-
+            OracleDataReader dataReader;
             List<Diagnostico> pacientes = new List<Diagnostico>();
 
-            using (var Comando = Conexion.CreateCommand())
+            using (var Comando = _connection.CreateCommand())
             {
                 Comando.CommandText = "Select * from diagnostico";
 
-                Reader = Comando.ExecuteReader();
+                dataReader = Comando.ExecuteReader();
 
-                while (Reader.Read())
+                while (dataReader.Read())
                 {
 
-                    pacientes.Add(Map(Reader));
+                    pacientes.Add(Map(dataReader));
                 }
 
             }
@@ -63,19 +64,19 @@ namespace DAL
 
         public List<Diagnostico> BuscarPaciente(long id)
         {
-
+            OracleDataReader dataReader;
             List<Diagnostico> diagnostic = new List<Diagnostico>();
 
-            using (var Comando = Conexion.CreateCommand())
+            using (var Comando = _connection.CreateCommand())
             {
                 Comando.CommandText = "Select * from diagnostico where codigo=" + id;
 
-                Reader = Comando.ExecuteReader();
+                dataReader = Comando.ExecuteReader();
 
-                while (Reader.Read())
+                while (dataReader.Read())
                 {
 
-                    diagnostic.Add(Map(Reader));
+                    diagnostic.Add(Map(dataReader));
                 }
 
             }
@@ -85,19 +86,19 @@ namespace DAL
 
         public string NuevoCodigo(long id)
         {
-
+            OracleDataReader dataReader;
             List<Diagnostico> diagnostico = new List<Diagnostico>();
 
-            using (var Comando = Conexion.CreateCommand())
+            using (var Comando = _connection.CreateCommand())
             {
                 Comando.CommandText = "Select * from Diagnostico where codigo like '" + id+"%' order by codigo desc";
 
-                Reader = Comando.ExecuteReader();
+                dataReader = Comando.ExecuteReader();
 
-                while (Reader.Read())
+                while (dataReader.Read())
                 {
 
-                    diagnostico.Add(Map(Reader));
+                    diagnostico.Add(Map(dataReader));
                 }
 
             }
@@ -114,17 +115,18 @@ namespace DAL
             
         }
 
-        public Diagnostico Map(SqlDataReader reader)
+        public Diagnostico Map(OracleDataReader dataReader)
         {
 
             Diagnostico diagnostico = new Diagnostico();
-            diagnostico.Codigo = (string)reader["Codigo"];
-            diagnostico.Fecha = (DateTime)reader["Fecha"];
-            diagnostico.Primeros_Sintomas = (DateTime)reader["FechaSintomas"];
-            diagnostico.PacienteId = (string)reader["Paciente"];
-            diagnostico.InicioTratamiento = (DateTime)reader["InicioTratamiento"];
-            diagnostico.Estado = (string)reader["Estado"];
-            diagnostico.Descripcion = (string)reader["Descripcion"];
+            diagnostico.Codigo = (string)dataReader["Codigo"];
+            diagnostico.Fecha = (DateTime)dataReader["Fecha"];
+            diagnostico.Descripcion = (string)dataReader["Descripcion"];
+            diagnostico.Primeros_Sintomas = (DateTime)dataReader["FechaSintomas"];
+            diagnostico.InicioTratamiento = (DateTime)dataReader["InicioTratamiento"];
+            diagnostico.PacienteId = (string)dataReader["Paciente"];
+            diagnostico.Estado = (string)dataReader["Estado"];
+           
             return diagnostico;
 
         }

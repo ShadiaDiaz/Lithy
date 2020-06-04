@@ -6,32 +6,31 @@ using System.Threading.Tasks;
 using Entity;
 using DAL;
 using System.Data;
-using System.Data.SqlClient;
-using System.Data.Sql;
+
 
 namespace BLL
 {
     public class DiagnosticoService
     {
-        SqlConnection Conexion;
-        DiagnosticoRepository diagnosticoRepository;
+        private readonly ConnectionManager conexion;
+
+        private readonly DiagnosticoRepository repositorio;
         List<Persona> personas;
 
-        public DiagnosticoService()
+        public DiagnosticoService(string connectionString)
         {
-            string cadenaConexion = @"Data Source=LAPTOP-MKRFM1FC\SQLEXPRESS02;Initial Catalog=DB_Lithy;Integrated Security=True";
-            Conexion = new SqlConnection(cadenaConexion);
-            diagnosticoRepository = new DiagnosticoRepository(Conexion);
+            conexion = new ConnectionManager(connectionString);
+            repositorio = new DiagnosticoRepository(conexion);
         }
 
         public string NuevoCodigo(long id)
         {
             
-             Conexion.Open();
+             conexion.Open();
                 
-             string nuevo=diagnosticoRepository.NuevoCodigo(id);
+             string nuevo=repositorio.NuevoCodigo(id);
 
-            Conexion.Close();
+            conexion.Close();
             return nuevo;
             
         }
@@ -41,8 +40,8 @@ namespace BLL
 
             try
             {
-                Conexion.Open();
-                diagnosticoRepository.Guardar(diagnostico);
+                conexion.Open();
+                repositorio.Guardar(diagnostico);
                 return "Diagnostico #" + diagnostico.Codigo + "Para el paciente " + diagnostico.PacienteId + " registrad@ Exitamente";
             }
             catch (Exception excep)
@@ -52,7 +51,7 @@ namespace BLL
             }
             finally
             {
-                Conexion.Close();
+                conexion.Close();
             }
         }
     }

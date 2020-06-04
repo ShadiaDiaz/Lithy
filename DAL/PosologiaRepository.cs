@@ -4,36 +4,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entity;
-using System.Data.Sql;
-using System.Data.SqlClient;
-using System.Data.SqlTypes;
+using Oracle.ManagedDataAccess.Client;
 using System.Data;
 
 namespace DAL
 {
     public class PosologiaRepository
     {
-        private SqlConnection Conexion;
-        private SqlDataReader Reader;
+        private readonly OracleConnection _connection;
+        private ConnectionManager conexion;
         List<Recetario> recetario = new List<Recetario>();
-        private SqlCommand Comando;
-        public PosologiaRepository(SqlConnection conexion)
+       
+        public PosologiaRepository(ConnectionManager connection)
         {
-            Conexion = conexion;
+            _connection = connection._conexion;
         }
 
         public void Guardar(Posologia posologia, string idRecetario)
         {
 
-            using (var Comando = Conexion.CreateCommand())
+            using (var Comando = _connection.CreateCommand())
             {
                 Comando.CommandText = "Insert Into Posologia (CodMedicamento,Dias,Cada,cantidad,CodRecetario)Values " +
-                    "(@CodMedicamento,@Dias,@Cada,@Cantidad,@CodRecetario)";
-                Comando.Parameters.Add("@CodMedicamento", SqlDbType.NVarChar).Value = posologia.Codigo;
-                Comando.Parameters.Add("@Dias", SqlDbType.NVarChar).Value = posologia.CantidadDias;
-                Comando.Parameters.Add("@Cada", SqlDbType.NVarChar).Value = posologia.CantidadDias;
-                Comando.Parameters.Add("@Cantidad", SqlDbType.NVarChar).Value = posologia.Cantidad;
-                Comando.Parameters.Add("@CodRecetario", SqlDbType.NVarChar).Value = idRecetario;
+                    "(:CodMedicamento,:Dias,:Cada,:Cantidad,:CodRecetario)";
+                Comando.Parameters.Add(":Medicamento", OracleDbType.NVarchar2).Value = posologia.Medicamento;
+                Comando.Parameters.Add(":Dias", OracleDbType.Char).Value = posologia.CantidadDias;
+                Comando.Parameters.Add(":Horas", OracleDbType.NVarchar2).Value = posologia.IntervaloHoras;
+                Comando.Parameters.Add(":Cantidad", OracleDbType.Char).Value = posologia.Cantidad;
+           
 
                 Comando.ExecuteNonQuery();
             }

@@ -4,9 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entity;
-using System.Data.Sql;
-using System.Data.SqlClient;
-using System.Data.SqlTypes;
+using Oracle.ManagedDataAccess.Client;
 using System.Data;
 
 namespace DAL
@@ -14,26 +12,27 @@ namespace DAL
     public class RecetarioRepository
     {
 
-        private SqlConnection Conexion;
-        private SqlDataReader Reader;
+        private readonly OracleConnection _connection;
+        private ConnectionManager conexion;
         List<Recetario> recetario = new List<Recetario>();
-        private SqlCommand Comando;
-        public RecetarioRepository(SqlConnection conexion)
+   
+        public RecetarioRepository(ConnectionManager connection)
         {
-            Conexion = conexion;
+            _connection = connection._conexion;
         }
 
         public void Guardar(Recetario recetario, string idPaciente)
         {
 
-            using (var Comando = Conexion.CreateCommand())
+            using (var Comando = _connection.CreateCommand())
             {
-                Comando.CommandText = "Insert Into Recetario(Codigo,Fecha,Estado,CodPaciente)Values " +
-                    "(@Codigo,@Fecha,@Estado,@CodPaciente)";
-                Comando.Parameters.Add("@Codigo", SqlDbType.NVarChar).Value = recetario.Codigo;
-                Comando.Parameters.Add("@Fecha", SqlDbType.NVarChar).Value = recetario.Fecha;
-                Comando.Parameters.Add("@Estado", SqlDbType.NVarChar).Value = recetario.Estado;
-                Comando.Parameters.Add("@CodPaciente", SqlDbType.NVarChar).Value = idPaciente;
+                Comando.CommandText = "Insert Into Recetario(Codigo,Fecha,Estado,Posologia,CodPaciente)Values " +
+                    "(:Codigo,:Fecha,:Estado,:Posologia,:CodPaciente)";
+                Comando.Parameters.Add(":Codigo", OracleDbType.Char).Value = recetario.Codigo;
+                Comando.Parameters.Add(":Fecha", OracleDbType.Date).Value = recetario.Fecha;
+                Comando.Parameters.Add(":Estado", OracleDbType.NVarchar2).Value = recetario.Estado;
+                Comando.Parameters.Add(":Posologia", OracleDbType.NVarchar2).Value = recetario.Posologias;
+                Comando.Parameters.Add(":CodPaciente", OracleDbType.NVarchar2).Value = idPaciente;
 
                 Comando.ExecuteNonQuery();
             }
@@ -41,19 +40,19 @@ namespace DAL
 
         public string NuevoCodigo(long id)
         {
-
+            OracleDataReader dataReader;
             List<Recetario> recetario = new List<Recetario>();
 
-            using (var Comando = Conexion.CreateCommand())
+            using (var Comando = _connection.CreateCommand())
             {
                 Comando.CommandText = "Select * from Recetario where codigo like '" + id + "%' order by codigo desc";
 
-                Reader = Comando.ExecuteReader();
+                dataReader = Comando.ExecuteReader();
 
-                while (Reader.Read())
+                while (dataReader.Read())
                 {
 
-                    recetario.Add(Map(Reader));
+                    recetario.Add(Map(dataReader));
                 }
 
             }
@@ -72,19 +71,19 @@ namespace DAL
 
         public List<Recetario> BuscarPaciente(long id)
         {
-
+            OracleDataReader dataReader;
             List<Recetario> pacientes = new List<Recetario>();
 
-            using (var Comando = Conexion.CreateCommand())
+            using (var Comando = _connection.CreateCommand())
             {
                 Comando.CommandText = "Select * from Recetario where codigo=" + id;
 
-                Reader = Comando.ExecuteReader();
+                dataReader = Comando.ExecuteReader();
 
-                while (Reader.Read())
+                while (dataReader.Read())
                 {
 
-                    pacientes.Add(Map(Reader));
+                    pacientes.Add(Map(dataReader));
                 }
 
             }
@@ -95,19 +94,19 @@ namespace DAL
 
         public List<Recetario> Consultar()
         {
-
+            OracleDataReader dataReader;
             List<Recetario> recetarios = new List<Recetario>();
 
-            using (var Comando = Conexion.CreateCommand())
+            using (var Comando = _connection.CreateCommand())
             {
                 Comando.CommandText = "Select * from Recetario";
 
-                Reader = Comando.ExecuteReader();
+                dataReader = Comando.ExecuteReader();
 
-                while (Reader.Read())
+                while (dataReader.Read())
                 {
 
-                    recetarios.Add(Map(Reader));
+                    recetarios.Add(Map(dataReader));
                 }
 
             }
@@ -115,13 +114,13 @@ namespace DAL
             return recetarios;
         }
 
-        public Recetario Map(SqlDataReader reader)
+        public Recetario Map(OracleDataReader dataReader)
         {
 
             Recetario recetario = new Recetario();
-            recetario.Codigo = (string)reader["Codigo"];
-            recetario.Fecha = (DateTime)reader["Fecha"];
-            recetario.Estado = (string)reader["Estado"];
+            recetario.Codigo = (string)dataReader["Codigo"];
+            recetario.Fecha = (DateTime)dataReader["Fecha"];
+            recetario.Estado = (string)dataReader["Estado"];
             return recetario;
 
         }

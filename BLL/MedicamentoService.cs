@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using Entity;
 using DAL;
 using System.Data;
-using System.Data.SqlClient;
-using System.Data.Sql;
+
+
 
 namespace BLL
 {
