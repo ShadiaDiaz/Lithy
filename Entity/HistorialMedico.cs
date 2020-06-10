@@ -8,18 +8,20 @@ namespace Entity
 {
     public class HistorialMedico
     {
-        public DateTime Fecha { get; set; }
-        public string Descripcion { get; set; }
+        public List<Persona> Personas { get; set; }
+        public List<Diagnostico> Diagnosticos { get; set; }
+        public List<Recetario> Recetas { get; set; }
 
         public HistorialMedico()
         {
 
         }
 
-        public HistorialMedico(DateTime fecha, string descripcion)
+        public HistorialMedico(List<Diagnostico> diagnosticos, List<Recetario> recetas, List<Persona> personas)
         {
-            Fecha = fecha;
-            Descripcion = descripcion;
+            Diagnosticos = diagnosticos;
+            Recetas = recetas;
+            Personas = personas;
         }
     }
 

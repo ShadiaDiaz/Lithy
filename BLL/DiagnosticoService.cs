@@ -23,7 +23,7 @@ namespace BLL
             repositorio = new DiagnosticoRepository(conexion);
         }
 
-        public string NuevoCodigo(long id)
+        public string NuevoCodigo(string id)
         {
             
              conexion.Open();

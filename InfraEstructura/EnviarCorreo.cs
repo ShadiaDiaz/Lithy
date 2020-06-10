@@ -23,16 +23,17 @@ namespace InfraEstructura
             }
 
 
-            private void ConfigurarEmail(Persona persona)
+            private void ConfigurarEmail( Persona persona)
             {
 
-
+                //Attachment pdf = new Attachment();
                 email = new MailMessage();
                 email.To.Add(persona.Correo);
                 email.From = new MailAddress("scarleth0413@gmail.com");
                 email.Subject = "Enviar Correo " + DateTime.Now.ToString("dd / MMM / yy hh:mm:ss");
                 email.Body = $"<b>Shadia Scarleth, profe porfa aceptemelo, es que me enrede";
                 email.IsBodyHtml = true;
+            //email.Attachments.Add(pdf);
                 email.Priority = MailPriority.Normal;
 
 

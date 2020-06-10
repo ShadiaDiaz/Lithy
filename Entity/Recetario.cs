@@ -9,8 +9,8 @@ namespace Entity
     public class Recetario
     {
         public string Codigo { get; set; }
-        public string Estado { get; set; }
         public DateTime Fecha  { get; set; }
+        public string codPaciente { get; set; }
         public List<Posologia> Posologias { get; set; }
 
         public Recetario()
@@ -18,11 +18,11 @@ namespace Entity
 
         }
 
-        public Recetario(string codigo, string estado, DateTime fecha, List<Posologia> posologias)
+        public Recetario(string codigo,  DateTime fecha,string codpaciente, List<Posologia> posologias)
         {
             Codigo = codigo;
-            Estado = estado;
             Fecha = fecha;
+            codPaciente = codpaciente;
             Posologias = posologias;
         }
     }

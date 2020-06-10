@@ -30,7 +30,7 @@ namespace LithyGUI
             InitializeComponent();
             persona = new Persona();
             PersonaService = new PersonaServiceBD(ConfigConnection.connectionString);
-            diagnosticoService = new DiagnosticoService();
+            diagnosticoService = new DiagnosticoService(ConfigConnection.connectionString);
             generar = new Generar();
         }
 
@@ -62,13 +62,13 @@ namespace LithyGUI
 
         private void pbtnExtraer_Click(object sender, EventArgs e)
         {
-            persona = PersonaService.Buscar(long.Parse(txtIdentificacion.Text))[0];
+            persona = PersonaService.Buscar(txtIdentificacion.Text)[0];
             if (persona != null)
             {
                 txtNombres.Text = persona.Nombres;
                 txtApellidos.Text = persona.Apellidos;
                 txtEdad.Text = persona.Edad.ToString();
-                string nuevoCodigo= diagnosticoService.NuevoCodigo(long.Parse(persona.Identificacion));
+                string nuevoCodigo= diagnosticoService.NuevoCodigo(persona.Identificacion);
                 txtCodigo.Text = nuevoCodigo;
 
             }
@@ -98,10 +98,9 @@ namespace LithyGUI
             Diagnostico diagnosti = new Diagnostico();
 
             diagnosti.Codigo = txtCodigo.Text;
-            diagnosti.Descripcion = txtDescripcion.Text;
+            diagnosti.Descripción = txtDescripcion.Text;
             diagnosti.Fecha = DateTime.Parse(dtpFechaDiagnostico.Text);
             diagnosti.PacienteId = txtIdentificacion.Text;
-            diagnosti.Estado = "S";
             if (chbSintomas.Checked==true)
             {
                 diagnosti.InicioTratamiento = dtpInicioTratamiento.Value.Date;

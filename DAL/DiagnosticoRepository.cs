@@ -31,11 +31,10 @@ namespace DAL
                     "(:Codigo,:Fecha,:Descripcion,:FechaSintomas,:InicioTratamiento,:Paciente,:Estado)";
                 Comando.Parameters.Add(":Codigo", OracleDbType.NVarchar2).Value = diagnostico.Codigo;
                 Comando.Parameters.Add(":Fecha", OracleDbType.Date).Value = diagnostico.Fecha;
-                Comando.Parameters.Add(":Descripcion", OracleDbType.NVarchar2).Value = diagnostico.Descripcion;
+                Comando.Parameters.Add(":Descripcion", OracleDbType.NVarchar2).Value = diagnostico.Descripción;
                 Comando.Parameters.Add(":FechaSintomas", OracleDbType.Date).Value = diagnostico.Primeros_Sintomas;
                 Comando.Parameters.Add(":InicioTratamiento", OracleDbType.Date).Value = diagnostico.InicioTratamiento;
                 Comando.Parameters.Add(":Paciente", OracleDbType.NVarchar2).Value = diagnostico.PacienteId;
-                Comando.Parameters.Add(":Estado", OracleDbType.NVarchar2).Value = diagnostico.Estado;
                 Comando.ExecuteNonQuery();
             }
         }
@@ -62,7 +61,7 @@ namespace DAL
             return pacientes;
         }
 
-        public List<Diagnostico> BuscarPaciente(long id)
+        public List<Diagnostico> BuscarPaciente(string id)
         {
             OracleDataReader dataReader;
             List<Diagnostico> diagnostic = new List<Diagnostico>();
@@ -84,7 +83,7 @@ namespace DAL
             return diagnostic;
         }
 
-        public string NuevoCodigo(long id)
+        public string NuevoCodigo(string id)
         {
             OracleDataReader dataReader;
             List<Diagnostico> diagnostico = new List<Diagnostico>();
@@ -121,11 +120,11 @@ namespace DAL
             Diagnostico diagnostico = new Diagnostico();
             diagnostico.Codigo = (string)dataReader["Codigo"];
             diagnostico.Fecha = (DateTime)dataReader["Fecha"];
-            diagnostico.Descripcion = (string)dataReader["Descripcion"];
+            diagnostico.Descripción= (string)dataReader["Descripcion"];
             diagnostico.Primeros_Sintomas = (DateTime)dataReader["FechaSintomas"];
             diagnostico.InicioTratamiento = (DateTime)dataReader["InicioTratamiento"];
             diagnostico.PacienteId = (string)dataReader["Paciente"];
-            diagnostico.Estado = (string)dataReader["Estado"];
+   
            
             return diagnostico;
 

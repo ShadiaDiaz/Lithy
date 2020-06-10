@@ -20,18 +20,17 @@ namespace LithyGUI
         PosologiaService posologiaService;
         MedicamentoService medicamentoService;
         RecetarioService recetarioService;
-        Generar generar;
+        
         
 
         public FormRecetario()
         {
             InitializeComponent();
-            generar = new Generar();
             medicamentoService = new MedicamentoService(ConfigConnection.connectionString);
-            posologiaService = new PosologiaService();
+            posologiaService = new PosologiaService(ConfigConnection.connectionString);
             persona = new Persona();
             PersonaService = new PersonaServiceBD(ConfigConnection.connectionString);
-            recetarioService = new RecetarioService();
+            recetarioService = new RecetarioService(ConfigConnection.connectionString);
         }
 
         private void FormRecetario_Load(object sender, EventArgs e)
@@ -44,11 +43,11 @@ namespace LithyGUI
 
         private void pbtnExtraer_Click(object sender, EventArgs e)
         {
-            persona = PersonaService.Buscar(long.Parse(txtIDPR.Text))[0];
+            persona = PersonaService.Buscar(txtIDPR.Text)[0];
             if (persona != null)
             {
                 txtNPR.Text = persona.Nombres+" "+ persona.Apellidos;
-                string nuevoCodigo = recetarioService.NuevoCodigo(long.Parse(persona.Identificacion));
+                string nuevoCodigo = recetarioService.NuevoCodigo(persona.Identificacion);
                 txtCodigoRecetario.Text = nuevoCodigo;
 
             }
@@ -84,22 +83,22 @@ namespace LithyGUI
             persona.Identificacion = txtIDPR.Text;
             persona.Nombres = txtNPR.Text;
             recetario.Fecha = DateTime.Parse(dpFecha.Text);
-            recetario.Estado = "N";
+           
             recetarioService.Guardar(recetario,txtIDPR.Text);
             for (int fila = 0; fila < dtgvMedicinas.Rows.Count - 1; fila++)
             {
-                posologia.Codigo= dtgvMedicinas.Rows[fila].Cells[0].Value.ToString();
-                posologia.Nombre = dtgvMedicinas.Rows[fila].Cells[1].Value.ToString();
-                posologia.CantidadDias = int.Parse(dtgvMedicinas.Rows[fila].Cells[2].Value.ToString());
-                posologia.IntervaloHoras = int.Parse(dtgvMedicinas.Rows[fila].Cells[3].Value.ToString());
-                posologia.Cantidad = dtgvMedicinas.Rows[fila].Cells[4].Value.ToString();
+              
+                //posologia.Medicamento = dtgvMedicinas.Rows[fila].Cells[0].Value.ToString();
+                posologia.CantidadDias = int.Parse(dtgvMedicinas.Rows[fila].Cells[0].Value.ToString());
+                posologia.IntervaloHoras = int.Parse(dtgvMedicinas.Rows[fila].Cells[1].Value.ToString());
+                posologia.Cantidad = dtgvMedicinas.Rows[fila].Cells[2].Value.ToString();
                 ListaPosologias.Add(posologia);
                 MessageBox.Show( posologiaService.Guardar(posologia,recetario.Codigo));
             }
 
             
             
-           generar.FillPDF("Recetario.pdf", ListaPosologias,persona);
+        
         }
 
         private void cbxMedicamentos_SelectedIndexChanged(object sender, EventArgs e)

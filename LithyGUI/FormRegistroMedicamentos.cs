@@ -33,6 +33,7 @@ namespace LithyGUI
             Medicamento medicamento = new Medicamento();
             medicamento.Nombre = txtNombre.Text;
             medicamento.Presentacion = txtPresentacion.Text;
+            medicamento.Cantidad = txtCantidad.Text;
          
             MessageBox.Show(medicamentoService.Guardar(medicamento));
         }
@@ -58,10 +59,10 @@ namespace LithyGUI
         private void dtgvMedicamentos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
            
-            txtCodigo.Text = dtgvMedicamentos.CurrentRow.Cells[0].Value.ToString();
+            txtCantidad.Text = dtgvMedicamentos.CurrentRow.Cells[0].Value.ToString();
             txtNombre.Text = dtgvMedicamentos.CurrentRow.Cells[1].Value.ToString();
             txtPresentacion.Text = dtgvMedicamentos.CurrentRow.Cells[2].Value.ToString();
-            txtPrecio.Text = dtgvMedicamentos.CurrentRow.Cells[3].Value.ToString();
+        
             
         }
 
@@ -74,6 +75,16 @@ namespace LithyGUI
            
 
             MessageBox.Show(medicamentoService.Modificar(medicamento));
+        }
+
+        private void txtPresentacion_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

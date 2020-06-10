@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace Entity
 {
-    public class Diagnostico:HistorialMedico
+    public class Diagnostico
     {
         public string Codigo { get; set; }
+        public DateTime Fecha { get; set; }
+        public string Descripción { get; set; }
         public DateTime Primeros_Sintomas { get; set; }
         public DateTime InicioTratamiento { get; set; }
-        public string Estado { get; set; }
         public string PacienteId { get; set; }
 
         public Diagnostico()
@@ -19,12 +20,13 @@ namespace Entity
 
         }
 
-        public Diagnostico(string codigo, DateTime primeros_Sintomas, DateTime inicioTratamiento, string estado, string pacienteId)
+        public Diagnostico(string codigo,DateTime fecha, string descripción, DateTime primeros_Sintomas, DateTime inicioTratamiento, string pacienteId)
         {
             Codigo = codigo;
+            Fecha = fecha;
+            Descripción = descripción;
             Primeros_Sintomas = primeros_Sintomas;
             InicioTratamiento = inicioTratamiento;
-            Estado = estado;
             PacienteId = pacienteId;
         }
     }

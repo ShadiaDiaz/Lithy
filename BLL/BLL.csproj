@@ -56,6 +56,10 @@
       <Project>{6686efe2-0ce0-4aea-ad1c-1672e0b2a41a}</Project>
       <Name>Entity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\InfraEstructura\InfraEstructura.csproj">
+      <Project>{14440400-1ebc-4671-bc9a-cc4cd602a005}</Project>
+      <Name>InfraEstructura</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

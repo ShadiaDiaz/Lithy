@@ -21,7 +21,7 @@ namespace LithyGUI
         {
             InitializeComponent();
             PersonaService = new PersonaServiceBD(ConfigConnection.connectionString);
-            diagnosticoService = new DiagnosticoService();
+            diagnosticoService = new DiagnosticoService(ConfigConnection.connectionString);
         }
 
         private void Reportes_Load(object sender, EventArgs e)

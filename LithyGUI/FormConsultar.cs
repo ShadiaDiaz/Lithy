@@ -32,9 +32,9 @@ namespace LithyGUI
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            if (personaService.Buscar(long.Parse(txtBuscarPaciente.Text)) != null)
+            if (personaService.Buscar(txtBuscarPaciente.Text) != null)
             {
-                dtgvPacientes.DataSource = personaService.Buscar(long.Parse(txtBuscarPaciente.Text));
+                dtgvPacientes.DataSource = personaService.Buscar(txtBuscarPaciente.Text);
 
             }
             else

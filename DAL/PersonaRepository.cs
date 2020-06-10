@@ -28,8 +28,8 @@ namespace DAL
 
             using(var Comando = _connection.CreateCommand())
             {
-                Comando.CommandText = "Insert Into Persona(Tipo,Identificación,Nombres,Apellidos,Edad,Sexo,Dirección,Celular,Correo)Values " +
-                    "(:Tipo,:Identificación,:Nombre,:Apellido,:Edad,:Sexo,:Dirección,:Celular,:Correo)";
+                Comando.CommandText = "Insert Into Persona(Tipo, Identificación,Nombres,Apellidos,Edad,Sexo,Direccion,Celular,Correo)Values"+
+                    "(:Tipo,:Identificación,:Nombres,:Apellidos,:Edad,:Sexo,:Direccion,:Celular,:Correo)";
                 Comando.Parameters.Add(":Tipo", OracleDbType.Char).Value = persona.Tipo;
                 Comando.Parameters.Add(":Identificación", OracleDbType.NVarchar2).Value = persona.Identificacion;
                 Comando.Parameters.Add(":Nombre", OracleDbType.NVarchar2).Value = persona.Nombres;
@@ -48,15 +48,15 @@ namespace DAL
         {
             using (var Comando = _connection.CreateCommand())
             {
-                Comando.CommandText = "UPDATE persona SET Tipo=@Tipo Nombres=@Nombre ,Apellidos=@Apellido ,Edad=@Edad ,Sexo=@Sexo ,Direccion=@Direccion ,Celular=@Celular ,Correo=@Correo where Cedula="+persona.Identificacion;
-                Comando.Parameters.Add("@Tipo", OracleDbType.Char).Value = persona.Edad;
-                Comando.Parameters.Add("@Nombre", OracleDbType.Varchar2).Value = persona.Nombres;
-                Comando.Parameters.Add("@Apellido", OracleDbType.Varchar2).Value = persona.Apellidos;
-                Comando.Parameters.Add("@Edad", OracleDbType.Int16).Value = persona.Edad;
-                Comando.Parameters.Add("@Sexo", OracleDbType.Varchar2).Value = persona.Sexo;
-                Comando.Parameters.Add("@Direccion", OracleDbType.Varchar2).Value = persona.Direccion;
-                Comando.Parameters.Add("@Celular", OracleDbType.Varchar2).Value = persona.Celular;
-                Comando.Parameters.Add("@Correo", OracleDbType.Varchar2).Value = persona.Correo;
+                Comando.CommandText = "UPDATE persona SET Tipo=:Tipo Nombres=:Nombre ,Apellidos=:Apellido ,Edad=:Edad ,Sexo=:Sexo ,Direccion=:Direccion ,Celular=:Celular ,Correo=:Correo where Identificacion="+persona.Identificacion;
+                Comando.Parameters.Add(":Tipo", OracleDbType.Char).Value = persona.Edad;
+                Comando.Parameters.Add(":Nombre", OracleDbType.Varchar2).Value = persona.Nombres;
+                Comando.Parameters.Add(":Apellido", OracleDbType.Varchar2).Value = persona.Apellidos;
+                Comando.Parameters.Add(":Edad", OracleDbType.Int16).Value = persona.Edad;
+                Comando.Parameters.Add(":Sexo", OracleDbType.Varchar2).Value = persona.Sexo;
+                Comando.Parameters.Add(":Direccion", OracleDbType.Varchar2).Value = persona.Direccion;
+                Comando.Parameters.Add(":Celular", OracleDbType.Varchar2).Value = persona.Celular;
+                Comando.Parameters.Add(":Correo", OracleDbType.Varchar2).Value = persona.Correo;
                 Comando.ExecuteNonQuery();
              
             }
@@ -84,14 +84,14 @@ namespace DAL
             return Personas;
         }
 
-        public List<Persona> Buscarpersona(long id)
+        public List<Persona> Buscarpersona(string id)
         {
             OracleDataReader dataReader;
             List<Persona> personas = new List<Persona>();
 
             using (var Comando = _connection.CreateCommand())
             {
-                Comando.CommandText = "Select * from persona where cedula=" + id;
+                Comando.CommandText = "Select * from persona where identificación='" + id+"'";
 
                 dataReader = Comando.ExecuteReader();
 

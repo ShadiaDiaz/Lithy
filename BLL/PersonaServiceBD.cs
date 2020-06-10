@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Entity;
 using DAL;
+using InfraEstructura;
 
 
 
@@ -30,8 +31,10 @@ namespace BLL
             try
             {
                 conexion.Open();
-                repositorio.Guardar(persona);
-                return "Persona " + persona.Nombres + " " + persona.Apellidos + " registrad@ Exitamente";
+                
+                    repositorio.Guardar(persona);
+                    return $"Se guardaron los datos satisfactoriamente";
+              
             }
             catch (Exception excep)
             {
@@ -81,7 +84,7 @@ namespace BLL
             }
         }
 
-        public List<Persona> Buscar(long id)
+        public List<Persona> Buscar(string id)
         {
             try
             {
@@ -101,7 +104,20 @@ namespace BLL
             }
 
         }
+        public string GenerarPdf(List<Persona> personas, string filename)
+        {
+            Generar documentoPdf = new Generar();
+            try
+            {
+                documentoPdf.GuardarPdf(personas, filename);
+                return "Se genró el Documento satisfactoriamente";
+            }
+            catch (Exception e)
+            {
 
+                return "Error al crear docuemnto" + e.Message;
+            }
+        }
         public class Respuesta
         {
             public IList<Persona> ListaPacientes { get; set; }

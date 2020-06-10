@@ -137,9 +137,9 @@ namespace LithyGUI
 
         private void btnBuscarP_Click(object sender, EventArgs e)
         {
-            if (pacienteService.Buscar(long.Parse(txtBuscarP.Text)) != null)
+            if (pacienteService.Buscar(txtBuscarP.Text) != null)
             {
-                dtgvPaciente.DataSource = pacienteService.Buscar(long.Parse(txtBuscarP.Text));
+                dtgvPaciente.DataSource = pacienteService.Buscar(txtBuscarP.Text);
 
             }
             else

@@ -134,12 +134,7 @@ namespace LithyGUI
 
     
 
-    private void button6_Click(object sender, EventArgs e)
-    {
-            Seleccion(button6);
-            AbrirFrmInpanel(new FormReportes());
-            
-    }  
+  
         private void button7_Click(object sender, EventArgs e)
         {
             Seleccion(button7);
@@ -172,7 +167,6 @@ namespace LithyGUI
         {
            
             button7.BackColor = Color.FromArgb(3, 97, 122);
-            button6.BackColor = Color.FromArgb(3, 97, 122);
             button5.BackColor = Color.FromArgb(3, 97, 122);
             button4.BackColor = Color.FromArgb(3, 97, 122);
             button3.BackColor = Color.FromArgb(3, 97, 122);
@@ -202,6 +196,11 @@ namespace LithyGUI
         private void button8_Click_1(object sender, EventArgs e)
         {
             AbrirFrmInpanel(new FormEnvioCorreo());
+        }
+
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }   

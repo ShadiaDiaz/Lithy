@@ -70,7 +70,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(235, 85);
+            this.label1.Location = new System.Drawing.Point(246, 53);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(288, 20);
             this.label1.TabIndex = 26;
@@ -118,7 +118,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(308, 121);
+            this.label5.Location = new System.Drawing.Point(319, 89);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(146, 16);
             this.label5.TabIndex = 34;
@@ -128,7 +128,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(297, 195);
+            this.label6.Location = new System.Drawing.Point(301, 171);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(139, 16);
             this.label6.TabIndex = 35;
@@ -328,7 +328,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::LithyGUI.Properties.Resources.logonegro;
-            this.pictureBox1.Location = new System.Drawing.Point(5, 91);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 33);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(129, 72);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -367,7 +367,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(290, 105);
+            this.label7.Location = new System.Drawing.Point(301, 73);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(179, 16);
             this.label7.TabIndex = 63;

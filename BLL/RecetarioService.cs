@@ -44,7 +44,7 @@ namespace BLL
         }
 
 
-        public List<Recetario> Buscar(long id)
+        public List<Recetario> Buscar(string id)
         {
             try
             {
@@ -65,6 +65,11 @@ namespace BLL
 
         }
 
+        public string NuevoCodigo(string identificacion)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Recetario> Consultar()
         {
             try
@@ -83,16 +88,16 @@ namespace BLL
             }
         }
 
-        public string NuevoCodigo(long id)
-        {
+        //public string NuevoCodigo(string id)
+        //{
 
-            conexion.Open();
+        //    conexion.Open();
 
-            string nuevo = repositorio.NuevoCodigo(id);
+        //    string nuevo = repositorio.NuevoCodigo(id);
 
-            conexion.Close();
-            return nuevo;
+        //    conexion.Close();
+        //    return nuevo;
 
-        }
+        //}
     }
 }
