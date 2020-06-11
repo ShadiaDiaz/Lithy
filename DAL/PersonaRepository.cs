@@ -44,7 +44,7 @@ namespace DAL
             }
         }
 
-        public void Modiicar(Persona persona)
+        public void Modificar(Persona persona)
         {
             using (var Comando = _connection.CreateCommand())
             {

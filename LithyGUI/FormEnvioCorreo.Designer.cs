@@ -69,10 +69,10 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(86, 121);
+            this.textBox1.Location = new System.Drawing.Point(86, 128);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(436, 136);
+            this.textBox1.Size = new System.Drawing.Size(436, 177);
             this.textBox1.TabIndex = 20;
             // 
             // label3

@@ -36,7 +36,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.txtApellidos = new System.Windows.Forms.TextBox();
             this.txtDireccion = new System.Windows.Forms.TextBox();
             this.txtCelular = new System.Windows.Forms.TextBox();
@@ -46,11 +45,10 @@
             this.cmbSexo = new System.Windows.Forms.ComboBox();
             this.txtCorreo = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.picBtnGuardar = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label11 = new System.Windows.Forms.Label();
             this.comboTipo = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.picBtnGuardar)).BeginInit();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -135,15 +133,6 @@
             this.label9.TabIndex = 8;
             this.label9.Text = "Celular :";
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(610, 360);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(45, 13);
-            this.label10.TabIndex = 11;
-            this.label10.Text = "Guardar";
-            // 
             // txtApellidos
             // 
             this.txtApellidos.Location = new System.Drawing.Point(538, 131);
@@ -215,17 +204,6 @@
             this.label8.TabIndex = 26;
             this.label8.Text = "Correo :";
             // 
-            // picBtnGuardar
-            // 
-            this.picBtnGuardar.Image = global::LithyGUI.Properties.Resources.save;
-            this.picBtnGuardar.Location = new System.Drawing.Point(595, 319);
-            this.picBtnGuardar.Name = "picBtnGuardar";
-            this.picBtnGuardar.Size = new System.Drawing.Size(60, 38);
-            this.picBtnGuardar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picBtnGuardar.TabIndex = 10;
-            this.picBtnGuardar.TabStop = false;
-            this.picBtnGuardar.Click += new System.EventHandler(this.PictureBox2_Click);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::LithyGUI.Properties.Resources.logonegro;
@@ -257,12 +235,27 @@
             this.comboTipo.Size = new System.Drawing.Size(121, 21);
             this.comboTipo.TabIndex = 29;
             // 
+            // button2
+            // 
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Image = global::LithyGUI.Properties.Resources.technology;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button2.Location = new System.Drawing.Point(591, 307);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(59, 55);
+            this.button2.TabIndex = 30;
+            this.button2.Text = "Guardar";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // FormRegistro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(683, 456);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.comboTipo);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.txtCorreo);
@@ -274,8 +267,6 @@
             this.Controls.Add(this.txtCelular);
             this.Controls.Add(this.txtDireccion);
             this.Controls.Add(this.txtApellidos);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.picBtnGuardar);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label7);
@@ -289,7 +280,6 @@
             this.Name = "FormRegistro";
             this.Text = "Registro";
             this.Load += new System.EventHandler(this.Registro_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.picBtnGuardar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -307,8 +297,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox picBtnGuardar;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtApellidos;
         private System.Windows.Forms.TextBox txtDireccion;
         private System.Windows.Forms.TextBox txtCelular;
@@ -320,5 +308,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox comboTipo;
+        private System.Windows.Forms.Button button2;
     }
 }

@@ -166,14 +166,15 @@ namespace LithyGUI
         private void Seleccion(Button boton)
         {
            
-            button7.BackColor = Color.FromArgb(3, 97, 122);
-            button5.BackColor = Color.FromArgb(3, 97, 122);
-            button4.BackColor = Color.FromArgb(3, 97, 122);
-            button3.BackColor = Color.FromArgb(3, 97, 122);
-            button2.BackColor = Color.FromArgb(3, 97, 122);
-            button1.BackColor = Color.FromArgb(3, 97, 122);
-            button9.BackColor = Color.FromArgb(3, 97, 122);
-            boton.BackColor = Color.FromArgb(5, 60, 110);
+            button7.BackColor = Color.FromArgb(26, 126, 217);
+            button5.BackColor = Color.FromArgb(26, 126, 217);
+            button8.BackColor = Color.FromArgb(26, 126, 217);
+            button4.BackColor = Color.FromArgb(26, 126, 217);
+            button3.BackColor = Color.FromArgb(26, 126, 217);
+            button2.BackColor = Color.FromArgb(26, 126, 217);
+            button1.BackColor = Color.FromArgb(26, 126, 217);
+            button9.BackColor = Color.FromArgb(26, 126, 217);
+            boton.BackColor = Color.FromArgb(21, 87, 208);
 
         }
 
@@ -188,19 +189,27 @@ namespace LithyGUI
             AbrirFrmInpanel(new FormModificarPaciente());
         }
 
-        private void button5_Click_1(object sender, EventArgs e)
-        {
-            AbrirFrmInpanel(new CitaMedica());
-        }
-
         private void button8_Click_1(object sender, EventArgs e)
         {
+            Seleccion(button8);
             AbrirFrmInpanel(new FormEnvioCorreo());
         }
 
         private void button6_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void button7_Click_1(object sender, EventArgs e)
+        {
+            Seleccion(button7);
+            AbrirFrmInpanel(new CitaMedica());
+        }
+
+        private void button5_Click_2(object sender, EventArgs e)
+        {
+            Seleccion(button5);
+            AbrirFrmInpanel(new HistorialMedico());
         }
     }
 }   

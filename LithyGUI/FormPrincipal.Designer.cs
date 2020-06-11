@@ -81,11 +81,11 @@
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button8.ForeColor = System.Drawing.Color.White;
-            this.button8.Image = global::LithyGUI.Properties.Resources.medicine2;
+            this.button8.Image = global::LithyGUI.Properties.Resources.mail1;
             this.button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button8.Location = new System.Drawing.Point(0, 472);
+            this.button8.Location = new System.Drawing.Point(0, 455);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(210, 51);
+            this.button8.Size = new System.Drawing.Size(210, 39);
             this.button8.TabIndex = 31;
             this.button8.Text = "Enviar Correo";
             this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -101,13 +101,14 @@
             this.button5.ForeColor = System.Drawing.Color.White;
             this.button5.Image = global::LithyGUI.Properties.Resources.health__2_;
             this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.Location = new System.Drawing.Point(0, 143);
+            this.button5.Location = new System.Drawing.Point(0, 500);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(210, 51);
+            this.button5.Size = new System.Drawing.Size(210, 38);
             this.button5.TabIndex = 30;
             this.button5.Text = "Historial Medico";
             this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click_2);
             // 
             // button7
             // 
@@ -118,13 +119,14 @@
             this.button7.ForeColor = System.Drawing.Color.White;
             this.button7.Image = global::LithyGUI.Properties.Resources.calendar;
             this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.Location = new System.Drawing.Point(3, 190);
+            this.button7.Location = new System.Drawing.Point(0, 191);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(210, 51);
+            this.button7.Size = new System.Drawing.Size(210, 35);
             this.button7.TabIndex = 29;
             this.button7.Text = "Agendar Cita";
             this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click_1);
             // 
             // button3
             // 
@@ -135,9 +137,9 @@
             this.button3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.button3.Image = global::LithyGUI.Properties.Resources.medical_history2;
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(0, 322);
+            this.button3.Location = new System.Drawing.Point(0, 321);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(210, 51);
+            this.button3.Size = new System.Drawing.Size(210, 39);
             this.button3.TabIndex = 0;
             this.button3.Text = "Diagnostico";
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -153,9 +155,9 @@
             this.button4.ForeColor = System.Drawing.Color.White;
             this.button4.Image = global::LithyGUI.Properties.Resources.medicine2;
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(0, 415);
+            this.button4.Location = new System.Drawing.Point(0, 410);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(210, 51);
+            this.button4.Size = new System.Drawing.Size(210, 39);
             this.button4.TabIndex = 0;
             this.button4.Text = "Recetario";
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -171,9 +173,9 @@
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Image = global::LithyGUI.Properties.Resources.drugs2;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(3, 369);
+            this.button2.Location = new System.Drawing.Point(0, 366);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(210, 51);
+            this.button2.Size = new System.Drawing.Size(210, 38);
             this.button2.TabIndex = 0;
             this.button2.Text = "Registrar medicinas";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -189,9 +191,9 @@
             this.button9.ForeColor = System.Drawing.Color.White;
             this.button9.Image = global::LithyGUI.Properties.Resources.drugs2;
             this.button9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button9.Location = new System.Drawing.Point(3, 277);
+            this.button9.Location = new System.Drawing.Point(0, 274);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(210, 51);
+            this.button9.Size = new System.Drawing.Size(210, 41);
             this.button9.TabIndex = 1;
             this.button9.Text = "Modificar Pacientes";
             this.button9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -207,9 +209,9 @@
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Image = global::LithyGUI.Properties.Resources.add__1_1;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(3, 232);
+            this.button1.Location = new System.Drawing.Point(0, 232);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(210, 51);
+            this.button1.Size = new System.Drawing.Size(210, 36);
             this.button1.TabIndex = 0;
             this.button1.Text = "Registrar personas";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -219,18 +221,18 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(104, 42);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 25);
+            this.label1.Size = new System.Drawing.Size(86, 29);
             this.label1.TabIndex = 27;
             this.label1.Text = "LITHY";
             // 
             // pictureBox2
             // 
             this.pictureBox2.Image = global::LithyGUI.Properties.Resources.logoblanco;
-            this.pictureBox2.Location = new System.Drawing.Point(16, 28);
+            this.pictureBox2.Location = new System.Drawing.Point(3, 30);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(62, 50);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

@@ -52,7 +52,7 @@ namespace BLL
             try
             {
                 conexion.Open();
-                repositorio.Modiicar(persona);
+                repositorio.Modificar(persona);
                 return "Persona " + persona.Nombres + " " + persona.Apellidos + " modificad@ Exitamente";
             }
             catch (Exception excep)
