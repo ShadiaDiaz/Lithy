@@ -249,6 +249,7 @@
             // dtgvMedicinas
             // 
             this.dtgvMedicinas.AllowUserToOrderColumns = true;
+            this.dtgvMedicinas.BackgroundColor = System.Drawing.Color.AliceBlue;
             this.dtgvMedicinas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvMedicinas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Codigo,

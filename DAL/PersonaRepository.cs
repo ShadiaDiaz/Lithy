@@ -28,8 +28,7 @@ namespace DAL
 
             using(var Comando = _connection.CreateCommand())
             {
-                //Comando.CommandText = "Insert Into Persona(Identificación,Nombres,Apellidos,Edad,Sexo,Direccion,Celular,Correo)Values"+
-                //    "(:Identificación,:Nombres,:Apellidos,:Edad,:Sexo,:Direccion,:Celular,:Correo)"
+                
                 Comando.CommandText = "PAQUETE_PERSONA.Insertar_Persona";
                 Comando.CommandType = CommandType.StoredProcedure;
                 Comando.Parameters.Add("Identificación", OracleDbType.Varchar2).Value = persona.Identificacion;
@@ -72,17 +71,22 @@ namespace DAL
 
             using (var Comando = _connection.CreateCommand())
             {
+                Comando.Connection.Open();
                 Comando.CommandText = "PAQUETE_PERSONA.Consultar_Persona";
                 Comando.CommandType = CommandType.StoredProcedure;
                 Comando.Parameters.Add("Personas", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
                 dataReader = Comando.ExecuteReader();
+                if (dataReader.HasRows){
+                    while (dataReader.Read())
+                    {
 
-                while (dataReader.Read())
-                {
+                        Personas.Add(Map(dataReader));
 
-                    Personas.Add(Map(dataReader));
+                    }
+                    //dataReader.Close();
                 }
-                dataReader.Close();
+
+                Comando.Connection.Close();
             }
 
             return Personas;
@@ -101,16 +105,13 @@ namespace DAL
                 Comando.Parameters.Add("xIdentificacion", OracleDbType.Varchar2).Value= id;
                 Comando.Parameters.Add("x", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
                 dataReader = Comando.ExecuteReader();
-
-                while (dataReader.Read())
-                {
-
-                    personas.Add(Map(dataReader));
-                }
+                Persona persona = Map(dataReader);
+                Comando.Connection.Close();
+                return personas;
 
             }
 
-            return personas;
+          
         }
 
         public Persona Map(OracleDataReader dataReader) {

@@ -177,12 +177,6 @@
     <Compile Include="FormRegistroMedicamentos.Designer.cs">
       <DependentUpon>FormRegistroMedicamentos.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormReportes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormReportes.Designer.cs">
-      <DependentUpon>FormReportes.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="CitaMedicas.resx">
       <DependentUpon>CitaMedicas.cs</DependentUpon>
     </EmbeddedResource>
@@ -225,9 +219,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRegistroMedicamentos.resx">
       <DependentUpon>FormRegistroMedicamentos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormReportes.resx">
-      <DependentUpon>FormReportes.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

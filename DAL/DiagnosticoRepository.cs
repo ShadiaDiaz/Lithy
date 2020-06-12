@@ -27,8 +27,7 @@ namespace DAL
 
             using (var Comando = _connection.CreateCommand())
             {
-                Comando.CommandText = "Insert Into Diagnostico(Codigo,Fecha,Descripcion,FechaSintomas,InicioTratamiento,Paciente,Estado)Values " +
-                    "(:Codigo,:Fecha,:Descripcion,:FechaSintomas,:InicioTratamiento,:Paciente,:Estado)";
+                Comando.CommandText = "PAQUETE_DIAGNOSTICO.Insertar_Diagnostico";
                 Comando.Parameters.Add(":Codigo", OracleDbType.NVarchar2).Value = diagnostico.Codigo;
                 Comando.Parameters.Add(":Fecha", OracleDbType.Date).Value = diagnostico.Fecha;
                 Comando.Parameters.Add(":Descripcion", OracleDbType.NVarchar2).Value = diagnostico.Descripción;

@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Oracle.ManagedDataAccess.Client;
 using Entity;
 using System.Data;
+using Oracle.ManagedDataAccess.Client;
+using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class CitaMedicaRepository
+    public  class HistoriaClinicaRepository
     {
         private readonly OracleConnection _connection;
         private ConnectionManager conexion;
 
-        public CitaMedicaRepository(ConnectionManager connection)
+        public HistoriaClinicaRepository(ConnectionManager connection)
         {
             _connection = connection._conexion;
         }
@@ -29,19 +29,6 @@ namespace DAL
                 Comando.Parameters.Add(":FechaCita", OracleDbType.Date).Value = citaMedica.FechaCita;
                 Comando.Parameters.Add(":Hora", OracleDbType.Varchar2).Value = citaMedica.Hora;
                 Comando.Parameters.Add(":Persona_Id", OracleDbType.Varchar2).Value = citaMedica.PersonaId;
-                Comando.ExecuteNonQuery();
-            }
-        }
-        public void Modidicar(CitaMedica citaMedica)
-        {
-            using (var Comando = _connection.CreateCommand())
-            {
-                Comando.CommandText = "PAQUETE_CITA.Modificar_Cita";
-                Comando.CommandType = CommandType.StoredProcedure;
-                Comando.Parameters.Add(":FechaCita", OracleDbType.Date).Value = citaMedica.FechaCita;
-                Comando.Parameters.Add(":Hora", OracleDbType.Varchar2).Value = citaMedica.Hora;
-                Comando.Parameters.Add(":Persona_Id", OracleDbType.Varchar2).Value = citaMedica.PersonaId;
-
                 Comando.ExecuteNonQuery();
             }
         }
@@ -66,28 +53,6 @@ namespace DAL
                 }
 
             }
-            return citas;
-        }
-        public List<CitaMedica> Consultar()
-        {
-            OracleDataReader dataReader;
-            List<CitaMedica> citas = new List<CitaMedica>();
-
-            using (var Comando = _connection.CreateCommand())
-            {
-                Comando.CommandText = "PAQUETE_CITA.Consultar_Cita";
-                Comando.CommandType = CommandType.StoredProcedure;
-                Comando.Parameters.Add("x", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
-
-                dataReader = Comando.ExecuteReader();
-
-                while (dataReader.Read())
-                {
-                    citas.Add(Map(dataReader));
-                }
-
-            }
-
             return citas;
         }
         public CitaMedica Map(OracleDataReader dataReader)

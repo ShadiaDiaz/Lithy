@@ -63,6 +63,7 @@
     <Compile Include="CitaMedicaRepository.cs" />
     <Compile Include="ConnectionManager.cs" />
     <Compile Include="DiagnosticoRepository.cs" />
+    <Compile Include="HistoriaClinicaRepository.cs" />
     <Compile Include="MedicamentoRepository.cs" />
     <Compile Include="PersonaRepository.cs" />
     <Compile Include="PosologiaRepository.cs" />

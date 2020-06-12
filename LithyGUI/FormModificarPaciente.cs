@@ -39,21 +39,8 @@ namespace LithyGUI
 
         }
 
-        private void btnModificar_Click(object sender, EventArgs e)
-        {
-            Persona persona = new Persona();
-            persona.Identificacion = txtIdentificacion.Text;
-            persona.Nombres = txtNombres.Text;
-            persona.Apellidos = txtApellidos.Text;
-            persona.Edad = char.Parse(txtEdad.Text);
-            persona.Sexo = cmbSexo.Text;
-            persona.Celular = txtCelular.Text;
-            persona.Direccion = txtDireccion.Text;
-            persona.Correo = new MailAddress(txtCorreo.Text);
-
-            MessageBox.Show(pacienteService.Modificar(persona));
-
-        }
+   
+        
 
         private void txtCorreo_TextChanged(object sender, EventArgs e)
         {
@@ -168,7 +155,22 @@ namespace LithyGUI
 
         private void dtgvPaciente_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            LlenarTabla();
+            dtgvPaciente.DataSource = pacienteService.Consultar();
+            int N = dtgvPaciente.Rows.Add();
+            List<Persona> personas = new List<Persona>();
+             foreach (var item in personas)
+            {
+                dtgvPaciente.Rows[N].Cells[0].Value = item.Identificacion;
+                dtgvPaciente.Rows[N].Cells[1].Value = item.Nombres;
+                dtgvPaciente.Rows[N].Cells[2].Value = item.Apellidos;
+                dtgvPaciente.Rows[N].Cells[3].Value = item.Edad;
+                dtgvPaciente.Rows[N].Cells[4].Value = item.Sexo;
+                dtgvPaciente.Rows[N].Cells[5].Value = item.Direccion;
+                dtgvPaciente.Rows[N].Cells[6].Value = item.Celular;
+                dtgvPaciente.Rows[N].Cells[7].Value = item.Correo;
+
+            }
+
         }
         public void LlenarTabla()
         {
