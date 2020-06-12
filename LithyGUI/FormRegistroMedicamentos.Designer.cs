@@ -85,7 +85,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.MintCream;
+            this.label5.BackColor = System.Drawing.Color.AliceBlue;
             this.label5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(246, 156);
@@ -120,11 +120,13 @@
             // 
             // dtgvMedicamentos
             // 
+            this.dtgvMedicamentos.BackgroundColor = System.Drawing.Color.AliceBlue;
             this.dtgvMedicamentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvMedicamentos.Location = new System.Drawing.Point(39, 361);
             this.dtgvMedicamentos.Name = "dtgvMedicamentos";
             this.dtgvMedicamentos.Size = new System.Drawing.Size(590, 113);
             this.dtgvMedicamentos.TabIndex = 31;
+            this.dtgvMedicamentos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvMedicamentos_CellContentClick);
             this.dtgvMedicamentos.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvMedicamentos_CellContentDoubleClick);
             // 
             // label6

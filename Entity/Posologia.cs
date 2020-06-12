@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace Entity
 {
-    public class Posologia
+    public class Posologia:Recetario
     {
 
         public Medicamento Medicamento { get; set; }
         public int CantidadDias { get; set; }
         public int IntervaloHoras { get; set; }
         public string Cantidad { get; set; }
+        public string CodRecetario { get; set; }
        
 
         public Posologia()
@@ -20,12 +21,13 @@ namespace Entity
 
         }
 
-        public Posologia(Medicamento medicamento,int cantidadDias, int intervaloHoras, string cantidad)
+        public Posologia(Medicamento medicamento,int cantidadDias, int intervaloHoras, string cantidad, string codRecetario)
         {
             Medicamento = medicamento;
             CantidadDias = cantidadDias;
             IntervaloHoras = intervaloHoras;
             Cantidad = cantidad;
+            CodRecetario = codRecetario;
           
         }
     }

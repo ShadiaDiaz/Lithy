@@ -30,6 +30,8 @@
         {
             this.tablaTemporal = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTemporal)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,12 +54,34 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Historial Medico ";
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(223, 120);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(118, 20);
+            this.textBox1.TabIndex = 2;
+            // 
+            // button1
+            // 
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Image = global::LithyGUI.Properties.Resources.herramientas_de_edicion;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(371, 113);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(104, 33);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Consultar";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // HistorialMedico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(678, 382);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tablaTemporal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -73,5 +97,7 @@
 
         private System.Windows.Forms.DataGridView tablaTemporal;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button1;
     }
 }

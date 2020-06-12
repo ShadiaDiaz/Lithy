@@ -150,14 +150,15 @@ namespace LithyGUI
 
         private void dtgvPaciente_DoubleClick(object sender, EventArgs e)
         {
-            txtCorreo.Text=dtgvPaciente.CurrentRow.Cells[7].Value.ToString();
-            txtApellidos.Text=dtgvPaciente.CurrentRow.Cells[2].Value.ToString();
-            txtIdentificacion.Text=dtgvPaciente.CurrentRow.Cells[0].Value.ToString();
-            txtNombres.Text=dtgvPaciente.CurrentRow.Cells[1].Value.ToString();
-            txtEdad.Text=dtgvPaciente.CurrentRow.Cells[3].Value.ToString();
-            cmbSexo.Text=dtgvPaciente.CurrentRow.Cells[4].Value.ToString();
-            txtDireccion.Text=dtgvPaciente.CurrentRow.Cells[5].Value.ToString();
-            txtCelular.Text=dtgvPaciente.CurrentRow.Cells[6].Value.ToString();
+            txtIdentificacion.Text = dtgvPaciente.CurrentRow.Cells[0].Value.ToString();
+            txtNombres.Text = dtgvPaciente.CurrentRow.Cells[1].Value.ToString();
+            txtApellidos.Text = dtgvPaciente.CurrentRow.Cells[2].Value.ToString();
+            txtEdad.Text = dtgvPaciente.CurrentRow.Cells[3].Value.ToString();
+            cmbSexo.Text = dtgvPaciente.CurrentRow.Cells[4].Value.ToString();
+            txtDireccion.Text = dtgvPaciente.CurrentRow.Cells[5].Value.ToString();
+            txtCelular.Text = dtgvPaciente.CurrentRow.Cells[6].Value.ToString();
+            txtCorreo.Text = dtgvPaciente.CurrentRow.Cells[7].Value.ToString();
+
         }
 
         private void FormModificarPaciente_Load(object sender, EventArgs e)
@@ -167,6 +168,27 @@ namespace LithyGUI
 
         private void dtgvPaciente_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            LlenarTabla();
+        }
+        public void LlenarTabla()
+        {
+
+            dtgvPaciente.DataSource = pacienteService.Consultar();
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            Persona persona = new Persona();
+            persona.Identificacion = txtIdentificacion.Text;
+            persona.Nombres = txtNombres.Text;
+            persona.Apellidos = txtApellidos.Text;
+            persona.Edad = char.Parse(txtEdad.Text);
+            persona.Sexo = cmbSexo.Text;
+            persona.Celular = txtCelular.Text;
+            persona.Direccion = txtDireccion.Text;
+            persona.Correo = new MailAddress(txtCorreo.Text);
+
+            MessageBox.Show(pacienteService.Modificar(persona));
 
         }
     }

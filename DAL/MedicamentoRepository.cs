@@ -25,8 +25,8 @@ namespace DAL
 
             using (var Comando = _connection.CreateCommand())
             {
-                Comando.CommandText = "Insert Into Medicamento(Nombre,Presentacion,Cantidad)Values " +
-                    "(:Codigo,:Nombre,:Presentacion,:Cantidad)";
+                Comando.CommandText = "PAQUETE_MEDICAMENTO.Insertar_Medicamento";
+                Comando.CommandType = CommandType.StoredProcedure;
                 Comando.Parameters.Add(":Nombre", OracleDbType.NVarchar2).Value = medicamento.Nombre;
                 Comando.Parameters.Add(":Presentacion", OracleDbType.NVarchar2).Value = medicamento.Presentacion;
                 Comando.Parameters.Add(":Cantidad", OracleDbType.NVarchar2).Value = medicamento.Cantidad;
@@ -37,7 +37,7 @@ namespace DAL
         {
             using (var Comando = _connection.CreateCommand())
             {
-                Comando.CommandText = "update Medicamento set Presentacion=:Presentacion, Cantidad=:Cantidad   where Nombre=" + medicamento.Nombre ;
+                Comando.CommandText = "PAQUETE_MEDICAMENTO.Modificar_Medicamento";
                 Comando.Parameters.Add(":Presentacion", OracleDbType.NVarchar2).Value = medicamento.Presentacion;
                 Comando.Parameters.Add(":Cantidad", OracleDbType.NVarchar2).Value = medicamento.Cantidad;
 
@@ -51,7 +51,10 @@ namespace DAL
 
             using (var Comando = _connection.CreateCommand())
             {
-                Comando.CommandText = "Select * from Medicamento where nombre=" + nombre;
+                Comando.CommandText = "PAQUETE_MEDICAMENTO.Buscar_Medicamento";
+                Comando.CommandType = CommandType.StoredProcedure;
+                Comando.Parameters.Add("xNombre", OracleDbType.Varchar2).Value = nombre;
+                Comando.Parameters.Add("x", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
 
                 dataReader = Comando.ExecuteReader();
 
@@ -72,7 +75,9 @@ namespace DAL
 
             using (var Comando = _connection.CreateCommand())
             {
-                Comando.CommandText = "Select * from Medicamento";
+                Comando.CommandText = "PAQUETE_MEDICAMENTO.Consultar_Medicamento";
+                Comando.CommandType = CommandType.StoredProcedure;
+                Comando.Parameters.Add("x", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
 
                 dataReader = Comando.ExecuteReader();
 

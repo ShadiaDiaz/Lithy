@@ -28,17 +28,18 @@ namespace DAL
 
             using(var Comando = _connection.CreateCommand())
             {
-                Comando.CommandText = "Insert Into Persona(Tipo, Identificación,Nombres,Apellidos,Edad,Sexo,Direccion,Celular,Correo)Values"+
-                    "(:Tipo,:Identificación,:Nombres,:Apellidos,:Edad,:Sexo,:Direccion,:Celular,:Correo)";
-                Comando.Parameters.Add(":Tipo", OracleDbType.Char).Value = persona.Tipo;
-                Comando.Parameters.Add(":Identificación", OracleDbType.NVarchar2).Value = persona.Identificacion;
-                Comando.Parameters.Add(":Nombre", OracleDbType.NVarchar2).Value = persona.Nombres;
-                Comando.Parameters.Add(":Apellido", OracleDbType.NVarchar2).Value = persona.Apellidos;
-                Comando.Parameters.Add(":Edad", OracleDbType.Char).Value = persona.Edad;
-                Comando.Parameters.Add(":Sexo", OracleDbType.Char).Value = persona.Sexo;
-                Comando.Parameters.Add(":Direccion", OracleDbType.NVarchar2).Value = persona.Direccion;
-                Comando.Parameters.Add(":Celular", OracleDbType.Varchar2).Value = persona.Celular;
-                Comando.Parameters.Add(":Correo", OracleDbType.NVarchar2).Value = persona.Correo;
+                //Comando.CommandText = "Insert Into Persona(Identificación,Nombres,Apellidos,Edad,Sexo,Direccion,Celular,Correo)Values"+
+                //    "(:Identificación,:Nombres,:Apellidos,:Edad,:Sexo,:Direccion,:Celular,:Correo)"
+                Comando.CommandText = "PAQUETE_PERSONA.Insertar_Persona";
+                Comando.CommandType = CommandType.StoredProcedure;
+                Comando.Parameters.Add("Identificación", OracleDbType.Varchar2).Value = persona.Identificacion;
+                Comando.Parameters.Add("Nombres", OracleDbType.Varchar2).Value = persona.Nombres;
+                Comando.Parameters.Add("Apellidos", OracleDbType.Varchar2).Value = persona.Apellidos;
+                Comando.Parameters.Add("Edad", OracleDbType.Char).Value = persona.Edad;
+                Comando.Parameters.Add("Sexo", OracleDbType.Char).Value = persona.Sexo;
+                Comando.Parameters.Add("Direccion", OracleDbType.Varchar2).Value = persona.Direccion;
+                Comando.Parameters.Add("Celular", OracleDbType.Varchar2).Value = persona.Celular;
+                Comando.Parameters.Add("Correo", OracleDbType.Varchar2).Value = persona.Correo;
                   Comando.ExecuteNonQuery();
               
             }
@@ -48,8 +49,10 @@ namespace DAL
         {
             using (var Comando = _connection.CreateCommand())
             {
-                Comando.CommandText = "UPDATE persona SET Tipo=:Tipo Nombres=:Nombre ,Apellidos=:Apellido ,Edad=:Edad ,Sexo=:Sexo ,Direccion=:Direccion ,Celular=:Celular ,Correo=:Correo where Identificacion="+persona.Identificacion;
-                Comando.Parameters.Add(":Tipo", OracleDbType.Char).Value = persona.Edad;
+
+                //Comando.CommandText = "UPDATE persona SET Nombres=:Nombre ,Apellidos=:Apellido ,Edad=:Edad ,Sexo=:Sexo ,Direccion=:Direccion ,Celular=:Celular ,Correo=:Correo where Identificacion="+persona.Identificacion;
+                Comando.CommandText = "PAQUETE_PERSONA.Modificar_Persona";
+                Comando.CommandType = CommandType.StoredProcedure;
                 Comando.Parameters.Add(":Nombre", OracleDbType.Varchar2).Value = persona.Nombres;
                 Comando.Parameters.Add(":Apellido", OracleDbType.Varchar2).Value = persona.Apellidos;
                 Comando.Parameters.Add(":Edad", OracleDbType.Int16).Value = persona.Edad;
@@ -69,8 +72,9 @@ namespace DAL
 
             using (var Comando = _connection.CreateCommand())
             {
-                Comando.CommandText = "Select * from persona";
-
+                Comando.CommandText = "PAQUETE_PERSONA.Consultar_Persona";
+                Comando.CommandType = CommandType.StoredProcedure;
+                Comando.Parameters.Add("Personas", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
                 dataReader = Comando.ExecuteReader();
 
                 while (dataReader.Read())
@@ -91,8 +95,11 @@ namespace DAL
 
             using (var Comando = _connection.CreateCommand())
             {
-                Comando.CommandText = "Select * from persona where identificación='" + id+"'";
-
+              
+                Comando.CommandText = "PAQUETE_PERSONA.Buscar_Persona" ;
+                Comando.CommandType = CommandType.StoredProcedure;
+                Comando.Parameters.Add("xIdentificacion", OracleDbType.Varchar2).Value= id;
+                Comando.Parameters.Add("x", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
                 dataReader = Comando.ExecuteReader();
 
                 while (dataReader.Read())
@@ -109,7 +116,6 @@ namespace DAL
         public Persona Map(OracleDataReader dataReader) {
 
             Persona persona = new Persona();
-            persona.Tipo = (char)dataReader["Tipo"];
             persona.Identificacion = (string)dataReader["Identificación"];
             persona.Nombres = (string)dataReader["Nombres"];
             persona.Apellidos = (string)dataReader["Apellidos"];

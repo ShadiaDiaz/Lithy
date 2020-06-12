@@ -107,11 +107,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CitaMedica.cs">
+    <Compile Include="CitaMedicas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CitaMedica.Designer.cs">
-      <DependentUpon>CitaMedica.cs</DependentUpon>
+    <Compile Include="CitaMedicas.Designer.cs">
+      <DependentUpon>CitaMedicas.cs</DependentUpon>
     </Compile>
     <Compile Include="ConfigConnection.cs" />
     <Compile Include="FormEnvioCorreo.cs">
@@ -183,8 +183,8 @@
     <Compile Include="FormReportes.Designer.cs">
       <DependentUpon>FormReportes.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="CitaMedica.resx">
-      <DependentUpon>CitaMedica.cs</DependentUpon>
+    <EmbeddedResource Include="CitaMedicas.resx">
+      <DependentUpon>CitaMedicas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEnvioCorreo.resx">
       <DependentUpon>FormEnvioCorreo.cs</DependentUpon>

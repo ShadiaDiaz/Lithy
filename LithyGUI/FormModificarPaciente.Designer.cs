@@ -45,13 +45,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.btnModificar = new System.Windows.Forms.PictureBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtBuscarP = new System.Windows.Forms.TextBox();
             this.btnBuscarP = new System.Windows.Forms.Button();
             this.dtgvPaciente = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.btnModificar)).BeginInit();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvPaciente)).BeginInit();
             this.SuspendLayout();
             // 
@@ -206,11 +204,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(41, 358);
+            this.label2.Location = new System.Drawing.Point(12, 359);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 15);
+            this.label2.Size = new System.Drawing.Size(85, 15);
             this.label2.TabIndex = 29;
-            this.label2.Text = "Cedula :";
+            this.label2.Text = "Identificación :";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
@@ -222,27 +220,6 @@
             this.label1.Size = new System.Drawing.Size(157, 20);
             this.label1.TabIndex = 28;
             this.label1.Text = "Modificar Paciente";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(621, 479);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(50, 13);
-            this.label11.TabIndex = 46;
-            this.label11.Text = "Modificar";
-            this.label11.Click += new System.EventHandler(this.label11_Click);
-            // 
-            // btnModificar
-            // 
-            this.btnModificar.Image = global::LithyGUI.Properties.Resources._switch;
-            this.btnModificar.Location = new System.Drawing.Point(616, 438);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(60, 38);
-            this.btnModificar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnModificar.TabIndex = 45;
-            this.btnModificar.TabStop = false;
-            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // label10
             // 
@@ -261,7 +238,7 @@
             // 
             // btnBuscarP
             // 
-            this.btnBuscarP.BackColor = System.Drawing.Color.Honeydew;
+            this.btnBuscarP.BackColor = System.Drawing.Color.AliceBlue;
             this.btnBuscarP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscarP.ForeColor = System.Drawing.Color.Black;
             this.btnBuscarP.Location = new System.Drawing.Point(487, 108);
@@ -274,6 +251,7 @@
             // 
             // dtgvPaciente
             // 
+            this.dtgvPaciente.BackgroundColor = System.Drawing.Color.AliceBlue;
             this.dtgvPaciente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvPaciente.Location = new System.Drawing.Point(35, 162);
             this.dtgvPaciente.Name = "dtgvPaciente";
@@ -282,18 +260,31 @@
             this.dtgvPaciente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvPaciente_CellContentClick);
             this.dtgvPaciente.DoubleClick += new System.EventHandler(this.dtgvPaciente_DoubleClick);
             // 
+            // button3
+            // 
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Image = global::LithyGUI.Properties.Resources.directions;
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button3.Location = new System.Drawing.Point(599, 435);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(61, 55);
+            this.button3.TabIndex = 51;
+            this.button3.Text = "Modificar";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // FormModificarPaciente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(749, 522);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.dtgvPaciente);
             this.Controls.Add(this.btnBuscarP);
             this.Controls.Add(this.txtBuscarP);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.txtCorreo);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.cmbSexo);
@@ -315,7 +306,6 @@
             this.Name = "FormModificarPaciente";
             this.Text = "ModificarPaciente";
             this.Load += new System.EventHandler(this.FormModificarPaciente_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.btnModificar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvPaciente)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -341,11 +331,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.PictureBox btnModificar;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtBuscarP;
         private System.Windows.Forms.Button btnBuscarP;
         private System.Windows.Forms.DataGridView dtgvPaciente;
+        private System.Windows.Forms.Button button3;
     }
 }

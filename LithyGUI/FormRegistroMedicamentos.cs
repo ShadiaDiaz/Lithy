@@ -52,18 +52,19 @@ namespace LithyGUI
             }
             else
             {
-                MessageBox.Show("No se encontro el Paciente", "Error en la busqueda", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("No se encontro la persona", "Error en la busqueda", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
         private void dtgvMedicamentos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
            
-            txtCantidad.Text = dtgvMedicamentos.CurrentRow.Cells[0].Value.ToString();
-            txtNombre.Text = dtgvMedicamentos.CurrentRow.Cells[1].Value.ToString();
-            txtPresentacion.Text = dtgvMedicamentos.CurrentRow.Cells[2].Value.ToString();
-        
-            
+          
+            txtNombre.Text = dtgvMedicamentos.CurrentRow.Cells[0].Value.ToString();
+            txtPresentacion.Text = dtgvMedicamentos.CurrentRow.Cells[1].Value.ToString();
+            txtCantidad.Text = dtgvMedicamentos.CurrentRow.Cells[2].Value.ToString();
+
+
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)
@@ -83,6 +84,11 @@ namespace LithyGUI
         }
 
         private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtgvMedicamentos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

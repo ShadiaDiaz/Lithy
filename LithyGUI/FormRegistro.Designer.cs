@@ -46,8 +46,6 @@
             this.txtCorreo = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.comboTipo = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -214,27 +212,6 @@
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(486, 58);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(31, 15);
-            this.label11.TabIndex = 28;
-            this.label11.Text = "Tipo";
-            // 
-            // comboTipo
-            // 
-            this.comboTipo.FormattingEnabled = true;
-            this.comboTipo.Items.AddRange(new object[] {
-            "P",
-            "M"});
-            this.comboTipo.Location = new System.Drawing.Point(538, 53);
-            this.comboTipo.Name = "comboTipo";
-            this.comboTipo.Size = new System.Drawing.Size(121, 21);
-            this.comboTipo.TabIndex = 29;
-            // 
             // button2
             // 
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -256,8 +233,6 @@
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(683, 456);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.comboTipo);
-            this.Controls.Add(this.label11);
             this.Controls.Add(this.txtCorreo);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.cmbSexo);
@@ -306,8 +281,6 @@
         private System.Windows.Forms.ComboBox cmbSexo;
         private System.Windows.Forms.TextBox txtCorreo;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox comboTipo;
         private System.Windows.Forms.Button button2;
     }
 }

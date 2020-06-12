@@ -64,14 +64,13 @@ namespace LithyGUI
         private void button2_Click(object sender, EventArgs e)
         {
             Persona persona = new Persona();
-            persona.Tipo = char.Parse(comboTipo.Text);
             persona.Identificacion = txtIdentificacion.Text;
             persona.Nombres = txtNombres.Text;
             persona.Apellidos = txtApellidos.Text;
-            persona.Celular = txtCelular.Text;
+            persona.Edad = int.Parse(txtEdad.Text);
             persona.Sexo = cmbSexo.Text;
             persona.Direccion = txtDireccion.Text;
-            persona.Edad = int.Parse(txtEdad.Text);
+            persona.Celular = txtCelular.Text;
             persona.Correo = new MailAddress(txtCorreo.Text);
             MessageBox.Show(pacienteService.GuardarPaciente(persona));
         }

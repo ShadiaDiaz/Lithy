@@ -203,7 +203,7 @@ namespace LithyGUI
         private void button7_Click_1(object sender, EventArgs e)
         {
             Seleccion(button7);
-            AbrirFrmInpanel(new CitaMedica());
+            AbrirFrmInpanel(new CitaMedicas());
         }
 
         private void button5_Click_2(object sender, EventArgs e)
