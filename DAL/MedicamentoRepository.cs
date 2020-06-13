@@ -80,10 +80,13 @@ namespace DAL
                 Comando.Parameters.Add("x", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
 
                 dataReader = Comando.ExecuteReader();
-
-                while (dataReader.Read())
+                if (dataReader.HasRows)
                 {
-                    medicamentos.Add(Map(dataReader));
+                    while (dataReader.Read())
+                    {
+                        Medicamento medicamento = Map(dataReader);
+                        medicamentos.Add(medicamento);
+                    }
                 }
 
             }
