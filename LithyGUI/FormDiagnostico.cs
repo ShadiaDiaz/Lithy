@@ -11,9 +11,9 @@ using Entity;
 using BLL;
 using static BLL.PersonaServiceBD;
 using InfraEstructura;
-using iTextSharp.text;using iTextSharp.text.pdf;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using System.IO;
-
 
 namespace LithyGUI
 {

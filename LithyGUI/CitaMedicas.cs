@@ -18,6 +18,7 @@ namespace LithyGUI
         public CitaMedicas()
         {
             InitializeComponent();
+            service = new CitaMedicaService(ConfigConnection.connectionString);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

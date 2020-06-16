@@ -25,7 +25,7 @@ namespace BLL
 
         public string NuevoCodigo(string id)
         {
-            
+            //try
              conexion.Open();
                 
              string nuevo=repositorio.NuevoCodigo(id);

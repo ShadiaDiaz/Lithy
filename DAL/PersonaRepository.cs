@@ -16,7 +16,7 @@ namespace DAL
         IList<Persona> Personas = new List<Persona>();
         private readonly OracleConnection _connection;
         private ConnectionManager conexion;
-
+        private OracleDataReader Reader;
         public PersonaRepository(ConnectionManager connection)
         {
             _connection = connection._conexion;
@@ -52,6 +52,7 @@ namespace DAL
                
                 Comando.CommandText = "PAQUETE_PERSONA.Modificar_Persona";
                 Comando.CommandType = CommandType.StoredProcedure;
+                Comando.Parameters.Add(":identificacion", OracleDbType.Varchar2).Value = persona.Identificacion;
                 Comando.Parameters.Add(":Nombre", OracleDbType.Varchar2).Value = persona.Nombres;
                 Comando.Parameters.Add(":Apellido", OracleDbType.Varchar2).Value = persona.Apellidos;
                 Comando.Parameters.Add(":Edad", OracleDbType.Char).Value = persona.Edad;
@@ -95,26 +96,27 @@ namespace DAL
 
         public Persona Buscarpersona(string id)
         {
-            OracleDataReader dataReader;
-       
-
+            Persona persona = null;
             using (var Comando = _connection.CreateCommand())
             {
               
                 Comando.CommandText = "PAQUETE_PERSONA.Buscar_Persona" ;
                 Comando.CommandType = CommandType.StoredProcedure;
-                Comando.Parameters.Add("xIdentificacion", OracleDbType.Varchar2).Value = id;
+                Comando.Parameters.Add("xIdentificación", OracleDbType.Varchar2).Value = id;
                 Comando.Parameters.Add("x", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
-                dataReader = Comando.ExecuteReader();
-                Persona persona = Map(dataReader);
-                return persona;
+                Reader = Comando.ExecuteReader();
+                while (Reader.Read())
+                {
+                    persona = Map(Reader);
+                }
+                
 
             }
+            return persona;
 
-          
         }
 
-        public Persona Map(OracleDataReader dataReader) {
+        private Persona Map(OracleDataReader dataReader) {
 
 
             MailAddress correo;

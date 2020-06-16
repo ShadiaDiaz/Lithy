@@ -124,15 +124,32 @@ namespace LithyGUI
 
         private void btnBuscarP_Click(object sender, EventArgs e)
         {
-            //if (PersonaService.Buscar(txtBuscarP.Text) != null)
-            //{
-            //    dtgvPaciente.DataSource = PersonaService.Buscar(txtBuscarP.Text);
+            if (PersonaService.Buscar(txtBuscarP.Text) != null)
+            {
+               Persona persona = PersonaService.Buscar(txtBuscarP.Text);
+                MapearBuscar(dtgvPaciente, persona.Identificacion);
+            }
+            else
+            {
+                MessageBox.Show("No se encontro el Paciente", "Error en la busqueda", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
 
-            //}
-            //else
-            //{
-            //    MessageBox.Show("No se encontro el Paciente", "Error en la busqueda", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //}
+        public void MapearBuscar(DataGridView dtg,string id)
+        {
+
+            PersonaService = new PersonaServiceBD(ConfigConnection.connectionString);
+            dtg.Rows.Clear();
+            Persona persona= PersonaService.Buscar(id);
+                int N = dtg.Rows.Add();
+                dtg.Rows[N].Cells[0].Value = persona.Identificacion;
+                dtg.Rows[N].Cells[1].Value = persona.Nombres;
+                dtg.Rows[N].Cells[2].Value = persona.Apellidos;
+                dtg.Rows[N].Cells[3].Value = persona.Edad;
+                dtg.Rows[N].Cells[4].Value = persona.Sexo;
+                dtg.Rows[N].Cells[5].Value = persona.Direccion;
+                dtg.Rows[N].Cells[6].Value = persona.Celular;
+                dtg.Rows[N].Cells[7].Value = persona.Correo;
         }
 
         private void dtgvPaciente_DoubleClick(object sender, EventArgs e)

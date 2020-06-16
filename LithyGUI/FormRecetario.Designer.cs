@@ -48,11 +48,6 @@
             this.dpFecha = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.dtgvMedicinas = new System.Windows.Forms.DataGridView();
-            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Dias = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Horas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.picBtnAgregar = new System.Windows.Forms.PictureBox();
             this.pbtnExtraer = new System.Windows.Forms.PictureBox();
             this.picBtnImprimir = new System.Windows.Forms.PictureBox();
@@ -63,6 +58,10 @@
             this.txtHoras = new System.Windows.Forms.TextBox();
             this.txtCantidad = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dias = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Horas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvMedicinas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBtnAgregar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbtnExtraer)).BeginInit();
@@ -252,7 +251,6 @@
             this.dtgvMedicinas.BackgroundColor = System.Drawing.Color.AliceBlue;
             this.dtgvMedicinas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvMedicinas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Codigo,
             this.Nombre,
             this.Dias,
             this.Horas,
@@ -262,33 +260,6 @@
             this.dtgvMedicinas.Size = new System.Drawing.Size(550, 159);
             this.dtgvMedicinas.TabIndex = 78;
             this.dtgvMedicinas.DoubleClick += new System.EventHandler(this.EliminarFila);
-            // 
-            // Codigo
-            // 
-            this.Codigo.HeaderText = "Codigo";
-            this.Codigo.MinimumWidth = 10;
-            this.Codigo.Name = "Codigo";
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.MinimumWidth = 10;
-            this.Nombre.Name = "Nombre";
-            // 
-            // Dias
-            // 
-            this.Dias.HeaderText = "Cantidad Dias";
-            this.Dias.Name = "Dias";
-            // 
-            // Horas
-            // 
-            this.Horas.HeaderText = "Cada Cuantas Horas";
-            this.Horas.Name = "Horas";
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
             // 
             // picBtnAgregar
             // 
@@ -381,6 +352,27 @@
             this.label15.TabIndex = 83;
             this.label15.Text = "Cantidad :";
             // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.MinimumWidth = 10;
+            this.Nombre.Name = "Nombre";
+            // 
+            // Dias
+            // 
+            this.Dias.HeaderText = "Cantidad Dias";
+            this.Dias.Name = "Dias";
+            // 
+            // Horas
+            // 
+            this.Horas.HeaderText = "Cada Cuantas Horas";
+            this.Horas.Name = "Horas";
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            // 
             // FormRecetario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -459,14 +451,13 @@
         private System.Windows.Forms.DataGridView dtgvMedicinas;
         private System.Windows.Forms.TextBox txtCodigoRecetario;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Dias;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Horas;
         private System.Windows.Forms.TextBox txtDias;
         private System.Windows.Forms.TextBox txtHoras;
         private System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Dias;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Horas;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
     }
 }

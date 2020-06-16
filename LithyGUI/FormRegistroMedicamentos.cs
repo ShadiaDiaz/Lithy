@@ -21,11 +21,24 @@ namespace LithyGUI
         {
             InitializeComponent();
             medicamentoService = new MedicamentoService(ConfigConnection.connectionString);
+            MapearConsultar(dtgvMedicamentos);
         }
 
         private void RegistroMedicamentos_Load(object sender, EventArgs e)
         {
-            dtgvMedicamentos.DataSource = medicamentoService.Consultar();
+            
+        }
+
+        private void MapearConsultar(DataGridView dtg)
+        {
+            dtg.Rows.Clear();
+            foreach (var item in medicamentoService.Consultar())
+            {
+                int n = dtg.Rows.Add();
+                dtg.Rows[n].Cells[0].Value = item.Nombre;
+                dtg.Rows[n].Cells[1].Value = item.Presentacion;
+                dtg.Rows[n].Cells[2].Value = item.Cantidad;
+            }
         }
 
         private void pbtnGuardarMedicamento_Click(object sender, EventArgs e)
@@ -73,7 +86,7 @@ namespace LithyGUI
            
             medicamento.Nombre = txtNombre.Text;
             medicamento.Presentacion = txtPresentacion.Text;
-           
+            medicamento.Cantidad = txtCantidad.Text;
 
             MessageBox.Show(medicamentoService.Modificar(medicamento));
         }
