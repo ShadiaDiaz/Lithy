@@ -1,0 +1,35 @@
+create or replace PACKAGE PAQUETE_CITA AS
+    PROCEDURE Insertar_Cita(xCod_cita In VARCHAR2,xFecha IN DATE,
+         xHora IN Varchar2,xPersona IN VARCHAR2);
+    PROCEDURE Modificar_Cita(xCod_cita In VARCHAR2,xFecha IN DATE,
+         xHora IN Varchar2,xPersona IN VARCHAR2);
+    PROCEDURE Buscar_Cita(xCod_cita In VARCHAR2, x OUT SYS_REFCURSOR);
+    PROCEDURE Consultar_Cita( x OUT SYS_REFCURSOR);
+END PAQUETE_CITA;
+
+create or replace PACKAGE BODY PAQUETE_CITA AS
+PROCEDURE Insertar_Cita(xCod_cita In VARCHAR2,xFecha IN DATE,
+     xHora IN Varchar2,xPersona IN VARCHAR2)
+AS BEGIN 
+ INSERT INTO CitaMedica(cod_cita,fechacita,hora,persona_id)
+ VALUES(xCod_cita,xFecha,xPersona,xHora);
+END Insertar_Cita;
+
+PROCEDURE Modificar_Cita(xCod_cita In VARCHAR2,xFecha IN DATE,
+    xHora IN Varchar2,xPersona IN VARCHAR2)
+AS BEGIN 
+ UPDATE citamedica SET fechacita=xfecha, hora=xhora,persona_id=xpersona
+ WHERE "COD_CITA" = xcod_cita;
+END Modificar_Cita;
+
+PROCEDURE Buscar_Cita(xCod_cita IN VARCHAR2, x OUT SYS_REFCURSOR)
+AS BEGIN OPEN x FOR
+ SELECT * FROM  citamedica WHERE "COD_CITA" = xCod_cita;
+END Buscar_Cita;
+
+PROCEDURE Consultar_Cita( x OUT SYS_REFCURSOR)
+AS BEGIN OPEN x FOR
+ SELECT * FROM  citamedica;
+END Consultar_Cita;
+
+END PAQUETE_Cita;

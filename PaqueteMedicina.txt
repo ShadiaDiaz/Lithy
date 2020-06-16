@@ -1,0 +1,35 @@
+create or replace PACKAGE PAQUETE_MEDICAMENTO AS
+    PROCEDURE Insertar_Medicamento(xNombre In VARCHAR2,xPresentación IN VARCHAR2,
+         xCantidad IN Varchar2);
+    PROCEDURE Modificar_Medicamento(xNombre In VARCHAR2,xPresentación IN VARCHAR2,
+         xCantidad IN Varchar2);
+    PROCEDURE Buscar_Medicamento(xNombre In VARCHAR2, x OUT SYS_REFCURSOR);
+    PROCEDURE Consultar_Medicamento( x OUT SYS_REFCURSOR);
+END PAQUETE_MEDICAMENTO;
+
+create or replace PACKAGE BODY PAQUETE_MEDICAMENTO AS
+PROCEDURE Insertar_Medicamento(xNombre In VARCHAR2,xPresentación IN VARCHAR2,
+         xCantidad IN Varchar2)
+AS BEGIN 
+ INSERT INTO Medicamento(nombre,"PRESENTACIÓN",cantidad)
+ VALUES(xNombre,xPresentación,xCantidad);
+END Insertar_Medicamento;
+
+PROCEDURE Modificar_Medicamento(xNombre In VARCHAR2,xPresentación IN VARCHAR2,
+         xCantidad IN Varchar2)
+AS BEGIN 
+ UPDATE medicamento SET  "PRESENTACIÓN"=xPresentación,Cantidad=xCantidad
+ WHERE "NOMBRE" = xNombre;
+END Modificar_Medicamento;
+
+PROCEDURE Buscar_Medicamento(xNombre IN VARCHAR2, x OUT SYS_REFCURSOR)
+AS BEGIN OPEN x FOR
+ SELECT * FROM  Medicamento WHERE "NOMBRE" = xNombre;
+END Buscar_Medicamento;
+
+PROCEDURE Consultar_Medicamento( x OUT SYS_REFCURSOR)
+AS BEGIN OPEN x FOR
+ SELECT * FROM  Medicamento;
+END Consultar_Medicamento;
+
+END PAQUETE_MEDICAMENTO;

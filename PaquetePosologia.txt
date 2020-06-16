@@ -1,0 +1,14 @@
+create or replace PACKAGE PAQUETE_POSOLOGIA AS
+    PROCEDURE Insertar_Posologia(xMedicamentos In VARCHAR2,xDias IN NUMBER,
+         xHoras IN NUMBER ,xCantidad IN VARCHAR2,IdRecetario IN NUMBER);
+         END PAQUETE_POSOLOGIA;
+
+
+		 create or replace PACKAGE BODY PAQUETE_POSOLOGIA AS
+PROCEDURE Insertar_Posologia(xMedicamentos In VARCHAR2,xDias IN NUMBER,
+         xHoras IN NUMBER ,xCantidad IN VARCHAR2,IdRecetario IN NUMBER)
+AS BEGIN 
+ INSERT INTO Posologia(Medicamento,Dias,Horas,Cantidad,IdRecetario)
+ VALUES(xMedicamento,xDias,xHoras,xCantidad,xIdRecetario);
+END Insertar_Posologia;
+END PAQUETE_POSOLOGIA;

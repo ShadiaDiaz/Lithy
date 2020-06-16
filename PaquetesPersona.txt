@@ -1,0 +1,38 @@
+create or replace PACKAGE PAQUETE_PERSONA AS
+    PROCEDURE Insertar_Persona(xIdentificación In VARCHAR2,xNombres IN VARCHAR2,xApellidos IN VARCHAR2,
+    xEdad IN CHAR, xSexo IN CHAR,xDireccion IN VARCHAR2, xCelular IN VARCHAR2, xCorreo IN VARCHAR2);
+    PROCEDURE Modificar_Persona(xIdentificación IN VARCHAR2,xNombres IN VARCHAR2,xApellidos IN VARCHAR2,
+    xEdad IN CHAR, xSexo IN CHAR,xDireccion IN VARCHAR2, xCelular IN VARCHAR2, xCorreo IN VARCHAR2);
+    PROCEDURE Consultar_Persona(Personas OUT SYS_REFCURSOR);
+    PROCEDURE Buscar_Persona(xIdentificación In VARCHAR2, x OUT SYS_REFCURSOR);
+END PAQUETE_PERSONA;
+
+create or replace PACKAGE BODY PAQUETE_PERSONA AS
+    
+    PROCEDURE Insertar_Persona(xIdentificación In VARCHAR2,xNombres IN VARCHAR2,xApellidos IN VARCHAR2,
+    xEdad IN CHAR, xSexo IN CHAR,xDireccion IN VARCHAR2, xCelular IN VARCHAR2, xCorreo IN VARCHAR2)
+    
+    AS BEGIN
+        INSERT INTO Persona(Identificación,Nombres,Apellidos,Edad,Sexo,Direccion,Celular,Correo) 
+         VALUES(xIdentificación,xNombres,xApellidos,xEdad,xSexo,xDireccion,xCelular,xCorreo);
+     END Insertar_Persona;
+
+     PROCEDURE Modificar_Persona(xIdentificación IN VARCHAR2,xNombres IN VARCHAR2,xApellidos IN VARCHAR2,
+      xEdad IN CHAR, xSexo IN CHAR,xDireccion IN VARCHAR2, xCelular IN VARCHAR2, xCorreo IN VARCHAR2)
+     AS BEGIN 
+        UPDATE Persona SET Nombres=xNombres,Apellidos=xApellidos,Edad=xEdad,Sexo=xSexo,Direccion=xDireccion,
+            Celular=xCelular,Correo=xCorreo WHERE "IDENTIFICACIÓN" = xIdentificación;
+    END Modificar_Persona;
+
+
+     PROCEDURE Consultar_Persona(Personas OUT SYS_REFCURSOR)
+     AS BEGIN OPEN Personas FOR
+        SELECT * FROM  Persona;
+        END Consultar_Persona;
+
+
+        PROCEDURE Buscar_Persona(xIdentificación In VARCHAR2, x OUT SYS_REFCURSOR)
+        AS BEGIN OPEN x FOR
+        SELECT * FROM  Persona WHERE "IDENTIFICACIÓN" = xIdentificación;
+        END Buscar_Persona;
+ END PAQUETE_PERSONA;

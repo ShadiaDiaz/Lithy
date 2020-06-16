@@ -1,0 +1,25 @@
+create or replace PACKAGE PAQUETE_RECETARIO AS
+    PROCEDURE Insertar_Recetario(xCodigo In Number,xFecha IN DATE,xPosologia IN VARCHAR2, xPacienteID IN VARCHAR2);
+    PROCEDURE Buscar_Recetario(xCodigo In VARCHAR2, x OUT SYS_REFCURSOR);
+    PROCEDURE Consultar_Recetario( x OUT SYS_REFCURSOR);
+END PAQUETE_RECETARIO;
+
+create or replace PACKAGE BODY PAQUETE_RECETARIO AS
+PROCEDURE Insertar_Recetario(xCodigo In Number,xFecha IN DATE,xPosologia IN VARCHAR2, xPacienteID IN VARCHAR2)
+AS BEGIN 
+ INSERT INTO Recetario(codigo,fecha,Posologia,paciente)
+ VALUES(xCodigo,xFecha,xPosologia,xPacienteID );
+END Insertar_Recetario;
+
+
+PROCEDURE Buscar_Recetario(xCodigo IN VARCHAR2, x OUT SYS_REFCURSOR)
+AS BEGIN OPEN x FOR
+ SELECT * FROM  Recetario WHERE "CODIGO" = xcodigo;
+END Buscar_Recetario;
+
+PROCEDURE Consultar_Recetario( x OUT SYS_REFCURSOR)
+AS BEGIN OPEN x FOR
+ SELECT * FROM  Recetario;
+END Consultar_Recetario;
+
+END PAQUETE_RECETARIO;

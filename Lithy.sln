@@ -16,6 +16,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BD", "BD", "{1249EEA4-D3C6-4521-BAA0-16D0EE3306D4}"
 	ProjectSection(SolutionItems) = preProject
 		CreacionTablas.txt = CreacionTablas.txt
+		Paquete Diagnostico.txt = Paquete Diagnostico.txt
+		PaqueteCita.txt = PaqueteCita.txt
+		PaqueteMedicina.txt = PaqueteMedicina.txt
+		PaquetePosologia.txt = PaquetePosologia.txt
+		PaqueteRecetario.txt = PaqueteRecetario.txt
 		PaquetesPersona.txt = PaquetesPersona.txt
 	EndProjectSection
 EndProject

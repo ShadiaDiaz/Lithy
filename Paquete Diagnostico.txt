@@ -1,0 +1,26 @@
+create or replace PACKAGE PAQUETE_DIAGNOSTICO AS
+    PROCEDURE Insertar_Diagnostico(xCodigo In VARCHAR2,xFecha IN DATE,xDescripción IN VARCHAR2,
+         xPrimeros_Sintomas IN DATE, xTratamiento IN DATE, xPacienteID IN VARCHAR2);
+    PROCEDURE Buscar_Diagnostico(xCodigo In VARCHAR2, x OUT SYS_REFCURSOR);
+    PROCEDURE Consultar_Diagnostico( x OUT SYS_REFCURSOR);
+END PAQUETE_DIAGNOSTICO;
+create or replace PACKAGE BODY PAQUETE_DIAGNOSTICO AS
+PROCEDURE Insertar_Diagnostico(xCodigo In VARCHAR2,xFecha IN DATE,xDescripción IN VARCHAR2,
+         xPrimeros_Sintomas IN DATE, xTratamiento IN DATE, xPacienteID IN VARCHAR2)
+AS BEGIN 
+ INSERT INTO Diagnostico(codigo,fecha,"DESCRIPCIÓN",primeros_sintomas,iniciotratamiento,paciente_id)
+ VALUES(xCodigo,xFecha,xDescripción, xPrimeros_Sintomas , xTratamiento , xPacienteID );
+END Insertar_Diagnostico;
+
+
+PROCEDURE Buscar_Diagnostico(xCodigo IN VARCHAR2, x OUT SYS_REFCURSOR)
+AS BEGIN OPEN x FOR
+ SELECT * FROM  diagnostico WHERE "CODIGO" = xcodigo;
+END Buscar_Diagnostico;
+
+PROCEDURE Consultar_Diagnostico( x OUT SYS_REFCURSOR)
+AS BEGIN OPEN x FOR
+ SELECT * FROM  Diagnostico;
+END Consultar_Diagnostico;
+
+END PAQUETE_DIAGNOSTICO;
