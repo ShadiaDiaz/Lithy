@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29409.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LithyGUI", "LithyGUI\LithyGUI.csproj", "{68871DAE-8D84-48AE-BA8A-234AA064D713}"
 EndProject
@@ -12,6 +12,12 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfraEstructura", "InfraEstructura\InfraEstructura.csproj", "{14440400-1EBC-4671-BC9A-CC4CD602A005}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{6E2D72FA-8E24-4BE6-B12F-00DD57F5D555}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BD", "BD", "{1249EEA4-D3C6-4521-BAA0-16D0EE3306D4}"
+	ProjectSection(SolutionItems) = preProject
+		CreacionTablas.txt = CreacionTablas.txt
+		PaquetesPersona.txt = PaquetesPersona.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
