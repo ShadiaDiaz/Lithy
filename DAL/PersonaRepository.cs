@@ -49,12 +49,12 @@ namespace DAL
             using (var Comando = _connection.CreateCommand())
             {
 
-                //Comando.CommandText = "UPDATE persona SET Nombres=:Nombre ,Apellidos=:Apellido ,Edad=:Edad ,Sexo=:Sexo ,Direccion=:Direccion ,Celular=:Celular ,Correo=:Correo where Identificacion="+persona.Identificacion;
+               
                 Comando.CommandText = "PAQUETE_PERSONA.Modificar_Persona";
                 Comando.CommandType = CommandType.StoredProcedure;
                 Comando.Parameters.Add(":Nombre", OracleDbType.Varchar2).Value = persona.Nombres;
                 Comando.Parameters.Add(":Apellido", OracleDbType.Varchar2).Value = persona.Apellidos;
-                Comando.Parameters.Add(":Edad", OracleDbType.Int16).Value = persona.Edad;
+                Comando.Parameters.Add(":Edad", OracleDbType.Char).Value = persona.Edad;
                 Comando.Parameters.Add(":Sexo", OracleDbType.Varchar2).Value = persona.Sexo;
                 Comando.Parameters.Add(":Direccion", OracleDbType.Varchar2).Value = persona.Direccion;
                 Comando.Parameters.Add(":Celular", OracleDbType.Varchar2).Value = persona.Celular;
@@ -71,7 +71,7 @@ namespace DAL
 
             using (var Comando = _connection.CreateCommand())
             {
-                Comando.Connection.Open();
+                
                 Comando.CommandText = "PAQUETE_PERSONA.Consultar_Persona";
                 Comando.CommandType = CommandType.StoredProcedure;
                 Comando.Parameters.Add("Personas", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
@@ -86,28 +86,28 @@ namespace DAL
                     //dataReader.Close();
                 }
 
-                Comando.Connection.Close();
+                
+                
             }
 
             return Personas;
         }
 
-        public List<Persona> Buscarpersona(string id)
+        public Persona Buscarpersona(string id)
         {
             OracleDataReader dataReader;
-            List<Persona> personas = new List<Persona>();
+       
 
             using (var Comando = _connection.CreateCommand())
             {
               
                 Comando.CommandText = "PAQUETE_PERSONA.Buscar_Persona" ;
                 Comando.CommandType = CommandType.StoredProcedure;
-                Comando.Parameters.Add("xIdentificacion", OracleDbType.Varchar2).Value= id;
+                Comando.Parameters.Add("xIdentificacion", OracleDbType.Varchar2).Value = id;
                 Comando.Parameters.Add("x", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
                 dataReader = Comando.ExecuteReader();
                 Persona persona = Map(dataReader);
-                Comando.Connection.Close();
-                return personas;
+                return persona;
 
             }
 
@@ -116,15 +116,18 @@ namespace DAL
 
         public Persona Map(OracleDataReader dataReader) {
 
+
+            MailAddress correo;
             Persona persona = new Persona();
             persona.Identificacion = (string)dataReader["Identificación"];
             persona.Nombres = (string)dataReader["Nombres"];
             persona.Apellidos = (string)dataReader["Apellidos"];
-            persona.Edad = (int)dataReader["Edad"];
+            persona.Edad = int.Parse(((object)dataReader["Edad"]).ToString());
             persona.Sexo = (string)dataReader["Sexo"];
             persona.Direccion = (string)dataReader["Direccion"];
             persona.Celular = (string)dataReader["Celular"];
-            persona.Correo = (MailAddress)dataReader["Correo"];
+            correo = new MailAddress(((object)dataReader["Correo"]).ToString());
+            persona.Correo = correo;
             return persona;
 
         }

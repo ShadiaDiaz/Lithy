@@ -9,7 +9,7 @@ namespace Entity
 {
     public class Persona
     {
-        public char Tipo { get; set; }
+      
         public string Identificacion { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
@@ -27,9 +27,9 @@ namespace Entity
 
         }
 
-        public Persona(char tipo, string identificacion, string nombres, string apellidos, int edad, string sexo, string direccion, string celular, MailAddress correo, List<Diagnostico> diagnosticos, List<Recetario> recetas, List<HistorialMedico> historiaMedico)
+        public Persona( string identificacion, string nombres, string apellidos, int edad, string sexo, string direccion, string celular, MailAddress correo, List<Diagnostico> diagnosticos, List<Recetario> recetas, List<HistorialMedico> historiaMedico)
         {
-            Tipo = tipo;
+            
             Identificacion = identificacion;
             Nombres = nombres;
             Apellidos = apellidos;

@@ -45,7 +45,9 @@ namespace DAL
 
             using (var Comando = _connection.CreateCommand())
             {
-                Comando.CommandText = "Select * from diagnostico";
+                Comando.CommandText = "PAQUETE_DIAGNOSTICO.Consultar_Diagnostico";
+                Comando.CommandType = CommandType.StoredProcedure;
+                Comando.Parameters.Add("x", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
 
                 dataReader = Comando.ExecuteReader();
 

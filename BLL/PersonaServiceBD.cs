@@ -68,39 +68,45 @@ namespace BLL
 
         public List<Persona> Consultar()
         {
+            conexion.Open();
+            Personas = new List<Persona>();
+            Personas = repositorio.Consultar();
+            conexion.Close();
+            return Personas;
             try
             {
-                conexion.Open();
-                Personas = new List<Persona>();
-                Personas = repositorio.Consultar();
-                conexion.Close();
-                return Personas;
+                
+                
             }
             catch (Exception)
             {
 
-                return null;
+                //return null;
 
             }
         }
 
-        public List<Persona> Buscar(string id)
+        public Persona Buscar(string id)
         {
+            Persona persona;
+            conexion.Open();
+            persona = repositorio.Buscarpersona(id);
+            conexion.Close();
+            return persona;
             try
             {
 
-                conexion.Open();
-                return repositorio.Buscarpersona(id);
+               
 
 
             }
             catch (Exception)
             {
-                return null;
+                
             }
             finally
             {
-                conexion.Close();
+                
             }
 
         }

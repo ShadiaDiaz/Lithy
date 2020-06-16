@@ -74,7 +74,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(283, 38);
+            this.label1.Location = new System.Drawing.Point(246, 48);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(149, 20);
             this.label1.TabIndex = 1;
@@ -231,7 +231,7 @@
             // 
             this.dpFecha.Enabled = false;
             this.dpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dpFecha.Location = new System.Drawing.Point(577, 84);
+            this.dpFecha.Location = new System.Drawing.Point(580, 96);
             this.dpFecha.Name = "dpFecha";
             this.dpFecha.Size = new System.Drawing.Size(107, 20);
             this.dpFecha.TabIndex = 76;
@@ -240,7 +240,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(524, 85);
+            this.label4.Location = new System.Drawing.Point(527, 97);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 15);
             this.label4.TabIndex = 77;
@@ -336,7 +336,7 @@
             // txtCodigoRecetario
             // 
             this.txtCodigoRecetario.Enabled = false;
-            this.txtCodigoRecetario.Location = new System.Drawing.Point(577, 47);
+            this.txtCodigoRecetario.Location = new System.Drawing.Point(580, 59);
             this.txtCodigoRecetario.Name = "txtCodigoRecetario";
             this.txtCodigoRecetario.Size = new System.Drawing.Size(107, 20);
             this.txtCodigoRecetario.TabIndex = 80;
@@ -345,7 +345,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(508, 48);
+            this.label5.Location = new System.Drawing.Point(511, 60);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(52, 15);
             this.label5.TabIndex = 79;

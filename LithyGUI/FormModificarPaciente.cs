@@ -16,12 +16,12 @@ namespace LithyGUI
     public partial class FormModificarPaciente : Form
     {
         IReceptor Receptor;
-        PersonaServiceBD pacienteService;
+        PersonaServiceBD PersonaService;
 
         public FormModificarPaciente()
         {
             InitializeComponent();
-            pacienteService = new PersonaServiceBD(ConfigConnection.connectionString);
+            PersonaService = new PersonaServiceBD(ConfigConnection.connectionString);
         }
 
         public FormModificarPaciente(IReceptor receptor)
@@ -124,15 +124,15 @@ namespace LithyGUI
 
         private void btnBuscarP_Click(object sender, EventArgs e)
         {
-            if (pacienteService.Buscar(txtBuscarP.Text) != null)
-            {
-                dtgvPaciente.DataSource = pacienteService.Buscar(txtBuscarP.Text);
+            //if (PersonaService.Buscar(txtBuscarP.Text) != null)
+            //{
+            //    dtgvPaciente.DataSource = PersonaService.Buscar(txtBuscarP.Text);
 
-            }
-            else
-            {
-                MessageBox.Show("No se encontro el Paciente", "Error en la busqueda", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("No se encontro el Paciente", "Error en la busqueda", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //}
         }
 
         private void dtgvPaciente_DoubleClick(object sender, EventArgs e)
@@ -150,32 +150,57 @@ namespace LithyGUI
 
         private void FormModificarPaciente_Load(object sender, EventArgs e)
         {
-            dtgvPaciente.DataSource = pacienteService.Consultar();
+            //dtgvPaciente.DataSource = pacienteService.Consultar();
+            Mapear(dtgvPaciente);
         }
 
         private void dtgvPaciente_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            dtgvPaciente.DataSource = pacienteService.Consultar();
-            int N = dtgvPaciente.Rows.Add();
-            List<Persona> personas = new List<Persona>();
-             foreach (var item in personas)
+            Mapear(dtgvPaciente);
+            //dtgvPaciente.DataSource = pacienteService.Consultar();
+            //int N = dtgvPaciente.Rows.Add();
+            //List<Persona> personas = new List<Persona>();
+            // foreach (var item in personas)
+            //{
+            //    dtgvPaciente.Rows[N].Cells[0].Value = item.Identificacion;
+            //    dtgvPaciente.Rows[N].Cells[1].Value = item.Nombres;
+            //    dtgvPaciente.Rows[N].Cells[2].Value = item.Apellidos;
+            //    dtgvPaciente.Rows[N].Cells[3].Value = item.Edad;
+            //    dtgvPaciente.Rows[N].Cells[4].Value = item.Sexo;
+            //    dtgvPaciente.Rows[N].Cells[5].Value = item.Direccion;
+            //    dtgvPaciente.Rows[N].Cells[6].Value = item.Celular;
+            //    dtgvPaciente.Rows[N].Cells[7].Value = item.Correo;
+
+            //}
+
+        }
+        public void Mapear(DataGridView dtg) {
+
+            PersonaService = new PersonaServiceBD(ConfigConnection.connectionString);
+            dtg.Rows.Clear();
+            foreach (var item in PersonaService.Consultar())
             {
-                dtgvPaciente.Rows[N].Cells[0].Value = item.Identificacion;
-                dtgvPaciente.Rows[N].Cells[1].Value = item.Nombres;
-                dtgvPaciente.Rows[N].Cells[2].Value = item.Apellidos;
-                dtgvPaciente.Rows[N].Cells[3].Value = item.Edad;
-                dtgvPaciente.Rows[N].Cells[4].Value = item.Sexo;
-                dtgvPaciente.Rows[N].Cells[5].Value = item.Direccion;
-                dtgvPaciente.Rows[N].Cells[6].Value = item.Celular;
-                dtgvPaciente.Rows[N].Cells[7].Value = item.Correo;
+                int N = dtg.Rows.Add();
+                dtg.Rows[N].Cells[0].Value = item.Identificacion;
+                dtg.Rows[N].Cells[1].Value = item.Nombres;
+                dtg.Rows[N].Cells[2].Value = item.Apellidos;
+                dtg.Rows[N].Cells[3].Value = item.Edad;
+                dtg.Rows[N].Cells[4].Value = item.Sexo;
+                dtg.Rows[N].Cells[5].Value = item.Direccion;
+                dtg.Rows[N].Cells[6].Value = item.Celular;
+                dtg.Rows[N].Cells[7].Value = item.Correo;
 
             }
+
+
+
+
 
         }
         public void LlenarTabla()
         {
 
-            dtgvPaciente.DataSource = pacienteService.Consultar();
+            dtgvPaciente.DataSource = PersonaService.Consultar();
         }
         private void button3_Click(object sender, EventArgs e)
         {
@@ -184,13 +209,13 @@ namespace LithyGUI
             persona.Identificacion = txtIdentificacion.Text;
             persona.Nombres = txtNombres.Text;
             persona.Apellidos = txtApellidos.Text;
-            persona.Edad = char.Parse(txtEdad.Text);
+            persona.Edad = int.Parse(txtEdad.Text);
             persona.Sexo = cmbSexo.Text;
             persona.Celular = txtCelular.Text;
             persona.Direccion = txtDireccion.Text;
             persona.Correo = new MailAddress(txtCorreo.Text);
 
-            MessageBox.Show(pacienteService.Modificar(persona));
+            MessageBox.Show(PersonaService.Modificar(persona));
 
         }
     }

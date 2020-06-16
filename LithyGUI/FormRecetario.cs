@@ -38,12 +38,12 @@ namespace LithyGUI
 
             List<string> list = new List<string>();
 
-            cbxMedicamentos.DataSource = medicamentoService.CosultarRecetario();
+            cbxMedicamentos.DataSource = medicamentoService.ConsultarEnRecetario();
         }
 
         private void pbtnExtraer_Click(object sender, EventArgs e)
         {
-            persona = PersonaService.Buscar(txtIDPR.Text)[0];
+            persona = PersonaService.Buscar(txtIDPR.Text);
             if (persona != null)
             {
                 txtNPR.Text = persona.Nombres+" "+ persona.Apellidos;

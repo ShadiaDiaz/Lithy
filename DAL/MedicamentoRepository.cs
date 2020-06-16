@@ -106,5 +106,14 @@ namespace DAL
             return medicamento;
 
         }
+        public List<string> ConsultarRecetario()
+        {
+            List<string> lista = new List<string>();
+            foreach (var item in Consultar())
+            {
+                lista.Add(item.Nombre);
+            }
+            return lista;
+        }
     }
 }

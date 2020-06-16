@@ -27,12 +27,14 @@ namespace BLL
 
         public string Guardar(Medicamento medicamento)
         {
+            conexion.Close();
+            conexion.Open();
+            repositorio.Guardar(medicamento);
+            conexion.Close();
+            return "Medicamento " + medicamento.Nombre + " registrad@ Exitosamente";
 
             try
             {
-                conexion.Open();
-                repositorio.Guardar(medicamento);
-                return "Medicamento " + medicamento.Nombre +  " registrad@ Exitosamente";
             }
             catch (Exception excep)
             {
@@ -41,7 +43,7 @@ namespace BLL
             }
             finally
             {
-                conexion.Close();
+                
             }
         }
         public string Modificar(Medicamento medicamento)
@@ -82,7 +84,7 @@ namespace BLL
             }
 
         }
-        public List<Medicamento> Cosultar()
+        public List<Medicamento> Consultar()
         {
             try
             {
@@ -99,18 +101,32 @@ namespace BLL
 
             }
         }
+        public List<string> ConsultarEnRecetario()
+        {
+            try
+            {
+                conexion.Open();
+
+                return repositorio.ConsultarRecetario();
+
+            }
+            catch (Exception)
+            {
+                return null;
+
+
+            }
+            finally 
+            {
+                conexion.Close();
+             
+            }
+
+        }
 
         
 
-        public List<string> CosultarRecetario()
-        {
-            List<string> lista = new List<string>();
-            foreach (var item in this.Cosultar())
-            {
-                lista.Add( item.Nombre);
-            }
-            return lista;
-        }
+      
 
     }
 }

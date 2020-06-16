@@ -25,8 +25,7 @@ namespace DAL
 
             using (var Comando = _connection.CreateCommand())
             {
-                Comando.CommandText = "Insert Into Posologia (CodMedicamento,Dias,Cada,cantidad, CodRecetario)Values " +
-                    "(:CodMedicamento,:Dias,:Cada,:Cantidad,CodRecetario)";
+                Comando.CommandText = "PAQUETE_POSOLOGIA.Insertar_Posologia";
                 Comando.Parameters.Add(":Medicamento", OracleDbType.NVarchar2).Value = posologia.Medicamento;
                 Comando.Parameters.Add(":Dias", OracleDbType.Char).Value = posologia.CantidadDias;
                 Comando.Parameters.Add(":Horas", OracleDbType.NVarchar2).Value = posologia.IntervaloHoras;

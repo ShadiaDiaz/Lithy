@@ -25,7 +25,7 @@ namespace LithyGUI
 
         private void RegistroMedicamentos_Load(object sender, EventArgs e)
         {
-            dtgvMedicamentos.DataSource = medicamentoService.Cosultar();
+            dtgvMedicamentos.DataSource = medicamentoService.Consultar();
         }
 
         private void pbtnGuardarMedicamento_Click(object sender, EventArgs e)
@@ -52,7 +52,7 @@ namespace LithyGUI
             }
             else
             {
-                MessageBox.Show("No se encontro la persona", "Error en la busqueda", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("No se encontro el medicamento", "Error en la busqueda", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

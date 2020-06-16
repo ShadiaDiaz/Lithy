@@ -62,7 +62,7 @@ namespace LithyGUI
 
         private void pbtnExtraer_Click(object sender, EventArgs e)
         {
-            persona = PersonaService.Buscar(txtIdentificacion.Text)[0];
+            persona = PersonaService.Buscar(txtIdentificacion.Text);
             if (persona != null)
             {
                 txtNombres.Text = persona.Nombres;
