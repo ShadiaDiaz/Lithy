@@ -46,11 +46,11 @@ namespace DAL
                 Comando.ExecuteNonQuery();
             }
         }
-        public List<Medicamento> BuscarMedicina(string nombre)
+        public Medicamento BuscarMedicina(string nombre)
         {
             OracleDataReader dataReader;
-            List<Medicamento> medicamentos = new List<Medicamento>();
 
+            Medicamento medicamento = null;
             using (var Comando = _connection.CreateCommand())
             {
                 Comando.CommandText = "PAQUETE_MEDICAMENTO.Buscar_Medicamento";
@@ -63,12 +63,12 @@ namespace DAL
                 while (dataReader.Read())
                 {
 
-                    medicamentos.Add(Map(dataReader));
+                    medicamento = Map(dataReader);
                 }
 
             }
 
-            return medicamentos;
+            return medicamento;
         }
         public List<Medicamento> Consultar()
         {

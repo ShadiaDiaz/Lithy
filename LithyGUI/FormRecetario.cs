@@ -87,18 +87,17 @@ namespace LithyGUI
             recetarioService.Guardar(recetario,txtIDPR.Text);
             for (int fila = 0; fila < dtgvMedicinas.Rows.Count - 1; fila++)
             {
-              
+
                 //posologia.Medicamento = dtgvMedicinas.Rows[fila].Cells[0].Value.ToString();
-                posologia.CantidadDias = int.Parse(dtgvMedicinas.Rows[fila].Cells[0].Value.ToString());
-                posologia.IntervaloHoras = int.Parse(dtgvMedicinas.Rows[fila].Cells[1].Value.ToString());
-                posologia.Cantidad = dtgvMedicinas.Rows[fila].Cells[2].Value.ToString();
+                posologia.CantidadDias = int.Parse(dtgvMedicinas.Rows[fila].Cells[1].Value.ToString());
+                posologia.IntervaloHoras = int.Parse(dtgvMedicinas.Rows[fila].Cells[2].Value.ToString());
+                posologia.Cantidad = dtgvMedicinas.Rows[fila].Cells[3].Value.ToString();
                 ListaPosologias.Add(posologia);
                 MessageBox.Show( posologiaService.Guardar(posologia,recetario.Codigo));
             }
 
-            
-            
-        
+            //generar.FillPDF("Recetario.pdf", ListaPosologias, persona);
+
         }
 
         private void cbxMedicamentos_SelectedIndexChanged(object sender, EventArgs e)
