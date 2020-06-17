@@ -65,10 +65,7 @@ namespace BLL
 
         }
 
-        public string NuevoCodigo(string identificacion)
-        {
-            throw new NotImplementedException();
-        }
+      
 
         public List<Recetario> Consultar()
         {
@@ -88,16 +85,16 @@ namespace BLL
             }
         }
 
-        //public string NuevoCodigo(string id)
-        //{
+        public string NuevoCodigo(string id)
+        {
 
-        //    conexion.Open();
+            conexion.Open();
 
-        //    string nuevo = repositorio.NuevoCodigo(id);
+            string nuevo = repositorio.NuevoCodigo(id);
 
-        //    conexion.Close();
-        //    return nuevo;
+            conexion.Close();
+            return nuevo;
 
-        //}
+        }
     }
 }
