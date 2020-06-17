@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,16 @@ namespace LithyGUI
 {
     public partial class HistorialPersona : Form
     {
-        public HistorialPersona()
+        
+        public HistorialPersona(HistoriaCliente historia)
         {
             InitializeComponent();
+            txtIdentificacion.Text = historia.Persona.Identificacion;
+        }
+
+        public HistorialPersona()
+        {
+
         }
     }
 }

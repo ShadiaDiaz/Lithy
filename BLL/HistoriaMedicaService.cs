@@ -25,12 +25,13 @@ namespace BLL
 
         public HistoriaCliente ConsultarHistoriaCliente(string id,HistoriaCliente historia)
         {
+            conexion.Open();
+            repositorio.BuscarHistoria(id, historia);
+            repositorio.BuscarDiagnostico(id, historia);
+            return historia;
             try
             {
-                conexion.Open();
-                repositorio.BuscarHistoria(id, historia);
-                repositorio.BuscarDiagnostico(id, historia);
-                return historia;
+                
             }
             catch(Exception e)
             {

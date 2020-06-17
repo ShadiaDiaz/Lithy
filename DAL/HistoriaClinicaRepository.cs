@@ -56,6 +56,7 @@ namespace DAL
 
         public void BuscarDiagnostico(string id, HistoriaCliente historia)
         {
+            Persona persona = null;
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = "PAQUETE_HISTORIA.ConsultarHistoriaDiagnostico";
@@ -63,13 +64,14 @@ namespace DAL
                 command.Parameters.Add("historias", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
                 command.Parameters.Add("x_persona", OracleDbType.Varchar2).Value = id;
                 Reader = command.ExecuteReader();
-
+                persona = historia.Persona;
                 while (Reader.Read())
                 {
                     Diagnostico diagnostico = MapDiagnostico(Reader);
-                    historia.Persona.Diagnosticos.Add(diagnostico);
+                    persona.AgregarDiagnosticos(diagnostico);
                 }
             }
+            historia.Persona = persona;
         }
 
        

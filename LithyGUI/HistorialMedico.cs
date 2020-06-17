@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLL;
+using Entity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +14,8 @@ namespace LithyGUI
 {
     public partial class HistorialMedico : Form
     {
+        HistoriaMedicaService HistoriaMedicaService;
+        static int Opcion;
         public HistorialMedico()
         {
             InitializeComponent();
@@ -38,16 +42,30 @@ namespace LithyGUI
         private void todosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AbrirFrmInpanel(new HistorialTodos());
+            Opcion = 1;
         }
 
         private void personaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AbrirFrmInpanel(new HistorialPersona());
+            Opcion = 2;
         }
 
         private void diagnosticoRecetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AbrirFrmInpanel(new HistorialDiagnostico());
+            Opcion = 3;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            HistoriaMedicaService = new HistoriaMedicaService(ConfigConnection.connectionString);
+            HistoriaCliente historir = new HistoriaCliente();
+            HistoriaMedicaService.ConsultarHistoriaCliente(TxtCedula.Text, historir);
+            if (Opcion == 2)
+            {
+                AbrirFrmInpanel(new HistorialPersona(historir));
+            }
         }
     }
 }

@@ -38,6 +38,7 @@ namespace DAL
             {
                 Comando.CommandText = "PAQUETE_CITA.Modificar_Cita";
                 Comando.CommandType = CommandType.StoredProcedure;
+                Comando.Parameters.Add(":codigo", OracleDbType.Varchar2).Value = citaMedica.CitaId;
                 Comando.Parameters.Add(":Fecha", OracleDbType.Date).Value = citaMedica.FechaCita;
                 Comando.Parameters.Add(":Hora", OracleDbType.Varchar2).Value = citaMedica.Hora;
                 Comando.Parameters.Add(":Persona_Id", OracleDbType.Varchar2).Value = citaMedica.PersonaId;

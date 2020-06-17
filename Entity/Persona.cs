@@ -20,10 +20,11 @@ namespace Entity
         public MailAddress Correo { get; set; }
         public List<Diagnostico> Diagnosticos { get; set; }
         public List<Recetario> Recetas { get; set; }
+        public Diagnostico Diagnostico { get; set; }
 
         public Persona()
         {
-
+            Diagnosticos = new List<Diagnostico>();
         }
 
         public Persona( string identificacion, string nombres, string apellidos, int edad, string sexo, string direccion, string celular, MailAddress correo, List<Diagnostico> diagnosticos, List<Recetario> recetas)
@@ -39,6 +40,11 @@ namespace Entity
             Correo = correo;
             Diagnosticos = diagnosticos;
             Recetas = recetas;
+        }
+
+        public void AgregarDiagnosticos(Diagnostico diagnostico)
+        {
+            Diagnosticos.Add(diagnostico);
         }
 
 
