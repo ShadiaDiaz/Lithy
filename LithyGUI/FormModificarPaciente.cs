@@ -235,5 +235,29 @@ namespace LithyGUI
             MessageBox.Show(PersonaService.Modificar(persona));
 
         }
+
+        private void txtBuscarP_TextChanged(object sender, EventArgs e)
+        {
+            MapearDtgFiltro(dtgvPaciente, txtBuscarP.Text);
+        }
+
+        public void MapearDtgFiltro(DataGridView dtg,string id)
+        {
+
+            PersonaService = new PersonaServiceBD(ConfigConnection.connectionString);
+            dtg.Rows.Clear();
+            foreach (var item in PersonaService.BusquedaFiltroCedula(id))
+            {
+                int N = dtg.Rows.Add();
+                dtg.Rows[N].Cells[0].Value = item.Identificacion;
+                dtg.Rows[N].Cells[1].Value = item.Nombres;
+                dtg.Rows[N].Cells[2].Value = item.Apellidos;
+                dtg.Rows[N].Cells[3].Value = item.Edad;
+                dtg.Rows[N].Cells[4].Value = item.Sexo;
+                dtg.Rows[N].Cells[5].Value = item.Direccion;
+                dtg.Rows[N].Cells[6].Value = item.Celular;
+                dtg.Rows[N].Cells[7].Value = item.Correo;
+            }
+        }
     }
 }

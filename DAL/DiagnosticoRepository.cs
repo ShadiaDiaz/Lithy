@@ -61,7 +61,7 @@ namespace DAL
 
             return pacientes;
         }
-
+        //actualizar proce
         public List<Diagnostico> BuscarPaciente(string id)
         {
             OracleDataReader dataReader;

@@ -116,6 +116,30 @@ namespace DAL
 
         }
 
+
+        public IList<Persona> BusquedaFiltroCedula(string id)
+        {
+            IList<Persona> Personas = new List<Persona>();
+            using (var Comando = _connection.CreateCommand())
+            {
+
+                Comando.CommandText = "PAQUETE_PERSONA.FiltroCedula";
+                Comando.CommandType = CommandType.StoredProcedure;
+                Comando.Parameters.Add("xIdentificación", OracleDbType.Varchar2).Value = "%"+id+"%";
+                Comando.Parameters.Add("x", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+                Reader = Comando.ExecuteReader();
+                while (Reader.Read())
+                {
+                    Persona persona = Map(Reader);
+                    Personas.Add(persona);
+                }
+
+
+            }
+            return Personas;
+
+        }
+
         private Persona Map(OracleDataReader dataReader) {
 
 

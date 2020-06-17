@@ -27,7 +27,7 @@ namespace BLL
 
         public string Guardar(Medicamento medicamento)
         {
-            conexion.Close();
+           // conexion.Close();
             conexion.Open();
             repositorio.Guardar(medicamento);
             conexion.Close();

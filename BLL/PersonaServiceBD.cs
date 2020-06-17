@@ -110,7 +110,24 @@ namespace BLL
             }
 
         }
-   
+        public IList<Persona> BusquedaFiltroCedula(string id)
+        {
+            try
+            {
+                conexion.Open();
+                return repositorio.BusquedaFiltroCedula(id);
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+
         public class Respuesta
         {
             public IList<Persona> ListaPacientes { get; set; }
