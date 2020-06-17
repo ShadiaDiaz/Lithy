@@ -27,7 +27,7 @@ namespace BLL
 
         public string Guardar(Medicamento medicamento)
         {
-            conexion.Close();
+           // conexion.Close();
             conexion.Open();
             repositorio.Guardar(medicamento);
             conexion.Close();
@@ -64,23 +64,27 @@ namespace BLL
                 conexion.Close();
             }
         }
-        public List<Medicamento> Buscar(string nombre)
+        public Medicamento Buscar(string nom)
         {
+            Medicamento medicamento;
+            conexion.Open();
+            medicamento = repositorio.BuscarMedicina(nom);
+            conexion.Close();
+            return medicamento;
             try
             {
 
-                conexion.Open();
-                return repositorio.BuscarMedicina(nombre);
+
 
 
             }
             catch (Exception)
             {
-                return null;
+
             }
             finally
             {
-                conexion.Close();
+
             }
 
         }

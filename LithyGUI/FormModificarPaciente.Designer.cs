@@ -111,6 +111,7 @@
             // 
             // txtIdentificacion
             // 
+            this.txtIdentificacion.Enabled = false;
             this.txtIdentificacion.Location = new System.Drawing.Point(99, 358);
             this.txtIdentificacion.Name = "txtIdentificacion";
             this.txtIdentificacion.ReadOnly = true;
@@ -243,6 +244,7 @@
             this.txtBuscarP.Name = "txtBuscarP";
             this.txtBuscarP.Size = new System.Drawing.Size(269, 20);
             this.txtBuscarP.TabIndex = 48;
+            this.txtBuscarP.TextChanged += new System.EventHandler(this.txtBuscarP_TextChanged);
             // 
             // btnBuscarP
             // 

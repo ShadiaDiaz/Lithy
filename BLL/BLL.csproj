@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="CitaMedicaService.cs" />
     <Compile Include="DiagnosticoService.cs" />
+    <Compile Include="HistoriaMedicaService.cs" />
     <Compile Include="MedicamentoService.cs" />
     <Compile Include="PersonaServiceBD.cs" />
     <Compile Include="PosologiaService.cs" />

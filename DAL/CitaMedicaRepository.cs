@@ -38,7 +38,7 @@ namespace DAL
             {
                 Comando.CommandText = "PAQUETE_CITA.Modificar_Cita";
                 Comando.CommandType = CommandType.StoredProcedure;
-                Comando.Parameters.Add(":FechaCita", OracleDbType.Date).Value = citaMedica.FechaCita;
+                Comando.Parameters.Add(":Fecha", OracleDbType.Date).Value = citaMedica.FechaCita;
                 Comando.Parameters.Add(":Hora", OracleDbType.Varchar2).Value = citaMedica.Hora;
                 Comando.Parameters.Add(":Persona_Id", OracleDbType.Varchar2).Value = citaMedica.PersonaId;
 
@@ -95,7 +95,7 @@ namespace DAL
 
             CitaMedica cita = new CitaMedica();
             cita.CitaId = (string)dataReader["Cod_cita"];
-            cita.FechaCita = (DateTime)dataReader["FechaCita"];
+            cita.FechaCita = (DateTime)dataReader["Fecha"];
             cita.Hora = (string)dataReader["Hora"];
             cita.PersonaId = (string)dataReader["Persona_Id"];
             return cita;

@@ -18,6 +18,7 @@ namespace LithyGUI
         public CitaMedicas()
         {
             InitializeComponent();
+            service = new CitaMedicaService(ConfigConnection.connectionString);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -39,11 +40,23 @@ namespace LithyGUI
             MessageBox.Show(service.Guardar(cita));
         }
 
+        private void MapearDtg(DataGridView dtg)
+        {
+            dtg.Rows.Clear();
+            foreach (var item in service.Consultar())
+            {
+                int n = dtg.Rows.Add();
+                dtg.Rows[n].Cells[0].Value = item.CitaId;
+                dtg.Rows[n].Cells[1].Value = item.FechaCita;
+                dtg.Rows[n].Cells[2].Value = item.Hora;
+                dtg.Rows[n].Cells[3].Value = item.PersonaId;
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             if (service.Buscar(textCod.Text) != null)
             {
-                tablaCita.DataSource = service.Buscar(textCod.Text);
+                MapearDtg(tablaCita);
 
             }
             else

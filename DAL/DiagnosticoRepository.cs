@@ -28,7 +28,8 @@ namespace DAL
             using (var Comando = _connection.CreateCommand())
             {
                 Comando.CommandText = "PAQUETE_DIAGNOSTICO.Insertar_Diagnostico";
-                Comando.Parameters.Add(":Codigo", OracleDbType.NVarchar2).Value = diagnostico.Codigo;
+                Comando.CommandType = CommandType.StoredProcedure;
+                Comando.Parameters.Add(":codigo", OracleDbType.Varchar2).Value = diagnostico.Codigo;
                 Comando.Parameters.Add(":Fecha", OracleDbType.Date).Value = diagnostico.Fecha;
                 Comando.Parameters.Add(":Descripcion", OracleDbType.NVarchar2).Value = diagnostico.Descripción;
                 Comando.Parameters.Add(":FechaSintomas", OracleDbType.Date).Value = diagnostico.Primeros_Sintomas;
@@ -61,7 +62,7 @@ namespace DAL
 
             return pacientes;
         }
-
+        //actualizar proce
         public List<Diagnostico> BuscarPaciente(string id)
         {
             OracleDataReader dataReader;
@@ -121,10 +122,10 @@ namespace DAL
             Diagnostico diagnostico = new Diagnostico();
             diagnostico.Codigo = (string)dataReader["Codigo"];
             diagnostico.Fecha = (DateTime)dataReader["Fecha"];
-            diagnostico.Descripción= (string)dataReader["Descripcion"];
-            diagnostico.Primeros_Sintomas = (DateTime)dataReader["FechaSintomas"];
-            diagnostico.InicioTratamiento = (DateTime)dataReader["InicioTratamiento"];
-            diagnostico.PacienteId = (string)dataReader["Paciente"];
+            diagnostico.Descripción= (string)dataReader["Descripción"];
+            diagnostico.Primeros_Sintomas = (DateTime)dataReader["primeros_sintomas"];
+            diagnostico.InicioTratamiento = (DateTime)dataReader["Inicio_Tratamiento"];
+            diagnostico.PacienteId = (string)dataReader["PERSONA_IDENTIFICACIÓN"];
    
            
             return diagnostico;

@@ -38,17 +38,19 @@ namespace DAL
             using (var Comando = _connection.CreateCommand())
             {
                 Comando.CommandText = "PAQUETE_MEDICAMENTO.Modificar_Medicamento";
+                Comando.CommandType = CommandType.StoredProcedure;
+                Comando.Parameters.Add(":nombre", OracleDbType.Varchar2).Value = medicamento.Nombre;
                 Comando.Parameters.Add(":Presentacion", OracleDbType.NVarchar2).Value = medicamento.Presentacion;
                 Comando.Parameters.Add(":Cantidad", OracleDbType.NVarchar2).Value = medicamento.Cantidad;
 
                 Comando.ExecuteNonQuery();
             }
         }
-        public List<Medicamento> BuscarMedicina(string nombre)
+        public Medicamento BuscarMedicina(string nombre)
         {
             OracleDataReader dataReader;
-            List<Medicamento> medicamentos = new List<Medicamento>();
 
+            Medicamento medicamento = null;
             using (var Comando = _connection.CreateCommand())
             {
                 Comando.CommandText = "PAQUETE_MEDICAMENTO.Buscar_Medicamento";
@@ -61,12 +63,12 @@ namespace DAL
                 while (dataReader.Read())
                 {
 
-                    medicamentos.Add(Map(dataReader));
+                    medicamento = Map(dataReader);
                 }
 
             }
 
-            return medicamentos;
+            return medicamento;
         }
         public List<Medicamento> Consultar()
         {
@@ -100,9 +102,9 @@ namespace DAL
         {
 
             Medicamento medicamento = new Medicamento();
-            medicamento.Nombre = (string)dataReader["Nombre"];
-            medicamento.Presentacion = (string)dataReader["Presentacion"];
-            medicamento.Cantidad = (string)dataReader["Cantidad"];
+            medicamento.Nombre = ((object)dataReader["Nombre"]).ToString();
+            medicamento.Presentacion = ((object)dataReader["Presentación"]).ToString();
+            medicamento.Cantidad = ((object)dataReader["Cantidad"]).ToString();
             return medicamento;
 
         }

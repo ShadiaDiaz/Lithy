@@ -14,6 +14,7 @@ namespace Entity
         public DateTime Primeros_Sintomas { get; set; }
         public DateTime InicioTratamiento { get; set; }
         public string PacienteId { get; set; }
+        public Recetario Recetario { get; set; }
 
         public Diagnostico()
         {
@@ -28,6 +29,11 @@ namespace Entity
             Primeros_Sintomas = primeros_Sintomas;
             InicioTratamiento = inicioTratamiento;
             PacienteId = pacienteId;
+        }
+
+        public void AgregarRecetario(Recetario recetario)
+        {
+            Recetario = recetario;
         }
     }
 }
