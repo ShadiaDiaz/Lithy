@@ -55,12 +55,25 @@ namespace LithyGUI
         {
             
         }
+        public void MapearBuscar(DataGridView dtg, string nom) {
+
+            dtg.Rows.Clear();
+            Medicamento medicamento = medicamentoService.Buscar(nom);
+            int n = dtg.Rows.Add();
+            dtg.Rows[n].Cells[0].Value = medicamento.Nombre;
+            dtg.Rows[n].Cells[1].Value = medicamento.Presentacion;
+            dtg.Rows[n].Cells[2].Value = medicamento.Cantidad;
+
+
+
+        }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             if (medicamentoService.Buscar(textBuscarM.Text) != null)
             {
-                dtgvMedicamentos.DataSource = medicamentoService.Buscar(textBuscarM.Text);
+                Medicamento medicamento = medicamentoService.Buscar(textBuscarM.Text);
+                MapearBuscar(dtgvMedicamentos, medicamento.Nombre);
 
             }
             else
