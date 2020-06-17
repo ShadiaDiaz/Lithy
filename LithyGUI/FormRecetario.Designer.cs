@@ -224,7 +224,6 @@
             this.cbxMedicamentos.Name = "cbxMedicamentos";
             this.cbxMedicamentos.Size = new System.Drawing.Size(110, 21);
             this.cbxMedicamentos.TabIndex = 75;
-            this.cbxMedicamentos.SelectedIndexChanged += new System.EventHandler(this.cbxMedicamentos_SelectedIndexChanged);
             // 
             // dpFecha
             // 
