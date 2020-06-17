@@ -14,7 +14,8 @@ namespace Entity
         public int IntervaloHoras { get; set; }
         public string Cantidad { get; set; }
         public string CodRecetario { get; set; }
-       
+        public Recetario Recetario { get; set; }
+
 
         public Posologia()
         {
@@ -29,6 +30,11 @@ namespace Entity
             Cantidad = cantidad;
             CodRecetario = codRecetario;
           
+        }
+
+        public void AgregarMedicamento(Medicamento medicamento)
+        {
+            Medicamento = medicamento;
         }
     }
 }

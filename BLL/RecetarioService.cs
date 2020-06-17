@@ -16,6 +16,7 @@ namespace BLL
         private readonly ConnectionManager conexion;
 
         private readonly RecetarioRepository repositorio;
+        private PosologiaRepository posologiaRepository;
         List<Recetario> recetario;
 
         public RecetarioService(string connectionString)
@@ -26,10 +27,13 @@ namespace BLL
 
         public string Guardar(Recetario recetario, string idPaciente)
         {
+           
             try
             {
+                posologiaRepository = new PosologiaRepository(conexion);
                 conexion.Open();
-                repositorio.Guardar(recetario,idPaciente);
+                repositorio.Guardar(recetario, idPaciente);
+                posologiaRepository.Guardar(recetario);
                 return "Recetario #" + recetario.Codigo + "Para el paciente " + idPaciente + " registrad@ Exitamente";
             }
             catch (Exception excep)

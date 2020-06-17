@@ -28,9 +28,8 @@ namespace DAL
             {
                 Comando.CommandText = "PAQUETE_RECETARIO.Insertar_Recetario";
                 Comando.CommandType = CommandType.StoredProcedure;  
-                Comando.Parameters.Add(":Codigo", OracleDbType.Char).Value = recetario.Codigo;
+                Comando.Parameters.Add(":Codigo", OracleDbType.Int32).Value = int.Parse(recetario.Codigo);
                 Comando.Parameters.Add(":Fecha", OracleDbType.Date).Value = recetario.Fecha;
-                Comando.Parameters.Add(":Posologia", OracleDbType.NVarchar2).Value = recetario.Posologias;
                 Comando.Parameters.Add(":CodPaciente", OracleDbType.NVarchar2).Value = idPaciente;
 
                 Comando.ExecuteNonQuery();
@@ -119,7 +118,7 @@ namespace DAL
         {
 
             Recetario recetario = new Recetario();
-            recetario.Codigo = (string)dataReader["Codigo"];
+            recetario.Codigo = ((object)dataReader["Codigo"]).ToString();
             recetario.Fecha = (DateTime)dataReader["Fecha"];
             return recetario;
 

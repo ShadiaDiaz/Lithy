@@ -24,14 +24,14 @@ namespace BLL
             repositorio = new PosologiaRepository(conexion);
         }
 
-        public string Guardar(Posologia posologia, string id)
+        public string Guardar(Recetario recetario)
         {
 
             try
             {
                 conexion.Open();
-                repositorio.Guardar(posologia,id);
-                return "Medicamento" + posologia.Medicamento + "Para el paciente " + posologia + " registrad@ Exitamente";
+                repositorio.Guardar(recetario);
+                return "se han registrad@ Exitosamente";
             }
             catch (Exception excep)
             {

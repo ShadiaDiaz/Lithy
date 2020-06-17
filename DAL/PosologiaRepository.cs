@@ -20,22 +20,23 @@ namespace DAL
             _connection = connection._conexion;
         }
 
-        public void Guardar(Posologia posologia, string idRecetario)
+        public void Guardar(Recetario recetario)
         {
-
             using (var Comando = _connection.CreateCommand())
             {
-                Comando.CommandText = "PAQUETE_POSOLOGIA.Insertar_Posologia";
-                Comando.Parameters.Add(":Medicamento", OracleDbType.NVarchar2).Value = posologia.Medicamento;
-                Comando.Parameters.Add(":Dias", OracleDbType.Char).Value = posologia.CantidadDias;
-                Comando.Parameters.Add(":Horas", OracleDbType.NVarchar2).Value = posologia.IntervaloHoras;
-                Comando.Parameters.Add(":Cantidad", OracleDbType.Char).Value = posologia.Cantidad;
-                Comando.Parameters.Add(":CodRecetario", OracleDbType.Char).Value = idRecetario; ;
+                foreach (var item in recetario.Posologias)
+                {
 
-               
-           
+                    Comando.CommandText = "PAQUETE_POSOLOGIA.Insertar_Posologia";
+                    Comando.CommandType = CommandType.StoredProcedure;
+                    Comando.Parameters.Add(":Medicamento", OracleDbType.Varchar2).Value = item.Medicamento.Nombre;
+                    Comando.Parameters.Add(":Dias", OracleDbType.Int32).Value = item.CantidadDias;
+                    Comando.Parameters.Add(":Horas", OracleDbType.Int32).Value = item.IntervaloHoras;
+                    Comando.Parameters.Add(":Cantidad", OracleDbType.Varchar2).Value = item.Cantidad;
+                    Comando.Parameters.Add(":CodRecetario", OracleDbType.Int32).Value = int.Parse(recetario.Codigo);
+                    Comando.ExecuteNonQuery();
 
-                Comando.ExecuteNonQuery();
+                }
             }
         }
 

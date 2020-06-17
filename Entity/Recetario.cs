@@ -15,7 +15,7 @@ namespace Entity
 
         public Recetario()
         {
-
+            Posologias = new List<Posologia>();
         }
 
         public Recetario(string codigo,  DateTime fecha,string codpaciente, List<Posologia> posologias)
@@ -24,6 +24,12 @@ namespace Entity
             Fecha = fecha;
             codPaciente = codpaciente;
             Posologias = posologias;
+        }
+
+        public void AgregarPosologia(Posologia posologia)
+        {
+            posologia.Recetario = this;
+            Posologias.Add(posologia);
         }
     }
 }
