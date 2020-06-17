@@ -23,5 +23,21 @@ namespace BLL
             repositorio = new HistoriaClinicaRepository(conexion);
         }
 
+        public HistoriaCliente ConsultarHistoriaCliente(string id,HistoriaCliente historia)
+        {
+            try
+            {
+                conexion.Open();
+                repositorio.BuscarHistoria(id, historia);
+                repositorio.BuscarDiagnostico(id, historia);
+                return historia;
+            }
+            catch(Exception e)
+            {
+                return null;
+            }
+            finally { conexion.Close(); }
+        }
+
     }
 }

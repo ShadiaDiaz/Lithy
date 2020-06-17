@@ -20,14 +20,13 @@ namespace Entity
         public MailAddress Correo { get; set; }
         public List<Diagnostico> Diagnosticos { get; set; }
         public List<Recetario> Recetas { get; set; }
-        public List<HistorialMedico> HistoriaMedico { get; set; }
 
         public Persona()
         {
 
         }
 
-        public Persona( string identificacion, string nombres, string apellidos, int edad, string sexo, string direccion, string celular, MailAddress correo, List<Diagnostico> diagnosticos, List<Recetario> recetas, List<HistorialMedico> historiaMedico)
+        public Persona( string identificacion, string nombres, string apellidos, int edad, string sexo, string direccion, string celular, MailAddress correo, List<Diagnostico> diagnosticos, List<Recetario> recetas)
         {
             
             Identificacion = identificacion;
@@ -40,7 +39,8 @@ namespace Entity
             Correo = correo;
             Diagnosticos = diagnosticos;
             Recetas = recetas;
-            HistoriaMedico = historiaMedico;
         }
+
+
     }
 }
