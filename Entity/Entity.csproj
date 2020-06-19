@@ -44,7 +44,6 @@
   <ItemGroup>
     <Compile Include="CitaMedica.cs" />
     <Compile Include="Diagnostico.cs" />
-    <Compile Include="HistoriaCliente.cs" />
     <Compile Include="HistorialMedico.cs" />
     <Compile Include="Medicamento.cs" />
     <Compile Include="Persona.cs" />

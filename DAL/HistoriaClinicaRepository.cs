@@ -34,28 +34,11 @@ namespace DAL
             }
         }
 
-        public HistoriaCliente BuscarHistoria(string id,HistoriaCliente historia)
+        
+
+        public IList<Diagnostico> BuscarDiagnostico(string id, IList<Recetario> recetarios)
         {
-            historia=null;
-            using (var command = _connection.CreateCommand())
-            {
-                command.CommandText = "PAQUETE_HISTORIA.ConsultaHistoriaPersona";
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("historias", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
-                command.Parameters.Add("x_persona", OracleDbType.Varchar2).Value = id;
-                Reader = command.ExecuteReader();
-
-                while (Reader.Read())
-                {
-                    historia = MapHistoria(Reader);
-                }
-            }
-            return historia;
-
-        }
-
-        public void BuscarDiagnostico(string id, HistoriaCliente historia)
-        {
+            IList<Diagnostico> diagnosticos = new List<Diagnostico>();
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = "PAQUETE_HISTORIA.ConsultarHistoriaDiagnostico";
@@ -63,25 +46,84 @@ namespace DAL
                 command.Parameters.Add("historias", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
                 command.Parameters.Add("x_persona", OracleDbType.Varchar2).Value = id;
                 Reader = command.ExecuteReader();
-
                 while (Reader.Read())
                 {
                     Diagnostico diagnostico = MapDiagnostico(Reader);
-                    historia.Persona.Diagnosticos.Add(diagnostico);
+                    foreach (var item in recetarios)
+                    {
+                        if (item.Codigo == diagnostico.Codigo)
+                        {
+                            diagnostico.AgregarRecetario(item);
+                            diagnosticos.Add(diagnostico);
+                        }
+                    }
+                    
                 }
+               
             }
+            return diagnosticos;
         }
 
-       
+        public IList<Recetario> BuscarRecetario(string id,IList<Posologia> posologias)
+        {
+            IList<Recetario> recetarios = new List<Recetario>();
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "PAQUETE_HISTORIA.ConsultarHistoriaDiagnostico";
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("historias", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+                command.Parameters.Add("x_persona", OracleDbType.Varchar2).Value = id;
+                Reader = command.ExecuteReader();
+                while (Reader.Read())
+                {
+                    Recetario recetario = MAPrecetario(Reader);
+                    foreach (var item in posologias)
+                    {
+                        if (item.CodRecetario == recetario.Codigo)
+                        {
+                            recetario.AgregarPosologia(item);
+                        }
+                    }
+                    recetarios.Add(recetario);
+                }
+            }
+            return recetarios;
+        }
 
+        public IList<Posologia> BuscarPosologia(string id)
+        {
+            IList<Posologia> posologias = new List<Posologia>();
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "PAQUETE_HISTORIA.ConsultarHistoriaPosologia";
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("historias", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+                command.Parameters.Add("x_persona", OracleDbType.Varchar2).Value = id;
+                Reader = command.ExecuteReader();
+                while (Reader.Read())
+                {
+                    Posologia posologia = MapPosologia(Reader);
+                    posologias.Add(posologia);
+                }
+            }
+            return posologias;
+        }
+
+        private Posologia MapPosologia(OracleDataReader reader)
+        {
+            Posologia posologia = new Posologia();
+            posologia.CodRecetario = ((object)reader["idrecetario"]).ToString();
+            Medicamento medicamento = new Medicamento();
+            medicamento.Nombre = (string)reader["medicamento"];
+            posologia.AgregarMedicamento(medicamento);
+            posologia.CantidadDias = int.Parse(((object)reader["dias"]).ToString());
+            posologia.IntervaloHoras = int.Parse(((object)reader["horas"]).ToString());
+            posologia.Cantidad = (string)reader["cantidad"];
+            return posologia;
+        }
         private Diagnostico MapDiagnostico(OracleDataReader reader)
         {
             Diagnostico diagnostico = new Diagnostico();
-            Recetario recetario = new Recetario();
-            recetario.Codigo = ((object)reader["codigo"]).ToString();
-            recetario.codPaciente = (string)reader["persona_identificación"];
-            recetario.Fecha = DateTime.Parse(((object)reader["fecha"]).ToString());
-            diagnostico.AgregarRecetario(recetario);
             diagnostico.Codigo = ((object)reader["codigo"]).ToString();
             diagnostico.Descripción = (string)reader["descripción"];
             diagnostico.Fecha = DateTime.Parse(((object)reader["fecha"]).ToString());
@@ -91,21 +133,15 @@ namespace DAL
             return diagnostico;
         }
 
-        private HistoriaCliente MapHistoria(OracleDataReader reader)
+        private Recetario MAPrecetario(OracleDataReader reader)
         {
-            HistoriaCliente historia = new HistoriaCliente();
-            Persona persona = new Persona();
-            persona.Identificacion = (string)reader["identificación"];
-            persona.Nombres = (string)reader["nombres"];
-            persona.Apellidos = (string)reader["apellidos"];
-            persona.Edad = int.Parse(((object)reader["edad"]).ToString());
-            persona.Sexo = (string)reader["sexo"];
-            persona.Direccion = (string)reader["direccion"];
-            persona.Correo=new System.Net.Mail.MailAddress(((object)reader["correo"]).ToString());
-            persona.Celular = (string)reader["celuar"];
-            historia.GuardarPersona(persona);
-            historia.Codigo = int.Parse((string)reader["codigo"]);
-            return historia;
+            Recetario recetario = new Recetario();
+            recetario.Codigo = ((object)reader["codigo"]).ToString();
+            recetario.codPaciente = (string)reader["persona_identificación"];
+            recetario.Fecha = DateTime.Parse(((object)reader["fecha"]).ToString());
+            return recetario;
         }
+
+       
     }
 }

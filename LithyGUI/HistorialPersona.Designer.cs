@@ -102,7 +102,6 @@
             this.txtIdentificacion.ReadOnly = true;
             this.txtIdentificacion.Size = new System.Drawing.Size(133, 20);
             this.txtIdentificacion.TabIndex = 55;
-            this.txtIdentificacion.Visible = false;
             // 
             // txtCelular
             // 
@@ -223,6 +222,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "HistorialPersona";
             this.Text = "HistorialPersona";
+            this.Load += new System.EventHandler(this.HistorialPersona_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

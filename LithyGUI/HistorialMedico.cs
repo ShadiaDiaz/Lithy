@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLL;
+using Entity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +14,8 @@ namespace LithyGUI
 {
     public partial class HistorialMedico : Form
     {
+        HistoriaMedicaService HistoriaMedicaService;
+        static int Opcion;
         public HistorialMedico()
         {
             InitializeComponent();
@@ -48,6 +52,33 @@ namespace LithyGUI
         private void diagnosticoRecetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AbrirFrmInpanel(new HistorialDiagnostico());
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            HistoriaMedicaService = new HistoriaMedicaService(ConfigConnection.connectionString);
+            PersonaServiceBD personaservice = new PersonaServiceBD(ConfigConnection.connectionString);
+            Persona persona = personaservice.Buscar(TxtCedula.Text);
+            IList<Recetario> recetarios = HistoriaMedicaService.ConsultarHistoriaClienteRecetario(TxtCedula.Text);
+            
+            IList<Diagnostico> Diagnosticos=HistoriaMedicaService.ConsultarHistoriaClienteDiagnosticos(TxtCedula.Text, recetarios);
+
+            AbrirFrmInpanel(new HistorialPersona(persona));
+            foreach (var item in Diagnosticos)
+            {
+                CmbDiagnosticos.Items.Add(item.Codigo);
+            }
+ 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            HistoriaMedicaService = new HistoriaMedicaService(ConfigConnection.connectionString);
+            IList<Recetario> recetarios = HistoriaMedicaService.ConsultarHistoriaClienteRecetario(TxtCedula.Text);
+
+            IList<Diagnostico> Diagnosticos = HistoriaMedicaService.ConsultarHistoriaClienteDiagnosticos(TxtCedula.Text, recetarios);
+
+            AbrirFrmInpanel(new HistorialDiagnostico(Diagnosticos, CmbDiagnosticos.Text));
         }
     }
 }

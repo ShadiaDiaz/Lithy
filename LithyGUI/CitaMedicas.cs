@@ -72,7 +72,8 @@ namespace LithyGUI
             citaMedica.PersonaId = textId.Text;
             citaMedica.FechaCita = dateFecha.Value;
             citaMedica.Hora = textHora.Text;
-
+            citaMedica.CitaId = textCod.Text;
+            citaMedica.PersonaId = textId.Text;
 
             MessageBox.Show(service.Modificar(citaMedica));
         }

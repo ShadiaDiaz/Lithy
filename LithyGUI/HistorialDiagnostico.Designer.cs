@@ -29,10 +29,14 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.DtgPoslogia = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.TxtDescripcion = new System.Windows.Forms.TextBox();
+            this.CNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CDIas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CHoras = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.DtgPoslogia)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -45,14 +49,20 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "RX : ";
             // 
-            // dataGridView1
+            // DtgPoslogia
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.Azure;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(59, 218);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(441, 79);
-            this.dataGridView1.TabIndex = 1;
+            this.DtgPoslogia.BackgroundColor = System.Drawing.Color.Azure;
+            this.DtgPoslogia.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DtgPoslogia.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CNombre,
+            this.CDIas,
+            this.CHoras,
+            this.CCantidad});
+            this.DtgPoslogia.Location = new System.Drawing.Point(59, 218);
+            this.DtgPoslogia.Name = "DtgPoslogia";
+            this.DtgPoslogia.Size = new System.Drawing.Size(441, 79);
+            this.DtgPoslogia.TabIndex = 1;
+            this.DtgPoslogia.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DtgPoslogia_CellContentClick);
             // 
             // label2
             // 
@@ -64,13 +74,33 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Descripción";
             // 
-            // textBox1
+            // TxtDescripcion
             // 
-            this.textBox1.Location = new System.Drawing.Point(59, 88);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(441, 81);
-            this.textBox1.TabIndex = 3;
+            this.TxtDescripcion.Location = new System.Drawing.Point(59, 88);
+            this.TxtDescripcion.Multiline = true;
+            this.TxtDescripcion.Name = "TxtDescripcion";
+            this.TxtDescripcion.Size = new System.Drawing.Size(441, 81);
+            this.TxtDescripcion.TabIndex = 3;
+            // 
+            // CNombre
+            // 
+            this.CNombre.HeaderText = "Nombre";
+            this.CNombre.Name = "CNombre";
+            // 
+            // CDIas
+            // 
+            this.CDIas.HeaderText = "CantidadDias";
+            this.CDIas.Name = "CDIas";
+            // 
+            // CHoras
+            // 
+            this.CHoras.HeaderText = "CantidadHoras";
+            this.CHoras.Name = "CHoras";
+            // 
+            // CCantidad
+            // 
+            this.CCantidad.HeaderText = "Cantidad";
+            this.CCantidad.Name = "CCantidad";
             // 
             // HistorialDiagnostico
             // 
@@ -78,14 +108,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(564, 338);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.TxtDescripcion);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.DtgPoslogia);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "HistorialDiagnostico";
             this.Text = "HistorialDiagnostico";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.HistorialDiagnostico_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.DtgPoslogia)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -94,8 +125,12 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView DtgPoslogia;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox TxtDescripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CNombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CDIas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CHoras;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CCantidad;
     }
 }
