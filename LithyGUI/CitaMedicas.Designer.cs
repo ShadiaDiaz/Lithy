@@ -156,7 +156,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::LithyGUI.Properties.Resources.logonegro;
-            this.pictureBox1.Location = new System.Drawing.Point(582, 30);
+            this.pictureBox1.Location = new System.Drawing.Point(541, 41);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(98, 52);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

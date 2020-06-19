@@ -56,12 +56,12 @@ namespace DAL
             }
             if (recetario.Count == 0)
             {
-                return id + "1";
+                return id + "2";
             }
             else
             {
                 Recetario receta = recetario[0];
-                long nuevoCod = long.Parse(receta.Codigo) + 1;
+                long nuevoCod = long.Parse(receta.Codigo) + 2;
                 return nuevoCod.ToString();
             }
 

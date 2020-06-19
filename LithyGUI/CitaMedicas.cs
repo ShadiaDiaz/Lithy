@@ -68,7 +68,8 @@ namespace LithyGUI
         private void button3_Click(object sender, EventArgs e)
         {
             CitaMedica citaMedica = new CitaMedica();
-
+            citaMedica.CitaId = textCod.Text;
+            citaMedica.PersonaId = textId.Text;
             citaMedica.FechaCita = dateFecha.Value;
             citaMedica.Hora = textHora.Text;
 
