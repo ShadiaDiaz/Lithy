@@ -35,7 +35,6 @@
             this.textCod = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.textId = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -111,19 +110,6 @@
             this.textId.Name = "textId";
             this.textId.Size = new System.Drawing.Size(139, 20);
             this.textId.TabIndex = 6;
-            // 
-            // button4
-            // 
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Image = global::LithyGUI.Properties.Resources.diverso1;
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button4.Location = new System.Drawing.Point(253, 424);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(63, 55);
-            this.button4.TabIndex = 14;
-            this.button4.Text = "Eliminar";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button4.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
@@ -238,7 +224,6 @@
             this.Controls.Add(this.textHora);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.tablaCita);
-            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -273,7 +258,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.DataGridView tablaCita;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textHora;

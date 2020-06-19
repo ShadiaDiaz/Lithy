@@ -23,17 +23,33 @@ namespace BLL
             repositorio = new HistoriaClinicaRepository(conexion);
         }
 
-        public HistoriaCliente ConsultarHistoriaCliente(string id,HistoriaCliente historia)
+        public IList<Recetario> ConsultarHistoriaClienteRecetario(string id)
         {
-            conexion.Open();
-            repositorio.BuscarHistoria(id, historia);
-            repositorio.BuscarDiagnostico(id, historia);
-            return historia;
+                   
             try
             {
-                
+                IList<Posologia> posologias = new List<Posologia>();
+                IList<Recetario> recetarios = new List<Recetario>();
+                conexion.Open();
+                posologias = repositorio.BuscarPosologia(id);
+                return recetarios = repositorio.BuscarRecetario(id, posologias);
             }
             catch(Exception e)
+            {
+                return null;
+            }
+            finally { conexion.Close(); }
+        }
+
+        public IList<Diagnostico> ConsultarHistoriaClienteDiagnosticos(string id,IList<Recetario> recetarios)
+        {
+            conexion.Open();
+            return repositorio.BuscarDiagnostico(id, recetarios);
+            try
+            {
+
+            }
+            catch (Exception e)
             {
                 return null;
             }

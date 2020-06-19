@@ -14,13 +14,25 @@ namespace LithyGUI
     public partial class HistorialPersona : Form
     {
         
-        public HistorialPersona(HistoriaCliente historia)
+        public HistorialPersona(Persona persona)
         {
             InitializeComponent();
-            txtIdentificacion.Text = historia.Persona.Identificacion;
+            txtIdentificacion.Text = persona.Identificacion;
+            txtApellidos.Text = persona.Apellidos;
+            cmbSexo.Text = persona.Sexo;
+            txtCelular.Text = persona.Celular;
+            txtNombres.Text = persona.Nombres;
+            txtEdad.Text = persona.Edad.ToString();
+            txtDireccion.Text = persona.Direccion;
+            txtCorreo.Text = persona.Correo.ToString();
         }
 
         public HistorialPersona()
+        {
+            InitializeComponent();
+        }
+
+        private void HistorialPersona_Load(object sender, EventArgs e)
         {
 
         }

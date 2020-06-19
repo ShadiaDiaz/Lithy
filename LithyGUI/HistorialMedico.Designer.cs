@@ -36,7 +36,7 @@
             this.diagnosticoRecetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelContenedor1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.CmbDiagnosticos = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -114,13 +114,13 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // comboBox1
+            // CmbDiagnosticos
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(412, 117);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(115, 21);
-            this.comboBox1.TabIndex = 15;
+            this.CmbDiagnosticos.FormattingEnabled = true;
+            this.CmbDiagnosticos.Location = new System.Drawing.Point(412, 117);
+            this.CmbDiagnosticos.Name = "CmbDiagnosticos";
+            this.CmbDiagnosticos.Size = new System.Drawing.Size(115, 21);
+            this.CmbDiagnosticos.TabIndex = 15;
             // 
             // button2
             // 
@@ -133,6 +133,7 @@
             this.button2.TabIndex = 16;
             this.button2.Text = "Diagnostico";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // HistorialMedico
             // 
@@ -141,7 +142,7 @@
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(697, 503);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.CmbDiagnosticos);
             this.Controls.Add(this.panelContenedor1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.TxtCedula);
@@ -168,7 +169,7 @@
         private System.Windows.Forms.ToolStripMenuItem personaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem diagnosticoRecetToolStripMenuItem;
         private System.Windows.Forms.Panel panelContenedor1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox CmbDiagnosticos;
         private System.Windows.Forms.Button button2;
     }
 }

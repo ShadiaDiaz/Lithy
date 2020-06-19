@@ -42,30 +42,43 @@ namespace LithyGUI
         private void todosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AbrirFrmInpanel(new HistorialTodos());
-            Opcion = 1;
         }
 
         private void personaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AbrirFrmInpanel(new HistorialPersona());
-            Opcion = 2;
         }
 
         private void diagnosticoRecetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AbrirFrmInpanel(new HistorialDiagnostico());
-            Opcion = 3;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             HistoriaMedicaService = new HistoriaMedicaService(ConfigConnection.connectionString);
-            HistoriaCliente historir = new HistoriaCliente();
-            HistoriaMedicaService.ConsultarHistoriaCliente(TxtCedula.Text, historir);
-            if (Opcion == 2)
+            PersonaServiceBD personaservice = new PersonaServiceBD(ConfigConnection.connectionString);
+            Persona persona = personaservice.Buscar(TxtCedula.Text);
+            IList<Recetario> recetarios = HistoriaMedicaService.ConsultarHistoriaClienteRecetario(TxtCedula.Text);
+            
+            IList<Diagnostico> Diagnosticos=HistoriaMedicaService.ConsultarHistoriaClienteDiagnosticos(TxtCedula.Text, recetarios);
+
+            AbrirFrmInpanel(new HistorialPersona(persona));
+            foreach (var item in Diagnosticos)
             {
-                AbrirFrmInpanel(new HistorialPersona(historir));
+                CmbDiagnosticos.Items.Add(item.Codigo);
             }
+ 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            HistoriaMedicaService = new HistoriaMedicaService(ConfigConnection.connectionString);
+            IList<Recetario> recetarios = HistoriaMedicaService.ConsultarHistoriaClienteRecetario(TxtCedula.Text);
+
+            IList<Diagnostico> Diagnosticos = HistoriaMedicaService.ConsultarHistoriaClienteDiagnosticos(TxtCedula.Text, recetarios);
+
+            AbrirFrmInpanel(new HistorialDiagnostico(Diagnosticos, CmbDiagnosticos.Text));
         }
     }
 }

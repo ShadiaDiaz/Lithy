@@ -12,6 +12,7 @@ namespace Entity
         public DateTime Fecha  { get; set; }
         public string codPaciente { get; set; }
         public List<Posologia> Posologias { get; set;}
+        public Diagnostico Diagnostico { get; set; }
 
         public Recetario()
         {
