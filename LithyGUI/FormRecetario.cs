@@ -20,6 +20,7 @@ namespace LithyGUI
         PosologiaService posologiaService;
         MedicamentoService medicamentoService;
         RecetarioService recetarioService;
+        DiagnosticoService diagnosticoService;
         
         
 
@@ -74,34 +75,44 @@ namespace LithyGUI
 
         private void picBtnImprimir_Click(object sender, EventArgs e)
         {
-          
-            Recetario recetario = new Recetario();
-            Posologia posologia = new Posologia();
-            Persona persona = new Persona();
-            recetario.Codigo = txtCodigoRecetario.Text;
-            persona.Identificacion = txtIDPR.Text;
-            persona.Nombres = txtNPR.Text;
-            recetario.Fecha = DateTime.Parse(dpFecha.Text);
-            Medicamento medicamento = new Medicamento();
-            posologia.AgregarMedicamento(medicamento);
-           
-            for (int fila = 0; fila < dtgvMedicinas.Rows.Count - 1; fila++)
+            if (diagnosticoService.Buscar(txtCodigoRecetario.Text) == null)
             {
-              
-                posologia.Medicamento.Nombre = dtgvMedicinas.Rows[fila].Cells[0].Value.ToString();
-                posologia.CantidadDias = dtgvMedicinas.Rows[fila].Cells[1].Value.ToString();
-                posologia.IntervaloHoras = dtgvMedicinas.Rows[fila].Cells[2].Value.ToString();
-                posologia.Cantidad = dtgvMedicinas.Rows[fila].Cells[3].Value.ToString();
-                recetario.AgregarPosologia(posologia);
-                
+                MessageBox.Show("No existe un diagnostico asociado a este recetario", " :C ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
             }
+            else
+            {
 
-            MessageBox.Show(recetarioService.Guardar(recetario, txtCodigoRecetario.Text));
+                Recetario recetario = new Recetario();
+                Posologia posologia = new Posologia();
+                Persona persona = new Persona();
+                recetario.Codigo = txtCodigoRecetario.Text;
+                persona.Identificacion = txtIDPR.Text;
+                persona.Nombres = txtNPR.Text;
+                recetario.Fecha = DateTime.Parse(dpFecha.Text);
+                Medicamento medicamento = new Medicamento();
+                posologia.AgregarMedicamento(medicamento);
 
+                for (int fila = 0; fila < dtgvMedicinas.Rows.Count - 1; fila++)
+                {
+
+                    posologia.Medicamento.Nombre = dtgvMedicinas.Rows[fila].Cells[0].Value.ToString();
+                    posologia.CantidadDias = dtgvMedicinas.Rows[fila].Cells[1].Value.ToString();
+                    posologia.IntervaloHoras = dtgvMedicinas.Rows[fila].Cells[2].Value.ToString();
+                    posologia.Cantidad = dtgvMedicinas.Rows[fila].Cells[3].Value.ToString();
+                    recetario.AgregarPosologia(posologia);
+
+                }
+
+                MessageBox.Show(recetarioService.Guardar(recetario, txtCodigoRecetario.Text));
+
+            }
 
 
 
         }
+
 
         private void cbxMedicamentos_SelectedIndexChanged(object sender, EventArgs e)
         {

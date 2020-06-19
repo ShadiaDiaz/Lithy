@@ -34,6 +34,8 @@ namespace LithyGUI
                 if (item.Codigo == codigo)
                 {
                     TxtDescripcion.Text = item.Descripción;
+                    textPrimero.Text = item.Primeros_Sintomas.ToShortDateString();
+                    textInicio.Text = item.InicioTratamiento.ToShortDateString();
                 }
             }
         }
@@ -59,6 +61,16 @@ namespace LithyGUI
         }
 
         private void DtgPoslogia_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void TxtDescripcion_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
         }

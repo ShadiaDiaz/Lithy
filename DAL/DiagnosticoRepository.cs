@@ -62,7 +62,38 @@ namespace DAL
 
             return pacientes;
         }
-        //actualizar proce
+        public Diagnostico BuscarDiagnostico(string cod) {
+
+            OracleDataReader dataReader;
+            Diagnostico diagnostico = null;
+            using (var Comando = _connection.CreateCommand())
+            {
+                Comando.CommandText = "PAQUETE_DIAGNOSTICO.Buscar_Diagnostico";
+                Comando.CommandType = CommandType.StoredProcedure;
+                Comando.Parameters.Add("xCodigo", OracleDbType.Varchar2).Value = cod;
+                Comando.Parameters.Add("x", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+
+                dataReader = Comando.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+
+                    diagnostico = Map(dataReader);
+                }
+
+            }
+
+            return diagnostico;
+
+
+
+
+
+
+
+
+
+        }
         public List<Diagnostico> BuscarPaciente(string id)
         {
             OracleDataReader dataReader;

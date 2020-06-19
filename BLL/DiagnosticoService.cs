@@ -25,7 +25,6 @@ namespace BLL
 
         public string NuevoCodigo(string id)
         {
-            //try
              conexion.Open();
                 
              string nuevo=repositorio.NuevoCodigo(id);
@@ -33,6 +32,34 @@ namespace BLL
             conexion.Close();
             return nuevo;
             
+        }
+
+        public Diagnostico Buscar(string cod)
+        {
+
+            try
+            {
+                Diagnostico diagnostico;
+                conexion.Open();
+                diagnostico = repositorio.BuscarDiagnostico(cod);
+
+                return diagnostico;
+
+
+
+
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+
+
+                conexion.Close();
+            }
+
         }
 
         public string GuardarDiagnostico(Diagnostico diagnostico)
@@ -54,5 +81,8 @@ namespace BLL
                 conexion.Close();
             }
         }
+
+
+
     }
 }

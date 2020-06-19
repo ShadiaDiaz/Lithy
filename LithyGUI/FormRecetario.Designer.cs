@@ -48,6 +48,10 @@
             this.dpFecha = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.dtgvMedicinas = new System.Windows.Forms.DataGridView();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dias = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Horas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.picBtnAgregar = new System.Windows.Forms.PictureBox();
             this.pbtnExtraer = new System.Windows.Forms.PictureBox();
             this.picBtnImprimir = new System.Windows.Forms.PictureBox();
@@ -58,10 +62,6 @@
             this.txtHoras = new System.Windows.Forms.TextBox();
             this.txtCantidad = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Dias = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Horas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvMedicinas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBtnAgregar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbtnExtraer)).BeginInit();
@@ -73,7 +73,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(246, 48);
+            this.label1.Location = new System.Drawing.Point(248, 55);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(149, 20);
             this.label1.TabIndex = 1;
@@ -260,6 +260,27 @@
             this.dtgvMedicinas.TabIndex = 78;
             this.dtgvMedicinas.DoubleClick += new System.EventHandler(this.EliminarFila);
             // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.MinimumWidth = 10;
+            this.Nombre.Name = "Nombre";
+            // 
+            // Dias
+            // 
+            this.Dias.HeaderText = "Cantidad Dias";
+            this.Dias.Name = "Dias";
+            // 
+            // Horas
+            // 
+            this.Horas.HeaderText = "Cada Cuantas Horas";
+            this.Horas.Name = "Horas";
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            // 
             // picBtnAgregar
             // 
             this.picBtnAgregar.Image = global::LithyGUI.Properties.Resources.medicine;
@@ -350,27 +371,6 @@
             this.label15.Size = new System.Drawing.Size(55, 13);
             this.label15.TabIndex = 83;
             this.label15.Text = "Cantidad :";
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.MinimumWidth = 10;
-            this.Nombre.Name = "Nombre";
-            // 
-            // Dias
-            // 
-            this.Dias.HeaderText = "Cantidad Dias";
-            this.Dias.Name = "Dias";
-            // 
-            // Horas
-            // 
-            this.Horas.HeaderText = "Cada Cuantas Horas";
-            this.Horas.Name = "Horas";
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
             // 
             // FormRecetario
             // 
