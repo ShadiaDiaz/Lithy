@@ -20,19 +20,14 @@ namespace InfraEstructura
         public void FillPDF(string templateFile, List<Posologia> posologia, Persona persona,string cod)
         {
             Stream file = new FileStream(@"C:\Users\xshad\Downloads\Lithy2\Lithy\PDFRecetario" + cod+".pdf", FileMode.Create);
-            ByteArrayOutputStream streamDoc = new ByteArrayOutputStream();
-            PdfReader frente = new PdfReader(streamDoc.ToByteArray());
-            PdfStamper stamperDoc = new PdfStamper(frente,file);
             PdfReader reader = new PdfReader(templateFile);
-            ByteArrayOutputStream streamFondo = new ByteArrayOutputStream();
-            PdfStamper stamperFondo = new PdfStamper(reader, streamFondo);
+            PdfStamper stamp = new PdfStamper(reader, file);
+            stamp.AcroFields.SetField("Identificaciòn", "" + persona.Identificacion);
+            stamp.AcroFields.SetField("Nombres", "" + persona.Nombres);
+            stamp.AcroFields.SetField("RX", "" + LlenarTabla(posologia).ToString());
 
-            stamperFondo.AcroFields.Fields("Identificaciòn", "" + persona.Identificacion);
-            stamperFondo.AcroFields.GetField("Nombres", "" + persona.Nombres);
-            stamperFondo.AcroFields.Fields("RX", "" + LlenarTabla(posologia).ToString());
-
-            stamperFondo.FormFlattening = false;
-            stamperFondo.Close();
+            stamp.FormFlattening = false;
+            stamp.Close();
             reader.Close();
             file.Close();
             
