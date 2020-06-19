@@ -5,7 +5,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
 using Entity;
-
+using NPOI.Util;
 
 namespace InfraEstructura
 {
@@ -17,64 +17,28 @@ namespace InfraEstructura
 
 
 
-        public void FillPDF(string templateFile, List<Posologia> posologia, Persona persona)
+        public void FillPDF(string templateFile, List<Posologia> posologia, Persona persona,string cod)
         {
-            Stream file = new FileStream(@"RecetarioCrear.pdf", FileMode.Create);
+            Stream file = new FileStream(@"C:\Users\xshad\Downloads\Lithy2\Lithy\PDFRecetario" + cod+".pdf", FileMode.Create);
+            ByteArrayOutputStream streamDoc = new ByteArrayOutputStream();
+            PdfReader frente = new PdfReader(streamDoc.ToByteArray());
+            PdfStamper stamperDoc = new PdfStamper(frente,file);
             PdfReader reader = new PdfReader(templateFile);
-            PdfStamper stamp = new PdfStamper(reader, file);
-            stamp.AcroFields.SetField("Identificaciòn", "" + persona.Identificacion);
-            stamp.AcroFields.SetField("Nombres", "" + persona.Nombres);
-            stamp.AcroFields.SetField("RX", "" + LlenarTabla(posologia).ToString());
+            ByteArrayOutputStream streamFondo = new ByteArrayOutputStream();
+            PdfStamper stamperFondo = new PdfStamper(reader, streamFondo);
 
-            stamp.FormFlattening = false;
-            stamp.Close();
+            stamperFondo.AcroFields.Fields("Identificaciòn", "" + persona.Identificacion);
+            stamperFondo.AcroFields.GetField("Nombres", "" + persona.Nombres);
+            stamperFondo.AcroFields.Fields("RX", "" + LlenarTabla(posologia).ToString());
+
+            stamperFondo.FormFlattening = false;
+            stamperFondo.Close();
+            reader.Close();
+            file.Close();
+            
         }
 
-        //public void GuardarPdf(List<Persona> persona, string path)
-        //{
-        //    FileStream fs = new FileStream(path, FileMode.Create);
-        //    Document document = new Document(iTextSharp.text.PageSize.LEGAL);
-        //    PdfWriter pw = PdfWriter.GetInstance(document, fs);
-
-        //    document.AddTitle("Personas Registradas");
-        //    document.AddCreator("Lithy");
-
-        //    document.Open();
-
-        //    document.Add(new Paragraph("Lista de Pacientes"));
-        //    document.Add(LlenarTabla(persona));
-
-        //    document.Close();
-
-
-        //}
-        //private PdfPTable LlenarTabla(List<Persona> persona)
-        //{
-        //    PdfPTable tabla = new PdfPTable(7);
-        //    tabla.AddCell(new Paragraph("Identificación"));
-        //    tabla.AddCell(new Paragraph("Nombre"));
-        //    tabla.AddCell(new Paragraph("Apellido"));
-        //    tabla.AddCell(new Paragraph("Sexo"));
-        //    tabla.AddCell(new Paragraph("Edad"));
-        //    tabla.AddCell(new Paragraph("Dirección"));
-        //    tabla.AddCell(new Paragraph("Telefono"));
-        //    tabla.AddCell(new Paragraph("Correo"));
-
-
-        //    foreach (var item in persona){
-        //        tabla.AddCell(item.Identificacion);
-        //        tabla.AddCell(item.Nombres);
-        //        tabla.AddCell(item.Apellidos);
-        //        tabla.AddCell(item.Sexo);
-        //        tabla.AddCell($"{item.Edad}");
-        //        tabla.AddCell(item.Direccion);
-        //        tabla.AddCell(item.Celular);
-        //        tabla.AddCell($"{item.Correo}");
-        //    }
-
-        //    return tabla;
-
-        //}
+       
         private PdfPTable LlenarTabla(List<Posologia> posologia)
         {
             PdfPTable tabla = new PdfPTable(4);

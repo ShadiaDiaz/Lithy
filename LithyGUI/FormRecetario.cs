@@ -21,12 +21,14 @@ namespace LithyGUI
         MedicamentoService medicamentoService;
         RecetarioService recetarioService;
         DiagnosticoService diagnosticoService;
-        
-        
+        Generar generar;
+
 
         public FormRecetario()
         {
             InitializeComponent();
+            generar = new Generar();
+            diagnosticoService = new DiagnosticoService(ConfigConnection.connectionString);
             medicamentoService = new MedicamentoService(ConfigConnection.connectionString);
             posologiaService = new PosologiaService(ConfigConnection.connectionString);
             persona = new Persona();
@@ -75,6 +77,7 @@ namespace LithyGUI
 
         private void picBtnImprimir_Click(object sender, EventArgs e)
         {
+            Recetario recetario = new Recetario();
             if (diagnosticoService.Buscar(txtCodigoRecetario.Text) == null)
             {
                 MessageBox.Show("No existe un diagnostico asociado a este recetario", " :C ", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -84,7 +87,7 @@ namespace LithyGUI
             else
             {
 
-                Recetario recetario = new Recetario();
+              
                 Posologia posologia = new Posologia();
                 Persona persona = new Persona();
                 recetario.Codigo = txtCodigoRecetario.Text;
@@ -109,7 +112,7 @@ namespace LithyGUI
 
             }
 
-
+            generar.FillPDF("Recetario.pdf", recetario.Posologias, persona,recetario.Codigo);
 
         }
 

@@ -17,7 +17,7 @@ namespace LithyGUI
     public partial class FormEnvioCorreo : Form
     {
         PersonaServiceBD personaService;
-        List<Persona> personas;
+        string ruta;
         public FormEnvioCorreo()
         {
             InitializeComponent();
@@ -39,9 +39,15 @@ namespace LithyGUI
             EnviarCorreo enviarCorreo = new EnviarCorreo();
             Persona persona = new Persona();
             persona.Correo = new MailAddress(txtCorreo.Text);
-            MessageBox.Show(enviarCorreo.EnviarEmail(persona));
+            MessageBox.Show(enviarCorreo.SendEmail(ruta,txtCorreo.Text, textAsunto.Text,textBody.Text));
         }
 
-       
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog Pdf = new OpenFileDialog();
+            Pdf.ShowDialog();
+            var cadena = Pdf.FileName;
+            ruta = cadena;
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace InfraEstructura
 {
     public class EnviarCorreo
     {
-        //string con = "NIALLhoran43";
+ 
 
         
             private MailMessage email;
@@ -26,14 +26,14 @@ namespace InfraEstructura
             private void ConfigurarEmail( Persona persona)
             {
 
-                //Attachment pdf = new Attachment();
+               Attachment pdf = new Attachment(@"C: \Users\xshad\Downloads\Lithy2\Lithy\PDF");
                 email = new MailMessage();
                 email.To.Add(persona.Correo);
                 email.From = new MailAddress("scarleth0413@gmail.com");
                 email.Subject = "Enviar Correo " + DateTime.Now.ToString("dd / MMM / yy hh:mm:ss");
-                email.Body = $"<b>Shadia Scarleth, profe porfa aceptemelo, es que me enrede";
+                email.Body = $"<b> Recetario";
                 email.IsBodyHtml = true;
-            //email.Attachments.Add(pdf);
+                email.Attachments.Add(pdf);
                 email.Priority = MailPriority.Normal;
 
 
@@ -72,8 +72,43 @@ namespace InfraEstructura
                 return resultado;
             }
 
+           private void ConfiEmail(string ruta,string correo,string subject, string body)
+           {
+
+            Attachment pdf = new Attachment(ruta);
+            email = new MailMessage();
+            email.To.Add(correo);
+            email.From = new MailAddress("scarleth0413@gmail.com");
+            email.Subject = subject + DateTime.Now.ToString("dd / MMM / yy hh:mm:ss");
+            email.Body = $"<b> Recetario "+ body +"</b>";
+            email.IsBodyHtml = true;
+            email.Attachments.Add(pdf);
+            email.Priority = MailPriority.Normal;
 
 
+           }
+
+        public string SendEmail(string ruta, string correo, string subject, string body)
+        {
+            string resultado = string.Empty;
+            try
+            {
+                ConfigurarSMTP();
+                ConfiEmail(ruta,correo,subject,body);
+                smtp.Send(email);
+                email.Dispose();
+                resultado = "Correo electronico fue enviado satisfactoriamente";
+            }
+            catch (Exception e)
+            {
+
+                resultado = "Error enviando Correo" + e;
+
+            }
+            Console.WriteLine(resultado);
+            return resultado;
         }
+
+    }
     }
 
