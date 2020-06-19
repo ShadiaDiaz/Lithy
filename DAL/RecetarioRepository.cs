@@ -21,16 +21,16 @@ namespace DAL
             _connection = connection._conexion;
         }
 
-        public void Guardar(Recetario recetario, string idPaciente)
+        public void Guardar(Recetario recetario, string cod_diag)
         {
 
             using (var Comando = _connection.CreateCommand())
             {
                 Comando.CommandText = "PAQUETE_RECETARIO.Insertar_Recetario";
                 Comando.CommandType = CommandType.StoredProcedure;  
-                Comando.Parameters.Add(":Codigo", OracleDbType.Int32).Value = int.Parse(recetario.Codigo);
+                Comando.Parameters.Add(":Codigo", OracleDbType.Varchar2).Value = recetario.Codigo;
                 Comando.Parameters.Add(":Fecha", OracleDbType.Date).Value = recetario.Fecha;
-                Comando.Parameters.Add(":CodPaciente", OracleDbType.NVarchar2).Value = idPaciente;
+                Comando.Parameters.Add(":Diagnostico_Codigo", OracleDbType.NVarchar2).Value = cod_diag;
 
                 Comando.ExecuteNonQuery();
             }
@@ -56,12 +56,12 @@ namespace DAL
             }
             if (recetario.Count == 0)
             {
-                return id + "2";
+                return id + "1";
             }
             else
             {
                 Recetario receta = recetario[0];
-                long nuevoCod = long.Parse(receta.Codigo) + 2;
+                long nuevoCod = long.Parse(receta.Codigo) + 1;
                 return nuevoCod.ToString();
             }
 
@@ -118,7 +118,7 @@ namespace DAL
         {
 
             Recetario recetario = new Recetario();
-            recetario.Codigo = ((object)dataReader["Codigo"]).ToString();
+            recetario.Codigo = (string)dataReader["Codigo"].ToString();
             recetario.Fecha = (DateTime)dataReader["Fecha"];
             return recetario;
 

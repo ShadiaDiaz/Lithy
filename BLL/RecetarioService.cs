@@ -33,7 +33,11 @@ namespace BLL
                 posologiaRepository = new PosologiaRepository(conexion);
                 conexion.Open();
                 repositorio.Guardar(recetario, idPaciente);
-                posologiaRepository.Guardar(recetario);
+                foreach (var item in recetario.Posologias)
+                {
+                    posologiaRepository.Guardar(item);
+
+                }
                 return "Recetario #" + recetario.Codigo + "Para el paciente " + idPaciente + " registrad@ Exitamente";
             }
             catch (Exception excep)

@@ -10,8 +10,8 @@ namespace Entity
     {
 
         public Medicamento Medicamento { get; set; }
-        public int CantidadDias { get; set; }
-        public int IntervaloHoras { get; set; }
+        public string CantidadDias { get; set; }
+        public string IntervaloHoras { get; set; }
         public string Cantidad { get; set; }
         public string CodRecetario { get; set; }
         public Recetario Recetario { get; set; }
@@ -22,7 +22,7 @@ namespace Entity
 
         }
 
-        public Posologia(Medicamento medicamento,int cantidadDias, int intervaloHoras, string cantidad, string codRecetario)
+        public Posologia(Medicamento medicamento,string cantidadDias, string intervaloHoras, string cantidad, string codRecetario)
         {
             Medicamento = medicamento;
             CantidadDias = cantidadDias;

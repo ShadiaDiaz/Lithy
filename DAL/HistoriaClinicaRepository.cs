@@ -112,12 +112,12 @@ namespace DAL
         private Posologia MapPosologia(OracleDataReader reader)
         {
             Posologia posologia = new Posologia();
-            posologia.CodRecetario = ((object)reader["idrecetario"]).ToString();
+            posologia.CodRecetario = (string)reader["idrecetario"].ToString();
             Medicamento medicamento = new Medicamento();
             medicamento.Nombre = (string)reader["medicamento"];
             posologia.AgregarMedicamento(medicamento);
-            posologia.CantidadDias = int.Parse(((object)reader["dias"]).ToString());
-            posologia.IntervaloHoras = int.Parse(((object)reader["horas"]).ToString());
+            posologia.CantidadDias = (string)reader["dias"].ToString();
+            posologia.IntervaloHoras = (string)reader["horas"].ToString();
             posologia.Cantidad = (string)reader["cantidad"];
             return posologia;
         }

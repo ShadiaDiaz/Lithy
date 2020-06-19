@@ -89,8 +89,8 @@ namespace LithyGUI
             {
               
                 posologia.Medicamento.Nombre = dtgvMedicinas.Rows[fila].Cells[0].Value.ToString();
-                posologia.CantidadDias = int.Parse((dtgvMedicinas.Rows[fila].Cells[1].Value).ToString());
-                posologia.IntervaloHoras = int.Parse(dtgvMedicinas.Rows[fila].Cells[2].Value.ToString());
+                posologia.CantidadDias = dtgvMedicinas.Rows[fila].Cells[1].Value.ToString();
+                posologia.IntervaloHoras = dtgvMedicinas.Rows[fila].Cells[2].Value.ToString();
                 posologia.Cantidad = dtgvMedicinas.Rows[fila].Cells[3].Value.ToString();
                 recetario.AgregarPosologia(posologia);
                 

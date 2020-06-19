@@ -124,7 +124,7 @@ namespace DAL
             diagnostico.Fecha = (DateTime)dataReader["Fecha"];
             diagnostico.Descripción= (string)dataReader["Descripción"];
             diagnostico.Primeros_Sintomas = (DateTime)dataReader["primeros_sintomas"];
-            diagnostico.InicioTratamiento = (DateTime)dataReader["Inicio_Tratamiento"];
+            diagnostico.InicioTratamiento = (DateTime)dataReader["InicioTratamiento"];
             diagnostico.PacienteId = (string)dataReader["PERSONA_IDENTIFICACIÓN"];
    
            
