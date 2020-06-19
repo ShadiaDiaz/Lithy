@@ -127,7 +127,7 @@ namespace DAL
             diagnostico.Codigo = ((object)reader["codigo"]).ToString();
             diagnostico.Descripción = (string)reader["descripción"];
             diagnostico.Fecha = DateTime.Parse(((object)reader["fecha"]).ToString());
-            diagnostico.InicioTratamiento = DateTime.Parse(((object)reader["inicio_tratamiento"]).ToString());
+            diagnostico.InicioTratamiento = DateTime.Parse(((object)reader["iniciotratamiento"]).ToString());
             diagnostico.PacienteId = (string)reader["persona_identificación"];
             diagnostico.Primeros_Sintomas = DateTime.Parse(((object)reader["primeros_sintomas"]).ToString());
             return diagnostico;
